@@ -8,12 +8,31 @@ namespace FolderExplorer
 {
     internal static class Size_Manager
     {
+        private static int xdivisible;
+
+        public static Decimal division(int xtaille, int xnombre)
+        {
+            Decimal retour = xtaille / xnombre;
+            return retour;
+        }
+
         public static int otoko(int xtailleo)
         {
-            Decimal xtemp = xtailleo / 1024;
-            int xtailleko = Decimal.ToInt32(Decimal.Round(xtemp));
-
+            int xtailleko = Decimal.ToInt32(Decimal.Round(division(xtailleo, 1024)));
             return xtailleko;
         }
+
+        public static int otomo(int xtailleo)
+        {
+            int xtailleko = Decimal.ToInt32(Decimal.Round(division(xtailleo, 1048576)));
+            return xtailleko;
+        }
+
+        public static int otogo(int xtailleo)
+        {
+            int xtailleko = Decimal.ToInt32(Decimal.Round(division(xtailleo, 1073741824)));
+            return xtailleko;
+        }
+
     }
 }

@@ -2,7 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-	<LangVersion>10.0</LangVersion>
+    <LangVersion>10.0</LangVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{96EF1CC2-ED32-44F1-88DB-F97CE888DC14}</ProjectGuid>
@@ -106,6 +106,7 @@
       <DependentUpon>LabelEditable.cs</DependentUpon>
     </Compile>
     <Compile Include="Lib\Extern\CPCS.cs" />
+    <Compile Include="Lib\Extern\Maj_Min.cs" />
     <Compile Include="Lib\Extern\Size_Manager.cs" />
     <Compile Include="Lib\Intern\Element.cs" />
     <Compile Include="GUI\Forms\FolderExplorer_form.cs">
