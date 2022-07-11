@@ -14,7 +14,7 @@ namespace FolderExplorer
     {
         private Dictionary<MetaDataElement,Label> label_lsts = new Dictionary<MetaDataElement, Label>();
         private Element element;
-
+        private ElementViewer elementViewer;
         //public event RowEventHandler RowChanged;
 
 
@@ -32,10 +32,11 @@ namespace FolderExplorer
             set { element.fullName = value; }
         }
 
-        public ElementViewerRow(Element element, bool nameOnly)
+        public ElementViewerRow(Element element, bool nameOnly, ElementViewer elementViewer)
         {
             InitializeComponent();
             this.element = element;
+            this.elementViewer = elementViewer;
             ChangeNameVisibility(nameOnly);
         }
 
@@ -44,7 +45,7 @@ namespace FolderExplorer
             name_labelEdit.Init(nameOnly ? elementName : elementFullName);
         }
 
-        public void AddColumn(MetaDataElement metaDataElement, ElementViewer elementViewer)
+        public void AddColumn(MetaDataElement metaDataElement)
         {
             //pour le moment
             //on met un string
@@ -62,15 +63,11 @@ namespace FolderExplorer
             }
         }
 
-        public void RemoveColumn(MetaDataElement[] metaDataElements)
+        public void RemoveColumn(MetaDataElement metaDataElement)
         {
-            for (int i = 0; i < metaDataElements.Length; i++)
+            if (metaDataElement != MetaDataElement.Name)
             {
-                MetaDataElement med = metaDataElements[i];
-                if (med != MetaDataElement.Name)
-                {
-                    label_lsts.Remove(med);
-                }
+                label_lsts.Remove(metaDataElement);
             }
         }
 

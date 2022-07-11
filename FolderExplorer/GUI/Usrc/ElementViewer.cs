@@ -142,7 +142,7 @@ namespace FolderExplorer
             intersectionEvh_lsts.Add(new Point(x + evh.Size.Width, 0));
             evh.Location = new Point(x, 0);
             elementViewerHeader_lsts.Add(evh);
-            elementViewerRow_lsts.ForEach(r => r.AddColumn(evh.metaDataElement, this));
+            elementViewerRow_lsts.ForEach(r => r.AddColumn(evh.metaDataElement));
         }
 
         public void AddHeader(string name, object[] filter)

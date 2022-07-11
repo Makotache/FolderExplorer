@@ -192,9 +192,9 @@ namespace FolderExplorer
 
             set 
             {
-                header_button.Text = text;
                 _metaDataElement = value;
-            } 
+                header_button.Text = text;
+            }
         }
         public SortDirection sortDirection { get; set; } = SortDirection.None;
 

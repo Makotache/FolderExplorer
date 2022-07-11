@@ -18,8 +18,7 @@ namespace FolderExplorer
         private ElementViewer eViewer = new ElementViewer();
         internal static readonly string FolderMainPath = Path.Combine(Directory.GetCurrentDirectory(), "FolderExplorerConfigs");
         internal static readonly string ExtensionJson = Path.Combine(FolderMainPath, "extension.json");
-        Element[] elements;
-
+        
         public FolderExplorer_form()
         {
             InitializeComponent();
@@ -36,11 +35,11 @@ namespace FolderExplorer
             eViewer.Name = "eviewer_usrc";
             this.Controls.Add(eViewer);
 
-            elements = Element.GetElements("C:/testFolderExplorer");
-            /*for(int i = 0; i < elements.Length; i++)
+            Element[] elements = Element.GetElements("C:/testFolderExplorer");
+            for(int i = 0; i < elements.Length; i++)
             {
                 Console.WriteLine(elements[i].ToString());
-            }*/
+            }
         }
 
         private void FolderExplorer_form_FormClosing(object sender, FormClosingEventArgs e)
