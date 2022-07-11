@@ -26,10 +26,7 @@ namespace FolderExplorer
                 return _elementInfo.Name;
             }
 
-            set
-            {
-                fullName = value + "." + extension;
-            }
+            set => fullName = value + "." + extension;
         }
 
         //1
@@ -53,33 +50,33 @@ namespace FolderExplorer
         //3
         public DateTime lastWriteTime
         {
-            get { return _elementInfo.LastWriteTime; }
+            get => _elementInfo.LastWriteTime;
 
-            set { _elementInfo.LastWriteTime = value; }
+            set => _elementInfo.LastWriteTime = value; 
         }
 
         //4
         public DateTime creationTime
         {
-            get { return _elementInfo.CreationTime; }
+            get => _elementInfo.CreationTime;
 
-            set { _elementInfo.CreationTime = value; }
+            set => _elementInfo.CreationTime = value;
         }
 
         //5
         public DateTime lastAccessTime
         {
-            get { return _elementInfo.LastAccessTime; }
+            get => _elementInfo.LastAccessTime; 
 
-            set { _elementInfo.LastAccessTime = value; }
+            set => _elementInfo.LastAccessTime = value;
         }
 
         //6
         public FileAttributes attribute
         {
-            get { return _elementInfo.Attributes; }
+            get => _elementInfo.Attributes;
 
-            set { _elementInfo.Attributes = value; }
+            set => _elementInfo.Attributes = value;
         }
 
         //7
@@ -186,7 +183,7 @@ namespace FolderExplorer
 
         public string fullName
         {
-            get { return _elementInfo.Name; }
+            get => _elementInfo.Name; 
 
             set
             {
@@ -199,7 +196,7 @@ namespace FolderExplorer
 
         public string extension
         {
-            get { return isFile ? _elementInfo.Extension.Replace(".", "") : ""; }
+            get => isFile ? _elementInfo.Extension.Replace(".", "") : "";
 
             set
             {
@@ -235,7 +232,7 @@ namespace FolderExplorer
                 Folder objFolder = shell.NameSpace(Path.GetDirectoryName(this.fullPath));
                 FolderItem folderItem = objFolder.ParseName(Path.GetFileName(this.fullPath));
 
-                for (short i = 0; i < short.MaxValue; i++)
+                for (short i = 0; i < 35; i++)
                 {
                     string header = objFolder.GetDetailsOf(null, i);
                     if (header == "")

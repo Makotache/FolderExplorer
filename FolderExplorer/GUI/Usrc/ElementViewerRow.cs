@@ -15,8 +15,9 @@ namespace FolderExplorer
         private Dictionary<MetaDataElement,Label> label_lsts = new Dictionary<MetaDataElement, Label>();
         private Element element;
 
-        public event MouseEventHandler
-        
+        //public event RowEventHandler RowChanged;
+
+
         public string elementName
         {
             get { return element.name; }
@@ -43,21 +44,21 @@ namespace FolderExplorer
             name_labelEdit.Init(nameOnly ? elementName : elementFullName);
         }
 
-        public void AddColumn(MetaDataElement[] metaDataElements)
+        public void AddColumn(MetaDataElement metaDataElement, ElementViewer elementViewer)
         {
-            for(int i = 0; i < metaDataElements.Length; i++)
+            //pour le moment
+            //on met un string
+            //on feras plus tard pour que ce soit au propre
+
+            if(metaDataElement != MetaDataElement.Name)
             {
-                MetaDataElement med = metaDataElements[i];
-                if(med != MetaDataElement.Name)
-                {
-                    Label label = new Label();
-                    label.Name = med.ToString();
-                    label.Text = element.GetValue(med).ToString();
-                    label.AutoSize = false;
-                    label.Location = new Point();
-                    label.Size = new Size();
-                    label_lsts.Add(med, label);
-                }
+                Label label = new Label();
+                label.Name = metaDataElement.ToString();
+                label.Text = element.GetValue(metaDataElement).ToString();
+                label.AutoSize = false;
+                label.Location = new Point();
+                label.Size = new Size();
+                label_lsts.Add(metaDataElement, label);
             }
         }
 
@@ -84,9 +85,4 @@ namespace FolderExplorer
             //shift / control
         }
     }
-
-    //public delegate void MouseEventHandler(object sender, MouseEventArgs e);
-    public delegate void RowEventHandler(object sender, RowEventArgs e);
-
-
 }

@@ -16,16 +16,23 @@ namespace FolderExplorer
         private readonly static Cursor vsplit_Cursor = Cursors.VSplit;
         private readonly static Cursor default_Cursor = Cursors.Default;
         private readonly List<ElementViewerHeader> elementViewerHeader_lsts = new List<ElementViewerHeader>();
+        private readonly List<ElementViewerRow> elementViewerRow_lsts = new List<ElementViewerRow>();
+        
         //move header
         private readonly List<Point> intersectionEvh_lsts = new List<Point>();
         private int indexMoveHeader = -1;
         private int mouse_pos_x = 0;
 
+        //event
+        //public event RowEventHandler rowAdded;
+        //public event RowEventHandler rowRemoved;
+
+
         public ElementViewer()
         {
             InitializeComponent();
         }
-
+        
         private void ElementViewer_usrc_Load(object sender, EventArgs e)
         {
             AddHeader(name_evh_usrc, new object[] { });
@@ -55,6 +62,13 @@ namespace FolderExplorer
                 intersectionEvh_lsts[i] = new Point(pos, 0);
             }
         }
+        /*
+        private void AddRow(Element element)
+        {
+            ElementViewerRow evr = new ElementViewerRow(element, false);
+            elementViewerRow_lsts.Add(evr);
+            //rowAdded?.Invoke(this, new RowEventArgs(element));
+        }*/
 
         #region Timer
         //sert a bouger les en-têtes
@@ -128,13 +142,13 @@ namespace FolderExplorer
             intersectionEvh_lsts.Add(new Point(x + evh.Size.Width, 0));
             evh.Location = new Point(x, 0);
             elementViewerHeader_lsts.Add(evh);
+            elementViewerRow_lsts.ForEach(r => r.AddColumn(evh.metaDataElement, this));
         }
 
         public void AddHeader(string name, object[] filter)
         {
             ElementViewerHeader evh = new ElementViewerHeader();
             evh.Name = name;
-            evh.text = name;
             AddHeader(evh, filter);
         }
 

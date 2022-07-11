@@ -125,51 +125,51 @@
             // 
             this.size_evh_usrc.leftCursor = System.Windows.Forms.Cursors.Default;
             this.size_evh_usrc.Location = new System.Drawing.Point(488, 0);
+            this.size_evh_usrc.metaDataElement = FolderExplorer.MetaDataElement.Name;
             this.size_evh_usrc.MinimumSize = new System.Drawing.Size(90, 0);
             this.size_evh_usrc.Name = "size_evh_usrc";
             this.size_evh_usrc.rightCursor = System.Windows.Forms.Cursors.VSplit;
             this.size_evh_usrc.Size = new System.Drawing.Size(113, 21);
             this.size_evh_usrc.sortDirection = FolderExplorer.SortDirection.None;
             this.size_evh_usrc.TabIndex = 3;
-            this.size_evh_usrc.text = "Taille";
             // 
             // type_evh_usrc
             // 
             this.type_evh_usrc.leftCursor = System.Windows.Forms.Cursors.Default;
             this.type_evh_usrc.Location = new System.Drawing.Point(358, 0);
+            this.type_evh_usrc.metaDataElement = FolderExplorer.MetaDataElement.Name;
             this.type_evh_usrc.MinimumSize = new System.Drawing.Size(90, 0);
             this.type_evh_usrc.Name = "type_evh_usrc";
             this.type_evh_usrc.rightCursor = System.Windows.Forms.Cursors.VSplit;
             this.type_evh_usrc.Size = new System.Drawing.Size(131, 21);
             this.type_evh_usrc.sortDirection = FolderExplorer.SortDirection.None;
             this.type_evh_usrc.TabIndex = 2;
-            this.type_evh_usrc.text = "Type";
             // 
             // lastWriteTime_evh_usrc
             // 
             this.lastWriteTime_evh_usrc.leftCursor = System.Windows.Forms.Cursors.Default;
             this.lastWriteTime_evh_usrc.Location = new System.Drawing.Point(179, 0);
+            this.lastWriteTime_evh_usrc.metaDataElement = FolderExplorer.MetaDataElement.LastWriteTime;
             this.lastWriteTime_evh_usrc.MinimumSize = new System.Drawing.Size(90, 0);
             this.lastWriteTime_evh_usrc.Name = "lastWriteTime_evh_usrc";
             this.lastWriteTime_evh_usrc.rightCursor = System.Windows.Forms.Cursors.VSplit;
             this.lastWriteTime_evh_usrc.Size = new System.Drawing.Size(180, 21);
             this.lastWriteTime_evh_usrc.sortDirection = FolderExplorer.SortDirection.None;
             this.lastWriteTime_evh_usrc.TabIndex = 1;
-            this.lastWriteTime_evh_usrc.text = "Modifié le";
             // 
             // name_evh_usrc
             // 
             this.name_evh_usrc.leftCursor = System.Windows.Forms.Cursors.Default;
             this.name_evh_usrc.Location = new System.Drawing.Point(0, 0);
+            this.name_evh_usrc.metaDataElement = FolderExplorer.MetaDataElement.Name;
             this.name_evh_usrc.MinimumSize = new System.Drawing.Size(90, 0);
             this.name_evh_usrc.Name = "name_evh_usrc";
             this.name_evh_usrc.rightCursor = System.Windows.Forms.Cursors.VSplit;
             this.name_evh_usrc.Size = new System.Drawing.Size(180, 21);
             this.name_evh_usrc.sortDirection = FolderExplorer.SortDirection.None;
             this.name_evh_usrc.TabIndex = 0;
-            this.name_evh_usrc.text = "Name";
             // 
-            // ElementViewer_usrc
+            // ElementViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -186,7 +186,7 @@
             this.Controls.Add(this.type_evh_usrc);
             this.Controls.Add(this.lastWriteTime_evh_usrc);
             this.Controls.Add(this.name_evh_usrc);
-            this.Name = "ElementViewer_usrc";
+            this.Name = "ElementViewer";
             this.Size = new System.Drawing.Size(1664, 259);
             this.Load += new System.EventHandler(this.ElementViewer_usrc_Load);
             this.ResumeLayout(false);
