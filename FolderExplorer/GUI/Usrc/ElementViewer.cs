@@ -11,17 +11,17 @@ using System.Windows.Forms;
 
 namespace FolderExplorer
 {
-    public partial class ElementViewer_usrc : UserControl
+    public partial class ElementViewer : UserControl
     {
         private readonly static Cursor vsplit_Cursor = Cursors.VSplit;
         private readonly static Cursor default_Cursor = Cursors.Default;
-        private readonly List<ElementViewerHeader_usrc> elementViewerHeader_lsts = new List<ElementViewerHeader_usrc>();
+        private readonly List<ElementViewerHeader> elementViewerHeader_lsts = new List<ElementViewerHeader>();
         //move header
         private readonly List<Point> intersectionEvh_lsts = new List<Point>();
         private int indexMoveHeader = -1;
         private int mouse_pos_x = 0;
 
-        public ElementViewer_usrc()
+        public ElementViewer()
         {
             InitializeComponent();
         }
@@ -70,19 +70,19 @@ namespace FolderExplorer
                 int previous_header_end_pos = 0;
                 for (int i = 0; i < index; i++)
                 {
-                    ElementViewerHeader_usrc evh_previous = elementViewerHeader_lsts[i];
+                    ElementViewerHeader evh_previous = elementViewerHeader_lsts[i];
                     
                     previous_header_end_pos = evh_previous.Location.X + evh_previous.Size.Width;
                 }
 
                 //evh_actual
-                ElementViewerHeader_usrc evh_actual = elementViewerHeader_lsts[index];
+                ElementViewerHeader evh_actual = elementViewerHeader_lsts[index];
                 if (evh_actual.MinimumSize.Width + evh_actual.Location.X < tmp_mouse_pos_x)
                 {
                     indexMoveHeader = index;
                     mouse_pos_x = tmp_mouse_pos_x;
 
-                    evh_actual.Size = new Size(mouse_pos_x - previous_header_end_pos, ElementViewerHeader_usrc.SizeHeight);
+                    evh_actual.Size = new Size(mouse_pos_x - previous_header_end_pos, ElementViewerHeader.SizeHeight);
 
                     if (index < elementViewerHeader_lsts.Count - 1)
                     {
@@ -90,7 +90,7 @@ namespace FolderExplorer
                         for (int i = index + 1; i < elementViewerHeader_lsts.Count; i++)
                         {
                             //next_evh 
-                            ElementViewerHeader_usrc next_evh = elementViewerHeader_lsts[i];
+                            ElementViewerHeader next_evh = elementViewerHeader_lsts[i];
                             next_evh.leftCursor = vsplit_Cursor;
                             next_evh.Location = new Point(previous_header_end_pos, 0);
                             previous_header_end_pos = next_evh.Location.X + next_evh.Size.Width;
@@ -113,7 +113,7 @@ namespace FolderExplorer
         
         #region Header
 
-        public void AddHeader(ElementViewerHeader_usrc evh, object[] filter)
+        public void AddHeader(ElementViewerHeader evh, object[] filter)
         {
             evh.filter_comboBox.Items.Add(filter);
             evh.rightCursor = vsplit_Cursor;
@@ -121,7 +121,7 @@ namespace FolderExplorer
             int x = 0;
             if (elementViewerHeader_lsts.Count > 0)
             {
-                ElementViewerHeader_usrc evh_previous = elementViewerHeader_lsts[elementViewerHeader_lsts.Count - 1];
+                ElementViewerHeader evh_previous = elementViewerHeader_lsts[elementViewerHeader_lsts.Count - 1];
                 evh_previous.leftCursor = vsplit_Cursor;
                 x = evh_previous.Location.X + evh_previous.Size.Width;
             }
@@ -132,13 +132,13 @@ namespace FolderExplorer
 
         public void AddHeader(string name, object[] filter)
         {
-            ElementViewerHeader_usrc evh = new ElementViewerHeader_usrc();
+            ElementViewerHeader evh = new ElementViewerHeader();
             evh.Name = name;
             evh.text = name;
             AddHeader(evh, filter);
         }
 
-        public void RemoveHeader(ElementViewerHeader_usrc evh)
+        public void RemoveHeader(ElementViewerHeader evh)
         {
             elementViewerHeader_lsts[elementViewerHeader_lsts.Count - elementViewerHeader_lsts.IndexOf(evh) - 1].leftCursor = default_Cursor;
             elementViewerHeader_lsts.Remove(evh);
@@ -147,7 +147,7 @@ namespace FolderExplorer
 
         public void RemoveHeader(string name)
         {
-            foreach(ElementViewerHeader_usrc evh in elementViewerHeader_lsts)
+            foreach(ElementViewerHeader evh in elementViewerHeader_lsts)
             {
                 if(evh.Name == name)
                 {

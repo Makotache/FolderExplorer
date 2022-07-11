@@ -1,6 +1,6 @@
 ﻿namespace FolderExplorer
 {
-    partial class ElementViewerHeader_usrc
+    partial class ElementViewerHeader
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.

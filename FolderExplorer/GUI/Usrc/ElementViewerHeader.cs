@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace FolderExplorer
 {
-    public partial class ElementViewerHeader_usrc : UserControl
+    public partial class ElementViewerHeader : UserControl
     {
 
         public const int SizeHeight = 21;
@@ -57,7 +57,7 @@ namespace FolderExplorer
 
         public SortDirection sortDirection { get; set; } = SortDirection.None;
 
-        public ElementViewerHeader_usrc()
+        public ElementViewerHeader()
         {
             InitializeComponent();
         }

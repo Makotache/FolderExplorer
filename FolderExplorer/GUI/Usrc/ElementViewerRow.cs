@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace FolderExplorer
 {
-    public partial class ElementViewerRow_usrc : UserControl
+    public partial class ElementViewerRow : UserControl
     {
         private List<Label> label_lsts = new List<Label>();
         private Element element;
@@ -29,7 +29,7 @@ namespace FolderExplorer
             set { element.fullName = value; }
         }
 
-        public ElementViewerRow_usrc(Element element, bool nameOnly)
+        public ElementViewerRow(Element element, bool nameOnly)
         {
             InitializeComponent();
             this.element = element;
@@ -38,7 +38,7 @@ namespace FolderExplorer
 
         public void ChangeNameVisibility(bool nameOnly)
         {
-            name_label.Text = nameOnly ? elementName : elementFullName;
+            //name_label.Text = nameOnly ? elementName : elementFullName;
         }
 
         public void AddColumn(MetaDataElement[] metaDataElements)
@@ -49,6 +49,17 @@ namespace FolderExplorer
         public void RemoveColumn(MetaDataElement[] metaDataElements)
         {
 
+        }
+
+        private void ElementViewerRow_KeyDown(object sender, KeyEventArgs e)
+        {
+            //F2
+            //fleche directionnel
+            //touche "click droit"
+            //suppr
+            //alt entrer
+            //entrer
+            //shift / control
         }
     }
 }

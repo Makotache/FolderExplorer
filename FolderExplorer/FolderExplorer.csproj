@@ -64,23 +64,29 @@
     <Compile Include="GUI\Forms\Properties_form.Designer.cs">
       <DependentUpon>Properties_form.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Usrc\ElementViewerRow_usrc.cs">
+    <Compile Include="GUI\Usrc\ElementViewerRow.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\Usrc\ElementViewerRow_usrc.Designer.cs">
-      <DependentUpon>ElementViewerRow_usrc.cs</DependentUpon>
+    <Compile Include="GUI\Usrc\ElementViewerRow.Designer.cs">
+      <DependentUpon>ElementViewerRow.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Usrc\ElementViewer_usrc.cs">
+    <Compile Include="GUI\Usrc\ElementViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\Usrc\ElementViewer_usrc.Designer.cs">
-      <DependentUpon>ElementViewer_usrc.cs</DependentUpon>
+    <Compile Include="GUI\Usrc\ElementViewer.Designer.cs">
+      <DependentUpon>ElementViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Usrc\ElementViewerHeader_usrc.cs">
+    <Compile Include="GUI\Usrc\ElementViewerHeader.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\Usrc\ElementViewerHeader_usrc.Designer.cs">
-      <DependentUpon>ElementViewerHeader_usrc.cs</DependentUpon>
+    <Compile Include="GUI\Usrc\ElementViewerHeader.Designer.cs">
+      <DependentUpon>ElementViewerHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Usrc\LabelEditable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Usrc\LabelEditable.Designer.cs">
+      <DependentUpon>LabelEditable.cs</DependentUpon>
     </Compile>
     <Compile Include="Lib\Extern\CPCS.cs" />
     <Compile Include="Lib\Intern\Element.cs" />
@@ -99,14 +105,17 @@
     <EmbeddedResource Include="GUI\Forms\Properties_form.resx">
       <DependentUpon>Properties_form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Usrc\ElementViewerRow_usrc.resx">
-      <DependentUpon>ElementViewerRow_usrc.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\Usrc\ElementViewerRow.resx">
+      <DependentUpon>ElementViewerRow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Usrc\ElementViewer_usrc.resx">
-      <DependentUpon>ElementViewer_usrc.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\Usrc\ElementViewer.resx">
+      <DependentUpon>ElementViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Usrc\ElementViewerHeader_usrc.resx">
-      <DependentUpon>ElementViewerHeader_usrc.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\Usrc\ElementViewerHeader.resx">
+      <DependentUpon>ElementViewerHeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Usrc\LabelEditable.resx">
+      <DependentUpon>LabelEditable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

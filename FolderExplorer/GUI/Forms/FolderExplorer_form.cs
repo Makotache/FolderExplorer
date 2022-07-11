@@ -15,7 +15,7 @@ namespace FolderExplorer
 {
     public partial class FolderExplorer_form : Form
     {
-        private ElementViewer_usrc eViewer = new ElementViewer_usrc();
+        private ElementViewer eViewer = new ElementViewer();
         internal static readonly string FolderMainPath = Path.Combine(Directory.GetCurrentDirectory(), "FolderExplorerConfigs");
         internal static readonly string ExtensionJson = Path.Combine(FolderMainPath, "extension.json");
         Element[] elements;

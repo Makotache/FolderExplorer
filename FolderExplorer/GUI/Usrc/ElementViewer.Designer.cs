@@ -1,6 +1,6 @@
 ﻿namespace FolderExplorer
 {
-    partial class ElementViewer_usrc
+    partial class ElementViewer
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -38,10 +38,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.size_evh_usrc = new FolderExplorer.ElementViewerHeader_usrc();
-            this.type_evh_usrc = new FolderExplorer.ElementViewerHeader_usrc();
-            this.lastWriteTime_evh_usrc = new FolderExplorer.ElementViewerHeader_usrc();
-            this.name_evh_usrc = new FolderExplorer.ElementViewerHeader_usrc();
+            this.size_evh_usrc = new FolderExplorer.ElementViewerHeader();
+            this.type_evh_usrc = new FolderExplorer.ElementViewerHeader();
+            this.lastWriteTime_evh_usrc = new FolderExplorer.ElementViewerHeader();
+            this.name_evh_usrc = new FolderExplorer.ElementViewerHeader();
             this.SuspendLayout();
             // 
             // moveHeader_timer
@@ -196,11 +196,11 @@
 
         #endregion
 
-        private ElementViewerHeader_usrc name_evh_usrc;
-        private ElementViewerHeader_usrc lastWriteTime_evh_usrc;
+        private ElementViewerHeader name_evh_usrc;
+        private ElementViewerHeader lastWriteTime_evh_usrc;
         private System.Windows.Forms.Timer moveHeader_timer;
-        private ElementViewerHeader_usrc size_evh_usrc;
-        private ElementViewerHeader_usrc type_evh_usrc;
+        private ElementViewerHeader size_evh_usrc;
+        private ElementViewerHeader type_evh_usrc;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

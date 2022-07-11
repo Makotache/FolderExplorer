@@ -1,6 +1,6 @@
 ﻿namespace FolderExplorer
 {
-    partial class ElementViewerRow_usrc
+    partial class ElementViewerRow
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -28,30 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.name_label = new System.Windows.Forms.Label();
+            this.labelEditable1 = new FolderExplorer.LabelEditable();
             this.SuspendLayout();
             // 
-            // name_label
+            // labelEditable1
             // 
-            this.name_label.Location = new System.Drawing.Point(15, 8);
-            this.name_label.Name = "name_label";
-            this.name_label.Size = new System.Drawing.Size(77, 13);
-            this.name_label.TabIndex = 0;
-            this.name_label.Text = "_";
+            this.labelEditable1.Location = new System.Drawing.Point(5, 1);
+            this.labelEditable1.Name = "labelEditable1";
+            this.labelEditable1.Size = new System.Drawing.Size(142, 20);
+            this.labelEditable1.TabIndex = 0;
             // 
-            // ElementViewerRow_usrc
+            // ElementViewerRow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.name_label);
-            this.Name = "ElementViewerRow_usrc";
-            this.Size = new System.Drawing.Size(386, 31);
+            this.Controls.Add(this.labelEditable1);
+            this.Name = "ElementViewerRow";
+            this.Size = new System.Drawing.Size(386, 22);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ElementViewerRow_KeyDown);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label name_label;
+        private LabelEditable labelEditable1;
     }
 }

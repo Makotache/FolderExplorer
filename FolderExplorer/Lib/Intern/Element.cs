@@ -14,13 +14,13 @@ namespace FolderExplorer
     public class Element
     {
         #region propriété normal
-        
+
         //0
         public string name
         {
             get
             {
-                if(isFile && _elementInfo.Name.Contains("."))
+                if (isFile && _elementInfo.Name.Contains("."))
                 { return _elementInfo.Name.Replace(_elementInfo.Extension, ""); }
                 //dossier ou fichier sans non
                 return _elementInfo.Name;
@@ -34,10 +34,10 @@ namespace FolderExplorer
 
         //1
         public long size
-        { 
+        {
             get
             {
-                if(isFile)
+                if (isFile)
                 { return ((FileInfo)_elementInfo).Length; }
                 else
                 {
@@ -86,7 +86,7 @@ namespace FolderExplorer
         public BoolTripleValue offlineStatus { get; private set; }
 
         //8
-        public BoolTripleValue availablity { get; private set; }
+        public BoolTripleValue availability { get; private set; }
 
 
         //9
@@ -94,10 +94,10 @@ namespace FolderExplorer
 
         //10
         public string owner
-        { 
+        {
             get
             {
-                if(isFile)
+                if (isFile)
                 { return File.GetAccessControl(fullPath).GetOwner(typeof(System.Security.Principal.NTAccount)).ToString(); }
                 return Directory.GetAccessControl(fullPath).GetOwner(typeof(System.Security.Principal.NTAccount)).ToString();
             }
@@ -223,13 +223,14 @@ namespace FolderExplorer
             this.fullPath = fullPath;
             this.isFile = isFile;
 
-            if(this.isFile)
+            if (this.isFile)
             {
                 _elementInfo = new FileInfo(this.fullPath);
                 typeElement = GetType();
 
+                //récupération des en-têtes des données
                 List<string> arrHeaders = new List<string>();
-                
+
                 Shell shell = new Shell();
                 Folder objFolder = shell.NameSpace(Path.GetDirectoryName(this.fullPath));
                 FolderItem folderItem = objFolder.ParseName(Path.GetFileName(this.fullPath));
@@ -242,7 +243,8 @@ namespace FolderExplorer
                     arrHeaders.Add(header);
                 }
 
-                int val_int; 
+                //récupéartion des données lié aux en-têtes
+                int val_int;
 
                 //2
                 itemType = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.ItemType);
@@ -251,7 +253,7 @@ namespace FolderExplorer
                 offlineStatus = FoExEnums.ToBoolTripleValue(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.OfflineStatus));
 
                 //8
-                availablity = FoExEnums.ToBoolTripleValue(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Availability));
+                availability = FoExEnums.ToBoolTripleValue(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Availability));
 
                 //9
                 identifiedType = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.IdentifiedType);
@@ -318,10 +320,13 @@ namespace FolderExplorer
                 cameraModel = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.CameraModel);
 
                 //31
-                if(this.typeElement == TypeElement.Image)
+                Console.WriteLine($"---- type {this.typeElement}---- ");
+                Console.WriteLine(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Dimensions));
+                if (this.typeElement == TypeElement.Image)
                 {
                     Image image = new Bitmap(this.fullPath);
                     dimensions = new Size(image.Width, image.Height);
+                    Console.WriteLine(dimensions);
                 }
                 else
                 {
@@ -342,30 +347,155 @@ namespace FolderExplorer
             { _elementInfo = new DirectoryInfo(this.fullPath); }
 
             path = fullPath.Replace("/" + fullName, "");
-
-            //Console.WriteLine($"End load => '{fullPath}'");
         }
 
-
-        /*private async Task TaskMusic() 
-        {
-            Console.WriteLine($"TaskMusic '{this.fullPath}'");
-            StorageFile file = await StorageFile.GetFileFromPathAsync(this.fullPath);
-            Console.WriteLine("----- après StorageFile file = await");
-            file.Properties.ToString();
-            Console.WriteLine("----- après StorageFile file = await");
-            _musicProperties = await file.Properties.GetMusicPropertiesAsync();
-            Console.WriteLine("----- après _musicProperties = await");
-        }*/
-
-        //
         public object GetValue(MetaDataElement metaDataElement)
         {
-            switch(metaDataElement)
+            switch (metaDataElement)
             {
+                //0
+                case MetaDataElement.Name:
+                    return name;
 
+                //1
+                case MetaDataElement.Size:
+                    return size;
+
+                //2
+                case MetaDataElement.ItemType:
+                    return itemType;
+
+                //3
+                case MetaDataElement.LastWriteTime:
+                    return lastWriteTime;
+
+                //4
+                case MetaDataElement.CreationTime:
+                    return creationTime;
+
+                //5
+                case MetaDataElement.LastAccessTime:
+                    return lastAccessTime;
+
+                //6
+                case MetaDataElement.Attribute:
+                    return attribute;
+
+                //7
+                case MetaDataElement.OfflineStatus:
+                    return offlineStatus;
+
+                //8
+                case MetaDataElement.Availability:
+                    return availability;
+
+                //9
+                case MetaDataElement.IdentifiedType:
+                    return identifiedType;
+
+                //10
+                case MetaDataElement.Owner:
+                    return owner;
+
+                //11
+                case MetaDataElement.Kind:
+                    return kind;
+
+                //12
+                case MetaDataElement.DateTaken:
+                    return dateTaken;
+
+                //13
+                case MetaDataElement.ContributingArtists:
+                    return contributingArtists;
+
+                //14
+                case MetaDataElement.Album:
+                    return album;
+
+                //15
+                case MetaDataElement.Year:
+                    return year;
+
+                //16
+                case MetaDataElement.Genre:
+                    return genre;
+
+                //17
+                case MetaDataElement.Conductors:
+                    return conductors;
+
+                //18
+                case MetaDataElement.Tags:
+                    return tags;
+
+                //19
+                case MetaDataElement.Rating:
+                    return rating;
+
+                //20
+                case MetaDataElement.Authors:
+                    return authors;
+
+                //21
+                case MetaDataElement.Title:
+                    return title;
+
+                //22
+                case MetaDataElement.Subject:
+                    return subject;
+
+                //23
+                case MetaDataElement.Categories:
+                    return categories;
+
+                //24
+                case MetaDataElement.Comments:
+                    return comments;
+
+                //25
+                case MetaDataElement.Copyright:
+                    return copyright;
+
+                //26
+                case MetaDataElement.TrackNumber:
+                    return trackNumber;
+
+                //27
+                case MetaDataElement.Duration:
+                    return duration;
+
+                //28
+                case MetaDataElement.BitRate:
+                    return bitRate;
+
+                //29
+                case MetaDataElement.Protected:
+                    return @protected;
+
+                //30
+                case MetaDataElement.CameraModel:
+                    return cameraModel;
+
+                //31
+                case MetaDataElement.Dimensions:
+                    return dimensions;
+
+                //32
+                case MetaDataElement.CameraMaker:
+                    return cameraMarker;
+
+                //33
+                case MetaDataElement.Company:
+                    return company;
+
+                //34
+                case MetaDataElement.FileDescription:
+                    return fileDescription;
+
+                default:
+                    return null;
             }
-            return null;
         }
 
 
@@ -397,10 +527,6 @@ namespace FolderExplorer
                 return TypeElement.OtherFile;
             }
 
-
-            Console.WriteLine($"extension.ToLower() => '{extension.ToLower()}'");
-            Console.WriteLine("foreach (JProperty jProperty in o1.Properties())");
-
             JObject o1 = JObject.Parse(File.ReadAllText(FolderExplorer_form.ExtensionJson));
 
             foreach (JProperty jProperty in o1.Properties())
@@ -410,8 +536,6 @@ namespace FolderExplorer
                 {
                     if (dataRow[i].ToString().ToLower() == extension.ToLower())
                     {
-                        Console.WriteLine($"jProperty.Name => '{jProperty.Name}'");
-                        Console.WriteLine($"dataRow[{i}] => '{dataRow[i]}'");
                         return FoExEnums.ToTypeElement(jProperty.Name);
                     }
                 }

@@ -76,7 +76,7 @@ namespace FolderExplorer
         LastWriteTime,
         CreationTime,
         LastAccessTime,
-        Attributes,
+        Attribute,
         OfflineStatus,
         Availability,
         IdentifiedType,
