@@ -25,6 +25,7 @@ namespace FolderExplorer
         {
             InitializeComponent();
             this.element = new Element(@"C:\testFolderExplorer\4.jpg", true);
+            this.Text = "Propriétés de : " + element.name+ Path.GetExtension(element.fullPath);
             init();
         }
 
