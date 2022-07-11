@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FolderExplorer.Properties
-{
-
-
+namespace FolderExplorer.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
     /// </summary>
@@ -19,52 +19,97 @@ namespace FolderExplorer.Properties
     // à l'aide d'un outil, tel que ResGen ou Visual Studio.
     // Pour ajouter ou supprimer un membre, modifiez votre fichier .ResX, puis réexécutez ResGen
     // avec l'option /str ou régénérez votre projet VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FolderExplorer.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Remplace la propriété CurrentUICulture du thread actuel pour toutes
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à {
+        ///  &quot;video&quot;: [
+        ///    &quot;mp4&quot;,
+        ///    &quot;m4v&quot;,
+        ///    &quot;avi&quot;,
+        ///    &quot;mov&quot;,
+        ///    &quot;mkv&quot;,
+        ///    &quot;mts&quot;,
+        ///    &quot;ts&quot;,
+        ///    &quot;flv&quot;,
+        ///    &quot;wmv&quot;,
+        ///    &quot;asf&quot;,
+        ///    &quot;mpeg&quot;,
+        ///    &quot;mpg&quot;,
+        ///    &quot;vob&quot;,
+        ///    &quot;asf&quot;,
+        ///    &quot;wmv&quot;,
+        ///    &quot;rm&quot;,
+        ///    &quot;rmvb&quot;,
+        ///    &quot;vob&quot;,
+        ///    &quot;webm&quot;
+        ///  ],
+        ///  &quot;music&quot;: [
+        ///  	&quot;mp3&quot;,
+        ///  	&quot;ogg&quot;,
+        ///    &quot;oga&quot;,
+        ///    &quot;mogg&quot;,
+        ///  	&quot;wav&quot;,
+        ///    &quot;wave&quot;,
+        ///    &quot;aiff&quot;,
+        ///    &quot;aif&quot;,
+        ///    &quot;aifc&quot;,
+        ///    &quot;pcm&quot;,
+        ///    &quot;au&quot;,
+        ///    &quot;flac&quot;,
+        ///    &quot;alac&quot;,
+        ///    &quot;m4a&quot;,
+        ///    &quot;caf&quot;,
+        ///    &quot;wma&quot;,
+        ///    &quot;wmv&quot;,
+        ///    &quot;aac&quot;,
+        ///    &quot;3gp&quot;,
+        ///    &quot;m4r&quot;
+        ///  ],
+        /// [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string extension {
+            get {
+                return ResourceManager.GetString("extension", resourceCulture);
             }
         }
     }

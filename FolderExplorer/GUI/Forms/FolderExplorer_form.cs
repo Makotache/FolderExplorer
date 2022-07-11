@@ -26,7 +26,7 @@ namespace FolderExplorer
             if (!Directory.Exists(FolderMainPath))
             {
                 MessageBox.Show($"Impossible de trouver le dossier à cette position = '{FolderMainPath}'");
-                Close();
+                Application.Exit();
             }
         }
 
