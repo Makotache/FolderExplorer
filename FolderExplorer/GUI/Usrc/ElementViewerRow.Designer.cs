@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelEditable1 = new FolderExplorer.LabelEditable();
+            this.name_labelEdit = new FolderExplorer.LabelEditable();
             this.SuspendLayout();
             // 
-            // labelEditable1
+            // name_labelEdit
             // 
-            this.labelEditable1.Location = new System.Drawing.Point(5, 1);
-            this.labelEditable1.Name = "labelEditable1";
-            this.labelEditable1.Size = new System.Drawing.Size(142, 20);
-            this.labelEditable1.TabIndex = 0;
+            this.name_labelEdit.Location = new System.Drawing.Point(5, 1);
+            this.name_labelEdit.Name = "name_labelEdit";
+            this.name_labelEdit.Size = new System.Drawing.Size(142, 20);
+            this.name_labelEdit.TabIndex = 0;
             // 
             // ElementViewerRow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.labelEditable1);
+            this.Controls.Add(this.name_labelEdit);
             this.Name = "ElementViewerRow";
             this.Size = new System.Drawing.Size(386, 22);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ElementViewerRow_KeyDown);
@@ -52,6 +52,6 @@
 
         #endregion
 
-        private LabelEditable labelEditable1;
+        private LabelEditable name_labelEdit;
     }
 }

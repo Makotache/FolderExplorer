@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FolderExplorer
 {
-    public class FoExEnums
+    public class Enums
     {
         public static readonly TypeElement[] AllTypeElements = Enum.GetValues(typeof(TypeElement)).Cast<TypeElement>().ToArray();
 

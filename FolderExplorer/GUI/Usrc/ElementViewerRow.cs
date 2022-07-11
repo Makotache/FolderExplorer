@@ -12,8 +12,10 @@ namespace FolderExplorer
 {
     public partial class ElementViewerRow : UserControl
     {
-        private List<Label> label_lsts = new List<Label>();
+        private Dictionary<MetaDataElement,Label> label_lsts = new Dictionary<MetaDataElement, Label>();
         private Element element;
+
+        public event MouseEventHandler
         
         public string elementName
         {
@@ -38,17 +40,37 @@ namespace FolderExplorer
 
         public void ChangeNameVisibility(bool nameOnly)
         {
-            //name_label.Text = nameOnly ? elementName : elementFullName;
+            name_labelEdit.Init(nameOnly ? elementName : elementFullName);
         }
 
         public void AddColumn(MetaDataElement[] metaDataElements)
         {
-
+            for(int i = 0; i < metaDataElements.Length; i++)
+            {
+                MetaDataElement med = metaDataElements[i];
+                if(med != MetaDataElement.Name)
+                {
+                    Label label = new Label();
+                    label.Name = med.ToString();
+                    label.Text = element.GetValue(med).ToString();
+                    label.AutoSize = false;
+                    label.Location = new Point();
+                    label.Size = new Size();
+                    label_lsts.Add(med, label);
+                }
+            }
         }
 
         public void RemoveColumn(MetaDataElement[] metaDataElements)
         {
-
+            for (int i = 0; i < metaDataElements.Length; i++)
+            {
+                MetaDataElement med = metaDataElements[i];
+                if (med != MetaDataElement.Name)
+                {
+                    label_lsts.Remove(med);
+                }
+            }
         }
 
         private void ElementViewerRow_KeyDown(object sender, KeyEventArgs e)
@@ -62,4 +84,9 @@ namespace FolderExplorer
             //shift / control
         }
     }
+
+    //public delegate void MouseEventHandler(object sender, MouseEventArgs e);
+    public delegate void RowEventHandler(object sender, RowEventArgs e);
+
+
 }

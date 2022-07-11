@@ -96,7 +96,8 @@
     <Compile Include="GUI\Forms\FolderExplorer_form.Designer.cs">
       <DependentUpon>FolderExplorer_form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Lib\Intern\FoExEnums.cs" />
+    <Compile Include="Lib\Intern\Events.cs" />
+    <Compile Include="Lib\Intern\Enums.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\Forms\FolderExplorer_form.resx">

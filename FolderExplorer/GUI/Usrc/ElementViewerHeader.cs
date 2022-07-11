@@ -69,7 +69,7 @@ namespace FolderExplorer
 
         private void header_button_Click(object sender, EventArgs e)
         {
-            sortDirection = FoExEnums.NextSortDirection(sortDirection);
+            sortDirection = Enums.NextSortDirection(sortDirection);
         }
     }
 }

@@ -250,10 +250,10 @@ namespace FolderExplorer
                 itemType = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.ItemType);
 
                 //7
-                offlineStatus = FoExEnums.ToBoolTripleValue(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.OfflineStatus));
+                offlineStatus = Enums.ToBoolTripleValue(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.OfflineStatus));
 
                 //8
-                availability = FoExEnums.ToBoolTripleValue(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Availability));
+                availability = Enums.ToBoolTripleValue(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Availability));
 
                 //9
                 identifiedType = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.IdentifiedType);
@@ -314,7 +314,7 @@ namespace FolderExplorer
                 bitRate = int.TryParse(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.BitRate), out val_int) ? val_int : -1;
 
                 //29
-                @protected = FoExEnums.ToBoolTripleValue(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Protected));
+                @protected = Enums.ToBoolTripleValue(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Protected));
 
                 //30
                 cameraModel = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.CameraModel);
@@ -536,7 +536,7 @@ namespace FolderExplorer
                 {
                     if (dataRow[i].ToString().ToLower() == extension.ToLower())
                     {
-                        return FoExEnums.ToTypeElement(jProperty.Name);
+                        return Enums.ToTypeElement(jProperty.Name);
                     }
                 }
             }
