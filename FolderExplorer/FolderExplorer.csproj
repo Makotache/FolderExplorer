@@ -75,6 +75,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GUI\Forms\AdvancedAttributes_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Forms\AdvancedAttributes_form.Designer.cs">
+      <DependentUpon>AdvancedAttributes_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Forms\Properties_form.cs">
       <SubType>Form</SubType>
     </Compile>

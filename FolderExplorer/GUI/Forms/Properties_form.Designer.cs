@@ -50,6 +50,14 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.details = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cb_lecture_seule = new System.Windows.Forms.CheckBox();
+            this.cb_cache = new System.Windows.Forms.CheckBox();
+            this.btn_avance = new System.Windows.Forms.Button();
+            this.btn_ok = new System.Windows.Forms.Button();
+            this.btn_annuler = new System.Windows.Forms.Button();
+            this.btn_appliquer = new System.Windows.Forms.Button();
+            this.btn_modifier = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.general.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +76,11 @@
             // 
             // general
             // 
+            this.general.Controls.Add(this.btn_modifier);
+            this.general.Controls.Add(this.btn_avance);
+            this.general.Controls.Add(this.cb_cache);
+            this.general.Controls.Add(this.cb_lecture_seule);
+            this.general.Controls.Add(this.label2);
             this.general.Controls.Add(this.lastAccesTime_label);
             this.general.Controls.Add(this.label15);
             this.general.Controls.Add(this.lastWriteTime_label);
@@ -274,11 +287,89 @@
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 374);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 13);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Attributs :";
+            // 
+            // cb_lecture_seule
+            // 
+            this.cb_lecture_seule.AutoSize = true;
+            this.cb_lecture_seule.Location = new System.Drawing.Point(84, 374);
+            this.cb_lecture_seule.Name = "cb_lecture_seule";
+            this.cb_lecture_seule.Size = new System.Drawing.Size(90, 17);
+            this.cb_lecture_seule.TabIndex = 18;
+            this.cb_lecture_seule.Text = "Lecture seule";
+            this.cb_lecture_seule.UseVisualStyleBackColor = true;
+            // 
+            // cb_cache
+            // 
+            this.cb_cache.AutoSize = true;
+            this.cb_cache.Location = new System.Drawing.Point(198, 374);
+            this.cb_cache.Name = "cb_cache";
+            this.cb_cache.Size = new System.Drawing.Size(57, 17);
+            this.cb_cache.TabIndex = 19;
+            this.cb_cache.Text = "Caché";
+            this.cb_cache.UseVisualStyleBackColor = true;
+            // 
+            // btn_avance
+            // 
+            this.btn_avance.Location = new System.Drawing.Point(309, 370);
+            this.btn_avance.Name = "btn_avance";
+            this.btn_avance.Size = new System.Drawing.Size(75, 23);
+            this.btn_avance.TabIndex = 20;
+            this.btn_avance.Text = "Avancé...";
+            this.btn_avance.UseVisualStyleBackColor = true;
+            // 
+            // btn_ok
+            // 
+            this.btn_ok.Location = new System.Drawing.Point(215, 479);
+            this.btn_ok.Name = "btn_ok";
+            this.btn_ok.Size = new System.Drawing.Size(75, 23);
+            this.btn_ok.TabIndex = 1;
+            this.btn_ok.Text = "OK";
+            this.btn_ok.UseVisualStyleBackColor = true;
+            // 
+            // btn_annuler
+            // 
+            this.btn_annuler.Location = new System.Drawing.Point(296, 479);
+            this.btn_annuler.Name = "btn_annuler";
+            this.btn_annuler.Size = new System.Drawing.Size(75, 23);
+            this.btn_annuler.TabIndex = 2;
+            this.btn_annuler.Text = "Annuler";
+            this.btn_annuler.UseVisualStyleBackColor = true;
+            this.btn_annuler.Click += new System.EventHandler(this.btn_annuler_Click);
+            // 
+            // btn_appliquer
+            // 
+            this.btn_appliquer.Location = new System.Drawing.Point(377, 479);
+            this.btn_appliquer.Name = "btn_appliquer";
+            this.btn_appliquer.Size = new System.Drawing.Size(75, 23);
+            this.btn_appliquer.TabIndex = 3;
+            this.btn_appliquer.Text = "Appliquer";
+            this.btn_appliquer.UseVisualStyleBackColor = true;
+            // 
+            // btn_modifier
+            // 
+            this.btn_modifier.Location = new System.Drawing.Point(327, 101);
+            this.btn_modifier.Name = "btn_modifier";
+            this.btn_modifier.Size = new System.Drawing.Size(75, 23);
+            this.btn_modifier.TabIndex = 21;
+            this.btn_modifier.Text = "Modifier";
+            this.btn_modifier.UseVisualStyleBackColor = true;
+            // 
             // Properties_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 481);
+            this.ClientSize = new System.Drawing.Size(464, 514);
+            this.Controls.Add(this.btn_appliquer);
+            this.Controls.Add(this.btn_annuler);
+            this.Controls.Add(this.btn_ok);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Properties_form";
@@ -314,5 +405,13 @@
         private System.Windows.Forms.Label itemType_label;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox Tb_name;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_avance;
+        private System.Windows.Forms.CheckBox cb_cache;
+        private System.Windows.Forms.CheckBox cb_lecture_seule;
+        private System.Windows.Forms.Button btn_ok;
+        private System.Windows.Forms.Button btn_annuler;
+        private System.Windows.Forms.Button btn_appliquer;
+        private System.Windows.Forms.Button btn_modifier;
     }
 }

@@ -24,22 +24,23 @@ namespace FolderExplorer
         public Properties_form()
         {
             InitializeComponent();
-            this.element = new Element(@"C:\testFolderExplorer\4.jpg", true);
-            this.Text = "Propriétés de : " + element.name+ Path.GetExtension(element.fullPath);
+            this.element = new Element("C:/testFolderExplorer/4.jpg", true);
+            this.Text = "Propriétés de : " + element.name + Path.GetExtension(element.fullPath);
             init();
         }
 
         private void init()
         {
+            btn_appliquer.Enabled = false;
             //infos in element region proprietes normal
             //name
             Tb_name.Text = element.name;
             //type
-            itemType_label.Text = element.itemType+" ("+ Path.GetExtension(element.fullPath)+")";
+            itemType_label.Text = element.itemType + " (" + Path.GetExtension(element.fullPath) + ")";
             //element.GetValue(MetaDataElement.name)
             path_label.Text = element.path;
             //size
-            size_label.Text = convertsize(element.size) + " ("+element.size.ToString() + " octets)";
+            size_label.Text = convertsize(element.size) + " (" + element.size.ToString() + " octets)";
             //size on disk
             //sizeOnDisk_label.Text = element.
             //creation date
@@ -49,11 +50,21 @@ namespace FolderExplorer
             //last access
             if (element.lastAccessTime.Date == DateTime.Now.Date)
             {
-                lastAccesTime_label.Text = "Aujourd'hui "+Maj_Min.PremiereLettreMaj(element.lastAccessTime.ToString("F", CultureInfo.GetCultureInfo("fr-FR")));
-            }else
+                lastAccesTime_label.Text = "Aujourd'hui " + Maj_Min.PremiereLettreMaj(element.lastAccessTime.ToString("F", CultureInfo.GetCultureInfo("fr-FR")));
+            }
+            else
             {
                 lastAccesTime_label.Text = Maj_Min.PremiereLettreMaj(element.lastAccessTime.ToString("F", CultureInfo.GetCultureInfo("fr-FR")));
             }
+            if (element.attribute.ToString().Contains(FileAttributes.ReadOnly.ToString()))
+            {
+                cb_lecture_seule.Checked = true;
+            }
+            if (element.attribute.ToString().Contains(FileAttributes.Hidden.ToString()))
+            {
+                cb_cache.Checked = true;
+            }
+            Console.WriteLine(element.attribute);
         }
 
         private string convertsize(long xtaille)
@@ -79,6 +90,11 @@ namespace FolderExplorer
                     break;
             }
             return retour;
+        }
+
+        private void btn_annuler_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

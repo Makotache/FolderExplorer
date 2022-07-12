@@ -8,7 +8,6 @@ namespace FolderExplorer
 {
     internal static class Size_Manager
     {
-        private static int xdivisible;
 
         public static Decimal division(int xtaille, int xnombre)
         {
