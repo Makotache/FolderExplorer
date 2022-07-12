@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.moveHeader_timer = new System.Windows.Forms.Timer(this.components);
+            this.containerRow_panel = new System.Windows.Forms.Panel();
             this.size_evh_usrc = new FolderExplorer.ElementViewerHeader();
             this.type_evh_usrc = new FolderExplorer.ElementViewerHeader();
             this.lastWriteTime_evh_usrc = new FolderExplorer.ElementViewerHeader();
@@ -40,6 +41,15 @@
             // 
             this.moveHeader_timer.Interval = 15;
             this.moveHeader_timer.Tick += new System.EventHandler(this.MoveHeader_Tick);
+            // 
+            // containerRow_panel
+            // 
+            this.containerRow_panel.AutoScroll = true;
+            this.containerRow_panel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.containerRow_panel.Location = new System.Drawing.Point(8, 30);
+            this.containerRow_panel.Name = "containerRow_panel";
+            this.containerRow_panel.Size = new System.Drawing.Size(1485, 211);
+            this.containerRow_panel.TabIndex = 4;
             // 
             // size_evh_usrc
             // 
@@ -94,6 +104,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Controls.Add(this.containerRow_panel);
             this.Controls.Add(this.size_evh_usrc);
             this.Controls.Add(this.type_evh_usrc);
             this.Controls.Add(this.lastWriteTime_evh_usrc);
@@ -112,5 +123,6 @@
         private System.Windows.Forms.Timer moveHeader_timer;
         private ElementViewerHeader size_evh_usrc;
         private ElementViewerHeader type_evh_usrc;
+        private System.Windows.Forms.Panel containerRow_panel;
     }
 }

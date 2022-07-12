@@ -94,9 +94,16 @@ namespace FolderExplorer
         {
             get
             {
-                if (isFile)
-                { return File.GetAccessControl(fullPath).GetOwner(typeof(System.Security.Principal.NTAccount)).ToString(); }
-                return Directory.GetAccessControl(fullPath).GetOwner(typeof(System.Security.Principal.NTAccount)).ToString();
+                try
+                {
+                    if (isFile)
+                    { return File.GetAccessControl(fullPath).GetOwner(typeof(System.Security.Principal.NTAccount)).ToString(); }
+                    return Directory.GetAccessControl(fullPath).GetOwner(typeof(System.Security.Principal.NTAccount)).ToString();
+                }
+                catch
+                {
+                    return "";
+                }
             }
         }
 
@@ -177,6 +184,8 @@ namespace FolderExplorer
 
         #region mes propriétés
 
+        public int sizeOnDisk { get; private set; }
+
         public string path { get; private set; }
 
         public string fullPath { get; private set; }
@@ -224,126 +233,125 @@ namespace FolderExplorer
             {
                 _elementInfo = new FileInfo(this.fullPath);
                 typeElement = GetType();
-
-                //récupération des en-têtes des données
-                List<string> arrHeaders = new List<string>();
-
-                Shell shell = new Shell();
-                Folder objFolder = shell.NameSpace(Path.GetDirectoryName(this.fullPath));
-                FolderItem folderItem = objFolder.ParseName(Path.GetFileName(this.fullPath));
-
-                for (short i = 0; i < 35; i++)
-                {
-                    string header = objFolder.GetDetailsOf(null, i);
-                    if (header == "")
-                    { break; }
-                    arrHeaders.Add(header);
-                }
-
-                //récupéartion des données lié aux en-têtes
-                int val_int;
-
-                //2
-                itemType = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.ItemType);
-
-                //7
-                offlineStatus = Enums.ToBoolTripleValue(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.OfflineStatus));
-
-                //8
-                availability = Enums.ToBoolTripleValue(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Availability));
-
-                //9
-                identifiedType = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.IdentifiedType);
-
-                //11
-                kind = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Kind);
-
-                //12
-                dateTaken = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.DateTaken);
-
-                //13
-                contributingArtists = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.ContributingArtists);
-
-                //14
-                album = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Album);
-
-                //15
-                year = int.TryParse(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Year), out val_int) ? val_int : -1;
-
-                //16
-                genre = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Genre);
-
-                //17
-                conductors = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Conductors);
-
-                //18
-                tags = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Tags);
-
-                //19
-                rating = int.TryParse(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Rating), out val_int) ? val_int : -1;
-
-                //20
-                authors = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Authors);
-
-                //21
-                title = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Title);
-
-                //22
-                subject = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Subject);
-
-                //23
-                categories = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Categories);
-
-                //24
-                comments = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Comments);
-
-                //25
-                copyright = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Copyright);
-
-                //26
-                trackNumber = int.TryParse(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.TrackNumber), out val_int) ? val_int : -1;
-
-                //27
-                string[] duration_arr = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Duration).Split(':');
-                duration = duration_arr.Length == 3 ? new TimeSpan(int.Parse(duration_arr[0]), int.Parse(duration_arr[1]), int.Parse(duration_arr[1])) : new TimeSpan(0, 0, 0);
-
-                //28
-                bitRate = int.TryParse(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.BitRate), out val_int) ? val_int : -1;
-
-                //29
-                @protected = Enums.ToBoolTripleValue(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Protected));
-
-                //30
-                cameraModel = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.CameraModel);
-
-                //31
-                Console.WriteLine($"---- type {this.typeElement}---- ");
-                Console.WriteLine(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Dimensions));
-                if (this.typeElement == TypeElement.Image)
-                {
-                    Image image = new Bitmap(this.fullPath);
-                    dimensions = new Size(image.Width, image.Height);
-                    Console.WriteLine(dimensions);
-                }
-                else
-                {
-                    dimensions = new Size(0, 0);
-                }
-
-                //32
-                cameraMarker = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.CameraMaker);
-
-                //33
-                company = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Company);
-
-                //34
-                fileDescription = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.FileDescription);
-
             }
             else
             { _elementInfo = new DirectoryInfo(this.fullPath); }
 
-            path = fullPath.Replace("/" + fullName, "");
+            //récupération des en-têtes des données
+            List<string> arrHeaders = new List<string>();
+
+            Shell shell = new Shell();
+            Folder objFolder = shell.NameSpace(Path.GetDirectoryName(this.fullPath));
+            FolderItem folderItem = objFolder.ParseName(Path.GetFileName(this.fullPath));
+
+            for (short i = 0; i < 35; i++)
+            {
+                string header = objFolder.GetDetailsOf(null, i);
+                if (header == "")
+                { break; }
+                arrHeaders.Add(header);
+            }
+
+            //récupéartion des données lié aux en-têtes
+            int val_int;
+
+            //2
+            itemType = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.ItemType);
+
+            //7
+            offlineStatus = Enums.ToBoolTripleValue(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.OfflineStatus));
+
+            //8
+            availability = Enums.ToBoolTripleValue(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Availability));
+
+            //9
+            identifiedType = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.IdentifiedType);
+
+            //11
+            kind = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Kind);
+
+            //12
+            dateTaken = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.DateTaken);
+
+            //13
+            contributingArtists = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.ContributingArtists);
+
+            //14
+            album = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Album);
+
+            //15
+            year = int.TryParse(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Year), out val_int) ? val_int : -1;
+
+            //16
+            genre = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Genre);
+
+            //17
+            conductors = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Conductors);
+
+            //18
+            tags = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Tags);
+
+            //19
+            rating = int.TryParse(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Rating), out val_int) ? val_int : -1;
+
+            //20
+            authors = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Authors);
+
+            //21
+            title = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Title);
+
+            //22
+            subject = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Subject);
+
+            //23
+            categories = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Categories);
+
+            //24
+            comments = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Comments);
+
+            //25
+            copyright = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Copyright);
+
+            //26
+            trackNumber = int.TryParse(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.TrackNumber), out val_int) ? val_int : -1;
+
+            //27
+            string[] duration_arr = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Duration).Split(':');
+            duration = duration_arr.Length == 3 ? new TimeSpan(int.Parse(duration_arr[0]), int.Parse(duration_arr[1]), int.Parse(duration_arr[1])) : new TimeSpan(0, 0, 0);
+
+            //28
+            bitRate = int.TryParse(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.BitRate), out val_int) ? val_int : -1;
+
+            //29
+            @protected = Enums.ToBoolTripleValue(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Protected));
+
+            //30
+            cameraModel = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.CameraModel);
+
+            //31
+            Console.WriteLine($"---- type {this.typeElement}---- ");
+            Console.WriteLine(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Dimensions));
+            if (this.typeElement == TypeElement.Image)
+            {
+                Image image = new Bitmap(this.fullPath);
+                dimensions = new Size(image.Width, image.Height);
+                Console.WriteLine(dimensions);
+            }
+            else
+            {
+                dimensions = new Size(0, 0);
+            }
+
+            //32
+            cameraMarker = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.CameraMaker);
+
+            //33
+            company = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Company);
+
+            //34
+            fileDescription = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.FileDescription);
+
+            path = this.fullPath.Replace("/" + fullName, "");
         }
 
         public object GetValue(MetaDataElement metaDataElement)
