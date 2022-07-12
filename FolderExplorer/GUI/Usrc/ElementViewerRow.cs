@@ -149,20 +149,16 @@ namespace FolderExplorer
 
         private void ElementViewerRow_MouseMove(object sender, MouseEventArgs e)
         {
-            Console.WriteLine("hover => " + ((Control)sender).Name);
             BackColor = isSelected ? selectHoverColor: hoverColor;
         }
 
         private void ElementViewerRow_MouseLeave(object sender, EventArgs e)
         {
-            Console.WriteLine("leave => " + ((Control)sender).Name);
             BackColor = isSelected ? selectColor : normalColor;
         }
 
         private void ElementViewerRow_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("click => " + ((Control)sender).Name);
-
             //changer le texte lors du hover du nom de la ligne
             BackColor = selectColor;
             
