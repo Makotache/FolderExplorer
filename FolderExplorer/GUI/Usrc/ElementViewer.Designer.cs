@@ -45,7 +45,7 @@
             // containerRow_panel
             // 
             this.containerRow_panel.AutoScroll = true;
-            this.containerRow_panel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.containerRow_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.containerRow_panel.Location = new System.Drawing.Point(8, 30);
             this.containerRow_panel.Name = "containerRow_panel";
             this.containerRow_panel.Size = new System.Drawing.Size(1485, 211);
@@ -103,7 +103,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.Controls.Add(this.containerRow_panel);
             this.Controls.Add(this.size_evh_usrc);
             this.Controls.Add(this.type_evh_usrc);

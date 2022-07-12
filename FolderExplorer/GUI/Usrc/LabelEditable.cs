@@ -12,6 +12,77 @@ namespace FolderExplorer
 {
     public partial class LabelEditable : UserControl
     {
+        public new Color ForeColor
+        {
+            get { return visible_label.ForeColor; }
+            set { visible_label.ForeColor = value; }
+        }
+        
+        public new event MouseEventHandler MouseMove
+        {
+            add
+            {
+                Console.WriteLine("new event MouseMove");
+                base.MouseMove += value;
+                visible_label.MouseMove += value;
+                edit_textBox.MouseMove += value;
+            }
+            remove
+            {
+                base.MouseMove -= value;
+                visible_label.MouseMove -= value;
+                edit_textBox.MouseMove -= value;
+            }
+        }
+
+        public new event EventHandler MouseLeave
+        {
+            add
+            {
+                base.MouseLeave += value;
+                visible_label.MouseLeave += value;
+                edit_textBox.MouseLeave += value;
+            }
+            remove
+            {
+                base.MouseLeave -= value;
+                visible_label.MouseLeave -= value;
+                edit_textBox.MouseLeave -= value;
+            }
+        }
+
+        public new event EventHandler Click
+        {
+            add
+            {
+                base.Click += value;
+                visible_label.Click += value;
+                edit_textBox.Click += value;
+            }
+            remove
+            {
+                base.Click -= value;
+                visible_label.Click -= value;
+                edit_textBox.Click -= value;
+            }
+        }
+
+        public new event EventHandler DoubleClick
+        {
+            add
+            {
+                base.DoubleClick += value;
+                visible_label.DoubleClick += value;
+                edit_textBox.DoubleClick += value;
+            }
+            remove
+            {
+                base.DoubleClick -= value;
+                visible_label.DoubleClick -= value;
+                edit_textBox.DoubleClick -= value;
+            }
+        }
+
         public LabelEditable()
         {
             InitializeComponent();

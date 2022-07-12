@@ -16,6 +16,7 @@ namespace FolderExplorer
         private ElementViewer elementViewer;
         private const int heightLabel = 20;
         public const int heightRow = 22;
+        
         public Element element { get; private set; }
 
         public string elementName
@@ -31,6 +32,28 @@ namespace FolderExplorer
 
             set { element.fullName = value; }
         }
+
+        public Color normalColor
+        {
+            get => Color.FromArgb(32, 32, 32);
+        }
+
+        public Color hoverColor
+        {
+            get => Color.FromArgb(77, 77, 77);
+        }
+
+        public Color selectColor
+        {
+            get => Color.FromArgb(98, 98, 98);
+        }
+
+        public Color selectHoverColor 
+        {
+            get => Color.FromArgb(119, 119, 119);
+        }
+
+        public bool isSelected { get; set; }
 
         public ElementViewerRow(Element element, bool nameOnly, ElementViewer elementViewer)
         {
@@ -52,16 +75,34 @@ namespace FolderExplorer
             //pour le moment
             //on met un string
             //on feras plus tard pour que ce soit au propre
+            Control control;
+            if (evh.metaDataElement != MetaDataElement.Name)
+            {
+                control = new Label();
+                control.ForeColor = Color.FromArgb(222, 222, 222);
+                control.MouseMove += ElementViewerRow_MouseMove;
+                control.MouseLeave += ElementViewerRow_MouseLeave;
+                control.Click += ElementViewerRow_Click;
+                control.DoubleClick += ElementViewerRow_DoubleClick;
+            }
+            else
+            {
+                name_labelEdit.MouseMove += ElementViewerRow_MouseMove;
+                name_labelEdit.MouseLeave += ElementViewerRow_MouseLeave;
+                name_labelEdit.Click += ElementViewerRow_Click;
+                name_labelEdit.DoubleClick += ElementViewerRow_DoubleClick;
+                control = name_labelEdit;
+                //control.ForeColor = Color.White;
+            }
+            control.Name = evh.metaDataElement.ToString();
+            control.Text = element.GetValue(evh.metaDataElement).ToString();
+            control.AutoSize = false;
 
-            Control label = evh.metaDataElement != MetaDataElement.Name ? new Label() : name_labelEdit;
-            label.Name = evh.metaDataElement.ToString();
-            label.Text = element.GetValue(evh.metaDataElement).ToString();
-            label.AutoSize = false;
-                
-            ChangeLabelLocationSize(label, evh);
-            this.Size = new Size(this.Size.Width + label.Width, heightRow);
-            this.Controls.Add(label);
-            label_dict.Add(evh.metaDataElement, label);
+
+            ChangeLabelLocationSize(control, evh);
+            this.Size = new Size(this.Size.Width + control.Width, heightRow);
+            this.Controls.Add(control);
+            label_dict.Add(evh.metaDataElement, control);
         }
 
         public void RemoveColumn(MetaDataElement metaDataElement)
@@ -86,13 +127,13 @@ namespace FolderExplorer
             }            
         }
 
-        private void ChangeLabelLocationSize(Control label, ElementViewerHeader evh)
+        private void ChangeLabelLocationSize(Control control, ElementViewerHeader evh)
         {
             //attention scroll
             int x = evh.Location.X;
             //int y = evh.Location.Y;
-            label.Location = new Point(x, 1);
-            label.Size = new Size(evh.Size.Width, heightLabel);
+            control.Location = new Point(x, 3);
+            control.Size = new Size(evh.Size.Width, heightLabel);
         }
 
         private void ElementViewerRow_KeyDown(object sender, KeyEventArgs e)
@@ -104,6 +145,34 @@ namespace FolderExplorer
             //alt entrer
             //entrer
             //shift / control
+        }
+
+        private void ElementViewerRow_MouseMove(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine("hover => " + ((Control)sender).Name);
+            BackColor = isSelected ? selectHoverColor: hoverColor;
+        }
+
+        private void ElementViewerRow_MouseLeave(object sender, EventArgs e)
+        {
+            Console.WriteLine("leave => " + ((Control)sender).Name);
+            BackColor = isSelected ? selectColor : normalColor;
+        }
+
+        private void ElementViewerRow_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("click => " + ((Control)sender).Name);
+
+            //changer le texte lors du hover du nom de la ligne
+            BackColor = selectColor;
+            
+            //temporaire
+            isSelected = !isSelected;
+        }
+
+        private void ElementViewerRow_DoubleClick(object sender, EventArgs e)
+        {
+            //ouverture
         }
     }
 }

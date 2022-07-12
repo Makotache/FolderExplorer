@@ -329,13 +329,10 @@ namespace FolderExplorer
             cameraModel = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.CameraModel);
 
             //31
-            Console.WriteLine($"---- type {this.typeElement}---- ");
-            Console.WriteLine(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.Dimensions));
             if (this.typeElement == TypeElement.Image)
             {
                 Image image = new Bitmap(this.fullPath);
                 dimensions = new Size(image.Width, image.Height);
-                Console.WriteLine(dimensions);
             }
             else
             {

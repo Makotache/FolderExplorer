@@ -182,8 +182,8 @@ namespace FolderExplorer
             if (elementViewerHeader_lst.Count > 0)
             {
                 ElementViewerHeader evh_previous = elementViewerHeader_lst[elementViewerHeader_lst.Count - 1];
-                evh_previous.leftCursor = vsplit_Cursor;
                 x = evh_previous.Location.X + evh_previous.Size.Width;
+                evh.leftCursor = vsplit_Cursor;
             }
             intersectionEvh_lst.Add(new Point(x + evh.Size.Width, 0));
             evh.Location = new Point(x, 0);
