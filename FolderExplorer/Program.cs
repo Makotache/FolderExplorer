@@ -16,8 +16,8 @@ namespace FolderExplorer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Properties_form());
-            Application.Run(new FolderExplorer_form());
+            Application.Run(new Properties_form());
+            //Application.Run(new FolderExplorer_form());
         }
     }
 }

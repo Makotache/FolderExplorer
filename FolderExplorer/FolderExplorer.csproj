@@ -113,6 +113,7 @@
     </Compile>
     <Compile Include="Lib\Extern\CPCS.cs" />
     <Compile Include="Lib\Extern\Maj_Min.cs" />
+    <Compile Include="Lib\Extern\OpenWith.cs" />
     <Compile Include="Lib\Extern\Size_Manager.cs" />
     <Compile Include="Lib\Intern\Element.cs" />
     <Compile Include="GUI\Forms\FolderExplorer_form.cs">
