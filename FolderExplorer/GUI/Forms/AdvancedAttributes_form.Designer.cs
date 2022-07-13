@@ -28,12 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.label1 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(58, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(286, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Choisissez les paramètres que vous voulez pour ce dossier.";
+            // 
+            // AdvancedAttributes_form
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "AdvancedAttributes_form";
+            this.ClientSize = new System.Drawing.Size(365, 450);
+            this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "AdvancedAttributes_form";
+            this.ShowIcon = false;
+            this.Text = "Attributs avancées";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -96,5 +96,11 @@ namespace FolderExplorer
         {
             this.Close();
         }
+
+        private void btn_avance_Click(object sender, EventArgs e)
+        {
+            AdvancedAttributes_form advancedAttributes_Form = new AdvancedAttributes_form();
+            advancedAttributes_Form.Show();
+        }
     }
 }

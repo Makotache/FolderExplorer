@@ -125,6 +125,9 @@
     <Compile Include="Lib\Intern\Enums.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\Forms\AdvancedAttributes_form.resx">
+      <DependentUpon>AdvancedAttributes_form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Forms\FolderExplorer_form.resx">
       <DependentUpon>FolderExplorer_form.cs</DependentUpon>
     </EmbeddedResource>

@@ -30,6 +30,11 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.general = new System.Windows.Forms.TabPage();
+            this.btn_modifier = new System.Windows.Forms.Button();
+            this.btn_avance = new System.Windows.Forms.Button();
+            this.cb_cache = new System.Windows.Forms.CheckBox();
+            this.cb_lecture_seule = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.lastAccesTime_label = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.lastWriteTime_label = new System.Windows.Forms.Label();
@@ -50,14 +55,9 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.details = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cb_lecture_seule = new System.Windows.Forms.CheckBox();
-            this.cb_cache = new System.Windows.Forms.CheckBox();
-            this.btn_avance = new System.Windows.Forms.Button();
             this.btn_ok = new System.Windows.Forms.Button();
             this.btn_annuler = new System.Windows.Forms.Button();
             this.btn_appliquer = new System.Windows.Forms.Button();
-            this.btn_modifier = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.general.SuspendLayout();
             this.SuspendLayout();
@@ -105,6 +105,54 @@
             this.general.TabIndex = 0;
             this.general.Text = "Général";
             this.general.UseVisualStyleBackColor = true;
+            // 
+            // btn_modifier
+            // 
+            this.btn_modifier.Location = new System.Drawing.Point(327, 101);
+            this.btn_modifier.Name = "btn_modifier";
+            this.btn_modifier.Size = new System.Drawing.Size(75, 23);
+            this.btn_modifier.TabIndex = 21;
+            this.btn_modifier.Text = "Modifier";
+            this.btn_modifier.UseVisualStyleBackColor = true;
+            // 
+            // btn_avance
+            // 
+            this.btn_avance.Location = new System.Drawing.Point(309, 370);
+            this.btn_avance.Name = "btn_avance";
+            this.btn_avance.Size = new System.Drawing.Size(75, 23);
+            this.btn_avance.TabIndex = 20;
+            this.btn_avance.Text = "Avancé...";
+            this.btn_avance.UseVisualStyleBackColor = true;
+            this.btn_avance.Click += new System.EventHandler(this.btn_avance_Click);
+            // 
+            // cb_cache
+            // 
+            this.cb_cache.AutoSize = true;
+            this.cb_cache.Location = new System.Drawing.Point(198, 374);
+            this.cb_cache.Name = "cb_cache";
+            this.cb_cache.Size = new System.Drawing.Size(57, 17);
+            this.cb_cache.TabIndex = 19;
+            this.cb_cache.Text = "Caché";
+            this.cb_cache.UseVisualStyleBackColor = true;
+            // 
+            // cb_lecture_seule
+            // 
+            this.cb_lecture_seule.AutoSize = true;
+            this.cb_lecture_seule.Location = new System.Drawing.Point(84, 374);
+            this.cb_lecture_seule.Name = "cb_lecture_seule";
+            this.cb_lecture_seule.Size = new System.Drawing.Size(90, 17);
+            this.cb_lecture_seule.TabIndex = 18;
+            this.cb_lecture_seule.Text = "Lecture seule";
+            this.cb_lecture_seule.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 374);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 13);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Attributs :";
             // 
             // lastAccesTime_label
             // 
@@ -287,44 +335,6 @@
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 374);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 13);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Attributs :";
-            // 
-            // cb_lecture_seule
-            // 
-            this.cb_lecture_seule.AutoSize = true;
-            this.cb_lecture_seule.Location = new System.Drawing.Point(84, 374);
-            this.cb_lecture_seule.Name = "cb_lecture_seule";
-            this.cb_lecture_seule.Size = new System.Drawing.Size(90, 17);
-            this.cb_lecture_seule.TabIndex = 18;
-            this.cb_lecture_seule.Text = "Lecture seule";
-            this.cb_lecture_seule.UseVisualStyleBackColor = true;
-            // 
-            // cb_cache
-            // 
-            this.cb_cache.AutoSize = true;
-            this.cb_cache.Location = new System.Drawing.Point(198, 374);
-            this.cb_cache.Name = "cb_cache";
-            this.cb_cache.Size = new System.Drawing.Size(57, 17);
-            this.cb_cache.TabIndex = 19;
-            this.cb_cache.Text = "Caché";
-            this.cb_cache.UseVisualStyleBackColor = true;
-            // 
-            // btn_avance
-            // 
-            this.btn_avance.Location = new System.Drawing.Point(309, 370);
-            this.btn_avance.Name = "btn_avance";
-            this.btn_avance.Size = new System.Drawing.Size(75, 23);
-            this.btn_avance.TabIndex = 20;
-            this.btn_avance.Text = "Avancé...";
-            this.btn_avance.UseVisualStyleBackColor = true;
-            // 
             // btn_ok
             // 
             this.btn_ok.Location = new System.Drawing.Point(215, 479);
@@ -352,15 +362,6 @@
             this.btn_appliquer.TabIndex = 3;
             this.btn_appliquer.Text = "Appliquer";
             this.btn_appliquer.UseVisualStyleBackColor = true;
-            // 
-            // btn_modifier
-            // 
-            this.btn_modifier.Location = new System.Drawing.Point(327, 101);
-            this.btn_modifier.Name = "btn_modifier";
-            this.btn_modifier.Size = new System.Drawing.Size(75, 23);
-            this.btn_modifier.TabIndex = 21;
-            this.btn_modifier.Text = "Modifier";
-            this.btn_modifier.UseVisualStyleBackColor = true;
             // 
             // Properties_form
             // 
