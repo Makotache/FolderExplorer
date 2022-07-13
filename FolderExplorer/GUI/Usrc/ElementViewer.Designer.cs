@@ -48,7 +48,7 @@
             this.containerRow_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.containerRow_panel.Location = new System.Drawing.Point(8, 30);
             this.containerRow_panel.Name = "containerRow_panel";
-            this.containerRow_panel.Size = new System.Drawing.Size(1485, 211);
+            this.containerRow_panel.Size = new System.Drawing.Size(961, 421);
             this.containerRow_panel.TabIndex = 4;
             // 
             // size_evh_usrc
@@ -110,7 +110,7 @@
             this.Controls.Add(this.lastWriteTime_evh_usrc);
             this.Controls.Add(this.name_evh_usrc);
             this.Name = "ElementViewer";
-            this.Size = new System.Drawing.Size(1664, 259);
+            this.Size = new System.Drawing.Size(1026, 530);
             this.Load += new System.EventHandler(this.ElementViewer_usrc_Load);
             this.ResumeLayout(false);
 

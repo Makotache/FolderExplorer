@@ -552,6 +552,7 @@ namespace FolderExplorer
 
         public static Element[] GetElements(string path)
         {
+            path = path.Replace('\\', '/');
             List<Element> result = new List<Element>();
             result.AddRange(GetFolders(path));
             result.AddRange(GetFiles(path));
@@ -561,6 +562,7 @@ namespace FolderExplorer
 
         public static Element[] GetFolders(string path)
         {
+            path = path.Replace('\\', '/');
             string[] folders = Directory.GetDirectories(path);
             
             Element[] result = new Element[folders.Length];
@@ -577,6 +579,7 @@ namespace FolderExplorer
 
         public static Element[] GetFiles(string path)
         {
+            path = path.Replace('\\', '/');
             string[] files = Directory.GetFiles(path);
 
             Element[] result = new Element[files.Length];

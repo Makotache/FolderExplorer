@@ -52,7 +52,6 @@ namespace FolderExplorer
             this.path = path;
         }
 
-
         private void ElementViewer_usrc_Load(object sender, EventArgs e)
         {
             Element[] elements = Element.GetElements(path);
@@ -96,19 +95,15 @@ namespace FolderExplorer
             int y = elementViewerRow_lst.Count * (ElementViewerRow.heightRow + 1) + 1;
             evr.Location = new Point(0, y);
 
-            //voir la tailles des labels
             if(intersectionEvh_lst.Count > 0)
             {
                 evr.Size = new Size(intersectionEvh_lst[intersectionEvh_lst.Count - 1].X, ElementViewerRow.heightRow);
             }
-            /*else
-            {
-                evr.Size = new Size(0, 0);
-            }*/
 
             elementViewerRow_lst.Add(evr);
             containerRow_panel.Controls.Add(evr);
         }
+
         private void RemoveRow(ElementViewerRow evr)
         {
             elementViewerRow_lst.Remove(evr);
@@ -116,6 +111,7 @@ namespace FolderExplorer
         }
 
         #region Timer
+
         //sert a bouger les en-têtes
         private void MoveHeader_Tick(object sender, EventArgs e)
         {

@@ -15,6 +15,7 @@ namespace FolderExplorer
         public new Color ForeColor
         {
             get { return visible_label.ForeColor; }
+
             set { visible_label.ForeColor = value; }
         }
         
@@ -22,7 +23,6 @@ namespace FolderExplorer
         {
             add
             {
-                Console.WriteLine("new event MouseMove");
                 base.MouseMove += value;
                 visible_label.MouseMove += value;
                 edit_textBox.MouseMove += value;

@@ -47,9 +47,7 @@ namespace FolderExplorer
             { 
                 return SortDirection.Ascending;
             }
-
         }
-
     }
 
     public enum BoolTripleValue

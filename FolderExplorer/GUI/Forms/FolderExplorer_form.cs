@@ -36,11 +36,11 @@ namespace FolderExplorer
             eViewer.Name = "eviewer_usrc";
             this.Controls.Add(eViewer);
 
-            /*Element[] elements = Element.GetElements("C:/testFolderExplorer");
+            Element[] elements = Element.GetElements("C:/testFolderExplorer");
             for(int i = 0; i < elements.Length; i++)
             {
                 Console.WriteLine(elements[i].ToString());
-            }*/
+            }
         }
 
         private void FolderExplorer_form_FormClosing(object sender, FormClosingEventArgs e)
