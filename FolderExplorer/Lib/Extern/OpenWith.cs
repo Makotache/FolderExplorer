@@ -32,6 +32,12 @@ namespace FolderExplorer
                     CurrentUser = Registry.ClassesRoot.OpenSubKey(progid + "\\Application");
                     xretour = CurrentUser.GetValue("ApplicationName", false).ToString();
                     CurrentUser.Close();
+                    //lecture json de conversion
+                    JObject conversion = JObject.Parse(File.ReadAllText(FolderExplorer_form.ProgId));
+                    int index = xretour.IndexOf("AppDisplayName");
+                    xretour = xretour.Substring(index);
+                    xretour = xretour.Replace("}", "");
+                    xretour = conversion.Property(xretour).Value.ToString();
                 }
             }
             else
@@ -47,8 +53,7 @@ namespace FolderExplorer
                 }
                 CurrentUser.Close();
             }
-            //lecture json de conversion
-            JObject Parametrages = JObject.Parse(File.ReadAllText();
+            Console.WriteLine(xretour);
             return xretour;
         }
 

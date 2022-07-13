@@ -25,7 +25,7 @@ namespace FolderExplorer
         public Properties_form()
         {
             InitializeComponent();
-            this.element = new Element("C:/testFolderExplorer/ie.exe", true);
+            this.element = new Element("C:/testFolderExplorer/4.jpg", true);
             this.Text = "Propriétés de : " + element.name + Path.GetExtension(element.fullPath);
             init();
         }
@@ -66,7 +66,6 @@ namespace FolderExplorer
             {
                 cb_cache.Checked = true;
             }
-            Console.WriteLine(element.attribute);
         }
 
         private string convertsize(long xtaille)
