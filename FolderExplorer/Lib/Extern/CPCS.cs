@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FolderExplorer
 {
@@ -27,6 +28,11 @@ namespace FolderExplorer
                 }
             }
             return result;
+        }
+
+        public static bool MouseOverControl(Control control)
+        {
+            return control.ClientRectangle.Contains(control.PointToClient(Cursor.Position));
         }
     }
 }

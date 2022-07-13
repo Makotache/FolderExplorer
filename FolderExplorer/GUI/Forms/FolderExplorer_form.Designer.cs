@@ -32,7 +32,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.back_button = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,15 +76,15 @@
             this.tabPage3.Text = "Affichage";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // back_button
             // 
-            this.button1.Location = new System.Drawing.Point(928, 64);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.button1_KeyDown);
+            this.back_button.Location = new System.Drawing.Point(5, 105);
+            this.back_button.Name = "back_button";
+            this.back_button.Size = new System.Drawing.Size(75, 23);
+            this.back_button.TabIndex = 1;
+            this.back_button.Text = "<-";
+            this.back_button.UseVisualStyleBackColor = true;
+            this.back_button.Click += new System.EventHandler(this.back_button_Click);
             // 
             // FolderExplorer_form
             // 
@@ -92,7 +92,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1178, 658);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.back_button);
             this.Controls.Add(this.tabControl1);
             this.Name = "FolderExplorer_form";
             this.Text = "Form1";
@@ -109,7 +109,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button back_button;
     }
 }
 

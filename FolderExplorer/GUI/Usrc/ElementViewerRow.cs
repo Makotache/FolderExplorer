@@ -53,7 +53,16 @@ namespace FolderExplorer
             get => Color.FromArgb(119, 119, 119);
         }
 
-        public bool isSelected { get; set; }
+        private bool _isSelected;
+        public bool isSelected
+        {
+            get => _isSelected;
+            set
+            {
+                _isSelected = value;
+                BackColor = value ? selectColor : normalColor;
+            }
+        }
 
         public ElementViewerRow(Element element, bool nameOnly, ElementViewer elementViewer)
         {
@@ -131,8 +140,14 @@ namespace FolderExplorer
         {
             //attention scroll
             int x = evh.Location.X;
-            //int y = evh.Location.Y;
-            control.Location = new Point(x, 3);
+            if(control != name_labelEdit)
+            {
+                control.Location = new Point(x, 4);
+            }
+            else
+            {
+                control.Location = new Point(x, 0);
+            }
             control.Size = new Size(evh.Size.Width, heightLabel);
         }
 
@@ -160,15 +175,23 @@ namespace FolderExplorer
         private void ElementViewerRow_Click(object sender, EventArgs e)
         {
             //changer le texte lors du hover du nom de la ligne
-            BackColor = selectColor;
-            
-            //temporaire
-            isSelected = !isSelected;
+            if(sender != this)
+            {
+                OnClick(e);
+            }
         }
 
         private void ElementViewerRow_DoubleClick(object sender, EventArgs e)
         {
             //ouverture
+            if (sender != this)
+            {
+                OnDoubleClick(e);
+            }
+            else
+            {
+                element.Open(elementViewer);
+            }
         }
     }
 }

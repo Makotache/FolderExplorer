@@ -15,7 +15,7 @@ namespace FolderExplorer
 {
     public partial class FolderExplorer_form : Form
     {
-        private ElementViewer eViewer;
+        private ElementViewer elementViewer;
         internal static readonly string FolderMainPath = Path.Combine(Directory.GetCurrentDirectory(), "FolderExplorerConfigs");
         internal static readonly string ExtensionJson = Path.Combine(FolderMainPath, "extension.json");
         
@@ -31,31 +31,26 @@ namespace FolderExplorer
 
         private void FolderExplorer_Load(object sender, EventArgs e)
         {
-            eViewer = new ElementViewer("C:/testFolderExplorer");
-            eViewer.Location = new Point(52, 124);
-            eViewer.Name = "eviewer_usrc";
-            this.Controls.Add(eViewer);
+            elementViewer = new ElementViewer(this, "C:/testFolderExplorer");
+            elementViewer.Location = new Point(60, 130);
+            elementViewer.Name = "eviewer_usrc";
+            this.Controls.Add(elementViewer);
 
-            Element[] elements = Element.GetElements("C:/testFolderExplorer");
+            /*Element[] elements = Element.GetElements("C:/testFolderExplorer");
             for(int i = 0; i < elements.Length; i++)
             {
                 Console.WriteLine(elements[i].ToString());
-            }
+            }*/
         }
 
         private void FolderExplorer_form_FormClosing(object sender, FormClosingEventArgs e)
         {
-            eViewer.EndTimerMoveHeader();
+            elementViewer.EndTimerMoveHeader();
         }
 
-
-
-        private void button1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        private void back_button_Click(object sender, EventArgs e)
         {
-
-            Console.WriteLine("MouseButtons => " + Control.MouseButtons);
-            //Console.WriteLine("System.Windows.Forms.Cursor.Current => " + System.Windows.Forms.Cursor.Current);
-            //Console.WriteLine("System.Windows.Forms.Cursor.Current 'bool'=> " + eViewer.IsVsplit_Cursor);
+            elementViewer.LoadPath(elementViewer.parentFolder);
         }
     }
 }

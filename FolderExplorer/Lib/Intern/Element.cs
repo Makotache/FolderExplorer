@@ -222,6 +222,7 @@ namespace FolderExplorer
 
         public Bitmap icon { get; private set; }
 
+
         #endregion
 
         public Element(string fullPath, bool isFile)
@@ -546,6 +547,17 @@ namespace FolderExplorer
             return TypeElement.OtherFile;
         }
 
+        public void Open(ElementViewer ev)
+        {
+            if(!isFile)
+            {
+                ev.LoadPath(fullPath);
+            }
+            else
+            {
+                //exectuer fichier avec le programme associé
+            }
+        }
 
 
         #region static

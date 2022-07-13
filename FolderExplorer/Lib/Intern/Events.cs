@@ -42,8 +42,10 @@ namespace FolderExplorer
     }
     */
 
-    public delegate void RowEventHandler(object sender, RowEventArgs e);
 
+    #region Row
+
+    public delegate void RowEventHandler(object sender, RowEventArgs e);
 
     public class RowEventArgs : EventArgs
     {
@@ -54,6 +56,10 @@ namespace FolderExplorer
             this.elementViewerRow = elementViewerRow;
         }
     }
+
+    #endregion
+
+    #region Header
 
     public delegate void HeaderEventHandler(object sender, HeaderEventArgs e);
 
@@ -66,4 +72,22 @@ namespace FolderExplorer
             this.elementViewerHeader = elementViewerHeader;
         }
     }
+
+    #endregion
+
+    #region DoubleClick
+
+    public delegate void DoubleClickHandler(DoubleClickArgs e);
+
+    public class DoubleClickArgs : EventArgs
+    {
+        public object[] parameters { get; private set; }
+
+        public DoubleClickArgs(object[] parameters)
+        {
+            this.parameters = parameters;
+        }
+    }
+
+    #endregion
 }

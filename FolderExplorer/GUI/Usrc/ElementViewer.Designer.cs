@@ -50,6 +50,7 @@
             this.containerRow_panel.Name = "containerRow_panel";
             this.containerRow_panel.Size = new System.Drawing.Size(961, 421);
             this.containerRow_panel.TabIndex = 4;
+            this.containerRow_panel.Click += new System.EventHandler(this.Evr_Click);
             // 
             // size_evh_usrc
             // 
@@ -111,7 +112,6 @@
             this.Controls.Add(this.name_evh_usrc);
             this.Name = "ElementViewer";
             this.Size = new System.Drawing.Size(1026, 530);
-            this.Load += new System.EventHandler(this.ElementViewer_usrc_Load);
             this.ResumeLayout(false);
 
         }
