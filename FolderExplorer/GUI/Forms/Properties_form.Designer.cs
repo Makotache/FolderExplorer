@@ -52,9 +52,9 @@
             this.itemType_label = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Tb_name = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.securite = new System.Windows.Forms.TabPage();
             this.details = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.versions_precedentes = new System.Windows.Forms.TabPage();
             this.btn_ok = new System.Windows.Forms.Button();
             this.btn_annuler = new System.Windows.Forms.Button();
             this.btn_appliquer = new System.Windows.Forms.Button();
@@ -65,9 +65,9 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.general);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.securite);
             this.tabControl1.Controls.Add(this.details);
-            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.versions_precedentes);
             this.tabControl1.Location = new System.Drawing.Point(6, 7);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -305,15 +305,15 @@
             this.Tb_name.Size = new System.Drawing.Size(285, 20);
             this.Tb_name.TabIndex = 0;
             // 
-            // tabPage2
+            // securite
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(438, 436);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.securite.Location = new System.Drawing.Point(4, 22);
+            this.securite.Name = "securite";
+            this.securite.Padding = new System.Windows.Forms.Padding(3);
+            this.securite.Size = new System.Drawing.Size(438, 436);
+            this.securite.TabIndex = 1;
+            this.securite.Text = "Sécurité";
+            this.securite.UseVisualStyleBackColor = true;
             // 
             // details
             // 
@@ -325,15 +325,15 @@
             this.details.Text = "Détails";
             this.details.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
+            // versions_precedentes
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(438, 436);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "tabPage4";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.versions_precedentes.Location = new System.Drawing.Point(4, 22);
+            this.versions_precedentes.Name = "versions_precedentes";
+            this.versions_precedentes.Padding = new System.Windows.Forms.Padding(3);
+            this.versions_precedentes.Size = new System.Drawing.Size(438, 436);
+            this.versions_precedentes.TabIndex = 3;
+            this.versions_precedentes.Text = "Versions précédentes";
+            this.versions_precedentes.UseVisualStyleBackColor = true;
             // 
             // btn_ok
             // 
@@ -386,9 +386,9 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage general;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage securite;
         private System.Windows.Forms.TabPage details;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage versions_precedentes;
         private System.Windows.Forms.Label lastAccesTime_label;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lastWriteTime_label;
