@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,7 +25,7 @@ namespace FolderExplorer
         public Properties_form()
         {
             InitializeComponent();
-            this.element = new Element("C:/testFolderExplorer/4.jpg", true);
+            this.element = new Element("C:/testFolderExplorer/tt.txt", true);
             this.Text = "Propriétés de : " + element.name + Path.GetExtension(element.fullPath);
             init();
         }
@@ -37,8 +38,9 @@ namespace FolderExplorer
             Tb_name.Text = element.name;
             //type
             itemType_label.Text = element.itemType + " (" + Path.GetExtension(element.fullPath) + ")";
+            openWith_label.Text = openwith(Path.GetExtension(element.fullPath));
             //element.GetValue(MetaDataElement.name)
-            path_label.Text = element.path;
+            path_label.Text = element.path.Replace("/","\\");
             //size
             size_label.Text = convertsize(element.size) + " (" + element.size.ToString() + " octets)";
             //size on disk
@@ -101,6 +103,29 @@ namespace FolderExplorer
         {
             AdvancedAttributes_form advancedAttributes_Form = new AdvancedAttributes_form();
             advancedAttributes_Form.Show();
+        }
+
+        private string openwith(string extension)
+        {
+            string progid;
+            string xretour = "";
+            RegistryKey CurrentUser = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" +extension+"\\UserChoice", false);
+            try
+            {
+                progid = CurrentUser.GetValue("ProgId", false).ToString();
+            }
+            catch
+            {
+                progid = "";
+            }
+            CurrentUser.Close();
+            if (progid != "")
+            {
+                CurrentUser = Registry.ClassesRoot.OpenSubKey(progid + "\\Application");
+                xretour = CurrentUser.GetValue("ApplicationName", false).ToString();
+                CurrentUser.Close();
+            }
+            return xretour;
         }
     }
 }
