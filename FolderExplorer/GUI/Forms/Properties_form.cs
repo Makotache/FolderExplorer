@@ -25,7 +25,7 @@ namespace FolderExplorer
         public Properties_form()
         {
             InitializeComponent();
-            this.element = new Element("C:/testFolderExplorer/Form1.cs", true);
+            this.element = new Element("C:/testFolderExplorer/ie.exe", true);
             this.Text = "Propriétés de : " + element.name + Path.GetExtension(element.fullPath);
             init();
         }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Win32;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,7 +48,7 @@ namespace FolderExplorer
                 CurrentUser.Close();
             }
             //lecture json de conversion
-
+            JObject Parametrages = JObject.Parse(File.ReadAllText();
             return xretour;
         }
 

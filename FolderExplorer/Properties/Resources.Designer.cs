@@ -112,5 +112,15 @@ namespace FolderExplorer.Properties {
                 return ResourceManager.GetString("extension", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Byte[].
+        /// </summary>
+        internal static byte[] ProgId {
+            get {
+                object obj = ResourceManager.GetObject("ProgId", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
