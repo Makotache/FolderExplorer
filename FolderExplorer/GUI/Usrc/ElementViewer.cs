@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -112,6 +113,7 @@ namespace FolderExplorer
                 evr.Size = new Size(intersectionEvh_lst[intersectionEvh_lst.Count - 1].X, ElementViewerRow.heightRow);
             }
 
+
             elementViewerHeader_lst.ForEach(h => evr.AddColumn(h));
 
             elementViewerRow_lst.Add(evr);
@@ -181,20 +183,67 @@ namespace FolderExplorer
             }
             else if(mouseEvent.Button == MouseButtons.Right)
             {
-                if (selectedRows_lst.Count > 0 && (Control.ModifierKeys == Keys.Shift || selectedRows_lst.Where(r => CPCS.MouseOverControl(r)).Count() > 0))
+                ContextMenu cm = new ContextMenu();
+                MenuItem open = new MenuItem("Ouvrir", new EventHandler(this.OpenElement));
+                //open.Tag = 
+                cm.MenuItems.Add(open);
+                cm.MenuItems.Add("Propriété", new EventHandler(this.OpenProperties));
+                cm.Show(containerRow_panel, containerRow_panel.PointToClient(Cursor.Position), LeftRightAlignment.Left);
+
+                //si plusieurs lignes sont sélectionné ET
+                //(QUE on appui sur shift OU QUE notre souris est sur l'une des lignes sélectionné
+                if (selectedRows_lst.Count > 0 && 
+                    (Control.ModifierKeys == Keys.Shift || selectedRows_lst.Where(r => CPCS.MouseOverControl(r)).Count() > 0))
                 {
                     //menu clic droit
                     Console.WriteLine("Menu clic droit sur fichier(s)/dossier(s)");
                 }
                 else //dossier actuel
                 {
-                    selectedRows_lst.ForEach(r => r.isSelected = false);
-                    selectedRows_lst.Clear();
                     Console.WriteLine("Menu clic droit sur dossier actuel");
                 }
             }
         }
 
+        #region Menu Clic Droit
+        
+        private void OpenElement(object sender, EventArgs e)
+        {
+            Console.WriteLine("OpenElement");
+            switch (selectedRows_lst.Count)
+            {
+                case 1:
+                    selectedRows_lst[0].element.Open(this);
+                    break;
+
+                case > 1:
+                    break;
+            }
+        }
+
+        private void OpenProperties(object sender, EventArgs e)
+        {
+            Console.WriteLine("OpenProperties");
+            Console.WriteLine("selectedRows_lst.Count => " + selectedRows_lst.Count);
+            switch (selectedRows_lst.Count)
+            {
+                case 1:
+                    //(new Properties_form(selectedRows_lst[0].elementFullName)).Show();
+                    Process process = new Process();
+                    process.StartInfo.FileName = Process.GetCurrentProcess().MainModule.FileName;
+                    process.StartInfo.Arguments = '"' + selectedRows_lst[0].element.fullPath + '"';
+                    process.Start();
+                    break;
+
+                case > 1:
+                    selectedRows_lst.ForEach(r => r.isSelected = false);
+                    selectedRows_lst.Clear();
+                    //voir dans le cas où on as plusieurs fichier(s)/dossier(s)
+                    break;
+            }
+        }
+
+        #endregion
         #endregion
 
         #region Timer
