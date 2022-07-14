@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using System.Windows.Forms;
 using Shell32;
+using System.Diagnostics;
 
 namespace FolderExplorer
 {
@@ -556,6 +557,7 @@ namespace FolderExplorer
             else
             {
                 //exectuer fichier avec le programme associé
+                Process.Start(fullPath);
             }
         }
 

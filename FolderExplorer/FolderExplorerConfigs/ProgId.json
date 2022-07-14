@@ -1,10 +1,10 @@
 {
-    "Microsoft.WindowsNotepad": "Bloc Notes",
-    "Microsoft.Windows.Photos": "Photos",
-    "Microsoft.ZuneVideo": "Films et TV",
-    "Microsoft.ZuneMusic": "Lecteur multimédia",
-    "Microsoft Edge": "Microsoft Edge",
-    "devenv.exe": "Microsoft Visual Studio 2022",
-    "Google Chrome" : "Google Chrome",
-    "sublime_text" : "Sublime Text" 
+  "Microsoft.WindowsNotepad": "Bloc Notes",
+  "Microsoft.Windows.Photos": "Photos",
+  "Microsoft.ZuneVideo": "Films et TV",
+  "Microsoft.ZuneMusic": "Lecteur multimédia",
+  "Microsoft Edge": "Microsoft Edge",
+  "devenv.exe": "Microsoft Visual Studio 2022",
+  "Google Chrome": "Google Chrome",
+  "sublime_text": "Sublime Text"
 }
