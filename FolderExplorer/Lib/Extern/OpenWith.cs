@@ -54,7 +54,7 @@ namespace FolderExplorer
                     }
                     else
                     {
-                        xretour = xretour.Substring(xretour.IndexOf(@"\"));
+                        xretour = progid.Substring(progid.IndexOf("\\") + 1);
                     }
                     
                     
