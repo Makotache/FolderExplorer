@@ -36,13 +36,16 @@ namespace FolderExplorer
                     //lecture json de conversion
                     int indexdebut = xretour.IndexOf("Microsoft");
                     int indexfin = xretour.IndexOf("_");
-                    if (indexfin != -1)
+                    if (indexdebut != -1)
                     {
-                        xretour = xretour.Substring(indexdebut, indexfin - indexdebut);
-                    }
-                    else
-                    {
-                        xretour = xretour.Substring(indexdebut);
+                        if (indexfin != -1)
+                        {
+                            xretour = xretour.Substring(indexdebut, indexfin - indexdebut);
+                        }
+                        else
+                        {
+                            xretour = xretour.Substring(indexdebut);
+                        }
                     }
                     
                     Console.WriteLine(xretour);
