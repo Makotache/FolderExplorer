@@ -229,8 +229,8 @@ namespace FolderExplorer
 
         public Element(string fullPath)
         {
-            this.fullPath = fullPath;
-            isFile = File.Exists(fullPath);
+            this.fullPath = fullPath.Replace("\\", "/");
+            isFile = File.Exists(this.fullPath);
 
             if (isFile)
             {
