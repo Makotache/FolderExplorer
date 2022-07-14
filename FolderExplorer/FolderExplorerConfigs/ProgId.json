@@ -1,3 +1,8 @@
 {
-    "AppDisplayName_Notepad" :  "Bloc Notes"
+    "Microsoft.WindowsNotepad": "Bloc Notes",
+    "Microsoft.Windows.Photos": "Photos",
+    "Microsoft.ZuneVideo": "Films et TV",
+    "Microsoft.ZuneMusic": "Lecteur multimédia",
+    "Microsoft Edge": "Microsoft Edge",
+    "devenv.exe": "Microsoft Visual Studio 2022"
 }

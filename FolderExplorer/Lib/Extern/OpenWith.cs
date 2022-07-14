@@ -17,6 +17,7 @@ namespace FolderExplorer
             string progid;
             string xretour = "";
             RegistryKey CurrentUser = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + extension + "\\UserChoice", false);
+            JObject conversion = JObject.Parse(File.ReadAllText(FolderExplorer_form.ProgId));
             if (CurrentUser != null)
             {
                 try
@@ -33,10 +34,18 @@ namespace FolderExplorer
                     xretour = CurrentUser.GetValue("ApplicationName", false).ToString();
                     CurrentUser.Close();
                     //lecture json de conversion
-                    JObject conversion = JObject.Parse(File.ReadAllText(FolderExplorer_form.ProgId));
-                    int index = xretour.IndexOf("AppDisplayName");
-                    xretour = xretour.Substring(index);
-                    xretour = xretour.Replace("}", "");
+                    int indexdebut = xretour.IndexOf("Microsoft");
+                    int indexfin = xretour.IndexOf("_");
+                    if (indexfin != -1)
+                    {
+                        xretour = xretour.Substring(indexdebut, indexfin - indexdebut);
+                    }
+                    else
+                    {
+                        xretour = xretour.Substring(indexdebut);
+                    }
+                    
+                    Console.WriteLine(xretour);
                     xretour = conversion.Property(xretour).Value.ToString();
                 }
             }
@@ -52,6 +61,7 @@ namespace FolderExplorer
                     xretour = "";
                 }
                 CurrentUser.Close();
+                xretour = conversion.Property(xretour).Value.ToString();
             }
             Console.WriteLine(xretour);
             return xretour;
