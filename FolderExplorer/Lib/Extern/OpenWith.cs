@@ -16,6 +16,8 @@ namespace FolderExplorer
         {
             string progid;
             string xretour = "";
+            int indexdebut;
+            int indexfin;
             RegistryKey CurrentUser = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + extension + "\\UserChoice", false);
             JObject conversion = JObject.Parse(File.ReadAllText(FolderExplorer_form.ProgId));
             if (CurrentUser != null)
@@ -30,23 +32,31 @@ namespace FolderExplorer
                 }
                 if (progid != "")
                 {
-                    CurrentUser = Registry.ClassesRoot.OpenSubKey(progid + "\\Application");
-                    xretour = CurrentUser.GetValue("ApplicationName", false).ToString();
-                    CurrentUser.Close();
-                    //lecture json de conversion
-                    int indexdebut = xretour.IndexOf("Microsoft");
-                    int indexfin = xretour.IndexOf("_");
-                    if (indexdebut != -1)
+                    if (!progid.Contains(".exe"))
                     {
-                        if (indexfin != -1)
+                        CurrentUser = Registry.ClassesRoot.OpenSubKey(progid + "\\Application");
+                        xretour = CurrentUser.GetValue("ApplicationName", false).ToString();
+                        CurrentUser.Close();
+                        //lecture json de conversion
+                        indexdebut = xretour.IndexOf("Microsoft");
+                        indexfin = xretour.IndexOf("_");
+                        if (indexdebut != -1)
                         {
-                            xretour = xretour.Substring(indexdebut, indexfin - indexdebut);
-                        }
-                        else
-                        {
-                            xretour = xretour.Substring(indexdebut);
+                            if (indexfin != -1)
+                            {
+                                xretour = xretour.Substring(indexdebut, indexfin - indexdebut);
+                            }
+                            else
+                            {
+                                xretour = xretour.Substring(indexdebut);
+                            }
                         }
                     }
+                    else
+                    {
+                        xretour = xretour.Substring(xretour.IndexOf(@"\"));
+                    }
+                    
                     
                     Console.WriteLine(xretour);
                     xretour = conversion.Property(xretour).Value.ToString();

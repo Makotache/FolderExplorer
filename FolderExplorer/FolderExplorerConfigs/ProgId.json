@@ -5,5 +5,6 @@
     "Microsoft.ZuneMusic": "Lecteur multimédia",
     "Microsoft Edge": "Microsoft Edge",
     "devenv.exe": "Microsoft Visual Studio 2022",
-    "Google Chrome" :  "Google Chrome"
+    "Google Chrome" : "Google Chrome",
+    "sublime_text" : "Sublime Text" 
 }
