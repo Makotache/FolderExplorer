@@ -18,10 +18,12 @@ namespace FolderExplorer
             string xretour = "";
             int indexdebut;
             int indexfin;
+            bool amodif = false;
             RegistryKey CurrentUser = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + extension + "\\UserChoice", false);
             JObject conversion = JObject.Parse(File.ReadAllText(FolderExplorer_form.ProgId));
             if (CurrentUser != null)
             {
+                //cas avec user choice
                 try
                 {
                     progid = CurrentUser.GetValue("ProgId", false).ToString();
@@ -33,11 +35,19 @@ namespace FolderExplorer
                 if (progid != "")
                 {
                     if (!progid.Contains(".exe"))
+                        //cas application microsoft
                     {
                         CurrentUser = Registry.ClassesRoot.OpenSubKey(progid + "\\Application");
-                        xretour = CurrentUser.GetValue("ApplicationName", false).ToString();
+                        try
+                        {
+                            xretour = CurrentUser.GetValue("ApplicationName", false).ToString();
+                        }
+                        catch
+                        {
+                            xretour = progid;
+                        }
+                        
                         CurrentUser.Close();
-                        //lecture json de conversion
                         indexdebut = xretour.IndexOf("Microsoft");
                         indexfin = xretour.IndexOf("_");
                         if (indexdebut != -1)
@@ -53,17 +63,21 @@ namespace FolderExplorer
                         }
                     }
                     else
+                        //cas pas application microsoft
+
                     {
                         xretour = progid.Substring(progid.IndexOf("\\") + 1);
                     }
                     
                     
                     Console.WriteLine(xretour);
+                    //lecture json de conversion
                     xretour = conversion.Property(xretour).Value.ToString();
                 }
             }
             else
             {
+                //cas sans user choice
                 CurrentUser = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + extension + "\\OpenWithList", false);
                 try
                 {
