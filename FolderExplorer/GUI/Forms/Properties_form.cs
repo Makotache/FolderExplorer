@@ -36,7 +36,7 @@ namespace FolderExplorer
             //element.GetValue(MetaDataElement.name)
             path_label.Text = element.path.Replace("/","\\");
             //size
-            size_label.Text = convertsize(element.size) + " (" + element.size.ToString() + " octets)";
+            size_label.Text = Size_Manager.convertsize(element.size, SizeType.o) + " (" + element.size.ToString() + " octets)";
             //size on disk
             //sizeOnDisk_label.Text = element.
             //creation date
@@ -60,31 +60,6 @@ namespace FolderExplorer
             {
                 cb_cache.Checked = true;
             }
-        }
-
-        private string convertsize(long xtaille)
-        {
-            string retour = "";
-            switch (xtaille)
-            {
-                case < 1024:
-                    //octets
-                    retour = Convert.ToInt32(xtaille).ToString() + " o";
-                    break;
-                case < 1024576:
-                    retour = Size_Manager.otoko(Convert.ToInt32(xtaille)).ToString() + " Ko";
-                    //ko
-                    break;
-                case < 1073741824:
-                    //Mo
-                    retour = Size_Manager.otomo(Convert.ToInt32(xtaille)).ToString() + " Mo";
-                    break;
-                case < 1099511627776:
-                    //Go
-                    retour = Size_Manager.otogo(Convert.ToInt32(xtaille)).ToString() + " Go";
-                    break;
-            }
-            return retour;
         }
 
         private void btn_annuler_Click(object sender, EventArgs e)
