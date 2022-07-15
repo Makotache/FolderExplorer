@@ -104,7 +104,8 @@ namespace FolderExplorer
                 //control.ForeColor = Color.White;
             }
             control.Name = evh.metaDataElement.ToString();
-            control.Text = element.GetValue(evh.metaDataElement).ToString();
+            string value = element.GetValue(evh.metaDataElement).ToString();
+            control.Text = value != "-1" ? element.GetValue(evh.metaDataElement).ToString() : "";
             control.AutoSize = false;
 
 

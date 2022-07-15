@@ -226,12 +226,13 @@ namespace FolderExplorer
 
         #endregion
 
-        public Element(string fullPath, bool isFile)
+
+        public Element(string fullPath)
         {
             this.fullPath = fullPath;
-            this.isFile = isFile;
+            isFile = File.Exists(fullPath);
 
-            if (this.isFile)
+            if (isFile)
             {
                 _elementInfo = new FileInfo(this.fullPath);
                 typeElement = GetType();
@@ -585,7 +586,7 @@ namespace FolderExplorer
             {
                 folders[i] = folders[i].Replace('\\', '/');
 
-                result[i] = new Element(folders[i], false);
+                result[i] = new Element(folders[i]);
             }
 
             return result;
@@ -602,7 +603,7 @@ namespace FolderExplorer
             {
                 files[i] = files[i].Replace('\\', '/');
 
-                result[i] = new Element(files[i], true);
+                result[i] = new Element(files[i]);
             }
 
             return result;

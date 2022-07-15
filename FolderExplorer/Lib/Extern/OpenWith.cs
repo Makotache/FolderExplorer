@@ -34,8 +34,7 @@ namespace FolderExplorer
                 }
                 if (progid != "")
                 {
-                    if (!progid.Contains(".exe"))
-                        //cas application microsoft
+                    if (!progid.Contains("."))
                     {
                         CurrentUser = Registry.ClassesRoot.OpenSubKey(progid + "\\Application");
                         try
@@ -71,7 +70,6 @@ namespace FolderExplorer
                     
                     
                     Console.WriteLine(xretour);
-                    //lecture json de conversion
                     xretour = conversion.Property(xretour).Value.ToString();
                 }
             }
@@ -88,7 +86,12 @@ namespace FolderExplorer
                     xretour = "";
                 }
                 CurrentUser.Close();
-                xretour = conversion.Property(xretour).Value.ToString();
+                //xretour = conversion.Property(xretour).Value.ToString();
+                JProperty prop = conversion.Property(xretour);
+                if (prop != null)
+                {
+                    xretour = prop.Value.ToString();
+                }
             }
             Console.WriteLine(xretour);
             return xretour;

@@ -15,23 +15,17 @@ namespace FolderExplorer
 {
     public partial class Properties_form : Form
     {
-        private Element element;
-        public Properties_form(Element element)
+        public Properties_form(string fullPath)
         {
-            InitializeComponent();
-            this.element = element;
-            init();
-        }
-        public Properties_form()
-        {
-            InitializeComponent();
-            this.element = new Element("C:/testFolderExplorer/web.html", true);
-            this.Text = "Propriétés de : " + element.name + Path.GetExtension(element.fullPath);
-            init();
-        }
+            Element element = new Element(fullPath);
+            StreamWriter sr = new StreamWriter("C:/testFolderExplorer/logs.log", true);
+            sr.WriteLine(fullPath);
+            sr.WriteLine(element.ToString());
+            sr.Close();
 
-        private void init()
-        {
+            InitializeComponent();
+            this.Text = "Propriétés de : " + element.name + Path.GetExtension(element.fullPath);
+
             btn_appliquer.Enabled = false;
             //infos in element region proprietes normal
             //name

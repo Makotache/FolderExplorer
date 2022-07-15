@@ -12,12 +12,20 @@ namespace FolderExplorer
         /// Point d'entrée principal de l'application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Properties_form());
-            //Application.Run(new FolderExplorer_form());
+
+            if (args.Length > 0)
+            {
+                Application.Run(new Properties_form(args[0]));
+            }
+            else
+            {
+                //Application.Run(new Properties_form());
+                Application.Run(new FolderExplorer_form());
+            }
         }
     }
 }
