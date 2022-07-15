@@ -9,9 +9,9 @@ namespace FolderExplorer
     internal static class Size_Manager
     {
 
-        public static Double division(long xtaille, int xnombre)
+        public static Double division(long xtaille, long xnombre)
         {
-            Double retour = xtaille / xnombre;
+            Double retour = (double)(xtaille) / xnombre;
             return retour;
         }
 
@@ -30,8 +30,15 @@ namespace FolderExplorer
             return Math.Round(division(xtailleo, 1073741824), 2);
         }
 
+        public static Double ototo_double(long xtailleo)
+        {
+            return Math.Round(division(xtailleo, 1099511627776), 2);
+        }
+
         public static string otoko_string(long xtailleo)
         {
+            double xtempdivision = division(xtailleo, 1024);
+            double xtempmathround = Math.Round(xtempdivision, 2);
             return Math.Round(division(xtailleo, 1024), 2).ToString()+" Ko";
         }
 
@@ -43,6 +50,11 @@ namespace FolderExplorer
         public static string otogo_string(long xtailleo)
         {
             return Math.Round(division(xtailleo, 1073741824), 2).ToString()+" Go";
+        }
+
+        public static string ototo_string(long xtailleo)
+        {
+            return Math.Round(division(xtailleo, 1099511627776), 2).ToString()+" To";
         }
 
         public static string convertsize(long xtaille, SizeType xtype)

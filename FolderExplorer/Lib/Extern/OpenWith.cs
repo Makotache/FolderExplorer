@@ -6,13 +6,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+//AppX4ztfk9wxr86nxmzzq47px0nh0e58b8fw
 
 namespace FolderExplorer
 {
     internal static class OpenWith
     {
 
-        public static string ExtensionToPrg (string extension)
+        public static string ExtensionToPrg(string extension)
         {
             string progid;
             string xretour = "";
@@ -24,59 +25,68 @@ namespace FolderExplorer
             if (CurrentUser != null)
             {
                 //cas avec user choice
-                try
+                if (!CurrentUser.ToString().Contains("Applications"))
                 {
-                    progid = CurrentUser.GetValue("ProgId", false).ToString();
-                }
-                catch
-                {
-                    progid = "";
-                }
-                if (progid != "")
-                {
-                    if (!progid.Contains("."))
+                    //Applications Windows Store
+                    try
                     {
-                        CurrentUser = Registry.ClassesRoot.OpenSubKey(progid + "\\Application");
-                        try
-                        {
-                            xretour = CurrentUser.GetValue("ApplicationName", false).ToString();
-                        }
-                        catch
-                        {
-                            xretour = progid;
-                        }
-                        
-                        CurrentUser.Close();
-                        indexdebut = xretour.IndexOf("Microsoft");
-                        indexfin = xretour.IndexOf("_");
-                        if (indexdebut != -1)
-                        {
-                            if (indexfin != -1)
-                            {
-                                xretour = xretour.Substring(indexdebut, indexfin - indexdebut);
-                            }
-                            else
-                            {
-                                xretour = xretour.Substring(indexdebut);
-                            }
-                        }
+                        progid = CurrentUser.GetValue("ProgId", false).ToString();
                     }
-                    else
+                    catch
+                    {
+                        progid = "";
+                    }
+                    if (progid != "")
+                    {
+                        if (!progid.Contains("."))
+                        {
+                            CurrentUser = Registry.ClassesRoot.OpenSubKey(progid + "\\Application");
+                            try
+                            {
+                                xretour = CurrentUser.GetValue("ApplicationName", false).ToString();
+                            }
+                            catch
+                            {
+                                xretour = progid;
+                            }
+
+                            CurrentUser.Close();
+                            indexdebut = xretour.IndexOf("Microsoft");
+                            indexfin = xretour.IndexOf("_");
+                            if (indexdebut != -1)
+                            {
+                                if (indexfin != -1)
+                                {
+                                    xretour = xretour.Substring(indexdebut, indexfin - indexdebut);
+                                }
+                                else
+                                {
+                                    xretour = xretour.Substring(indexdebut);
+                                }
+                            }
+                        }
+                        else
                         //cas pas application microsoft
 
-                    {
-                        xretour = progid.Substring(progid.IndexOf("\\") + 1);
-                    }
-                    
-                    
-                    Console.WriteLine(xretour);
-                    //xretour = conversion.Property(xretour).Value.ToString();
-                    JProperty prop = conversion.Property(xretour);
-                    if (prop != null)
-                    {
-                        xretour = prop.Value.ToString();
+                        {
+                            xretour = progid.Substring(progid.IndexOf("\\") + 1);
+                        }
+
+
+                        Console.WriteLine(xretour);
+                        //xretour = conversion.Property(xretour).Value.ToString();
+                        JProperty prop = conversion.Property(xretour);
+                        if (prop != null)
+                        {
+                            xretour = prop.Value.ToString();
+                        }
                     }
                 }
+                else
+                {
+                    xretour = CurrentUser.ToString().Substring(13, CurrentUser.ToString().Length - 13);
+                }
+
             }
             else
             {
