@@ -187,7 +187,7 @@ namespace FolderExplorer
                 MenuItem open = new MenuItem("Ouvrir", new EventHandler(this.OpenElement));
                 //open.Tag = 
                 cm.MenuItems.Add(open);
-                cm.MenuItems.Add("Propriété", new EventHandler(this.OpenProperties));
+                cm.MenuItems.Add("Propriétés", new EventHandler(this.OpenProperties));
                 cm.Show(containerRow_panel, containerRow_panel.PointToClient(Cursor.Position), LeftRightAlignment.Left);
 
                 //si plusieurs lignes sont sélectionné ET
@@ -228,11 +228,17 @@ namespace FolderExplorer
             switch (selectedRows_lst.Count)
             {
                 case 1:
-                    //(new Properties_form(selectedRows_lst[0].elementFullName)).Show();
-                    Process process = new Process();
-                    process.StartInfo.FileName = Process.GetCurrentProcess().MainModule.FileName;
-                    process.StartInfo.Arguments = '"' + selectedRows_lst[0].element.fullPath + '"';
-                    process.Start();
+                    if(Program.DebugMode)
+                    {
+                        (new Properties_form(selectedRows_lst[0].elementFullName)).Show();
+                    }
+                    else
+                    {
+                        Process process = new Process();
+                        process.StartInfo.FileName = Process.GetCurrentProcess().MainModule.FileName;
+                        process.StartInfo.Arguments = '"' + selectedRows_lst[0].element.fullPath + '"';
+                        process.Start();
+                    }
                     break;
 
                 case > 1:

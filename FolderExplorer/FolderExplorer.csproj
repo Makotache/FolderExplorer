@@ -111,6 +111,12 @@
     <Compile Include="GUI\Usrc\LabelEditable.Designer.cs">
       <DependentUpon>LabelEditable.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Usrc\SelectField.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Usrc\SelectField.Designer.cs">
+      <DependentUpon>SelectField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lib\Extern\CPCS.cs" />
     <Compile Include="Lib\Extern\Maj_Min.cs" />
     <Compile Include="Lib\Extern\OpenWith.cs" />
@@ -146,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Usrc\LabelEditable.resx">
       <DependentUpon>LabelEditable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Usrc\SelectField.resx">
+      <DependentUpon>SelectField.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -199,6 +208,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Img\WhiteSprite.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

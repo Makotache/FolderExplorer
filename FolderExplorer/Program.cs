@@ -8,6 +8,8 @@ namespace FolderExplorer
 {
     internal static class Program
     {
+        internal static bool DebugMode = true;
+
         /// <summary>
         /// Point d'entrée principal de l'application.
         /// </summary>
