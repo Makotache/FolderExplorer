@@ -228,15 +228,16 @@ namespace FolderExplorer
             switch (selectedRows_lst.Count)
             {
                 case 1:
-                    if(Program.DebugMode)
+                    string path = selectedRows_lst[0].element.fullPath;
+                    if (Program.DebugMode)
                     {
-                        (new Properties_form(selectedRows_lst[0].elementFullName)).Show();
+                        (new Properties_form(path)).Show();
                     }
                     else
                     {
                         Process process = new Process();
                         process.StartInfo.FileName = Process.GetCurrentProcess().MainModule.FileName;
-                        process.StartInfo.Arguments = '"' + selectedRows_lst[0].element.fullPath + '"';
+                        process.StartInfo.Arguments = '"' + path + '"';
                         process.Start();
                     }
                     break;

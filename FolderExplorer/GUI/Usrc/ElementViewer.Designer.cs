@@ -31,12 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.moveHeader_timer = new System.Windows.Forms.Timer(this.components);
             this.containerRow_panel = new System.Windows.Forms.Panel();
-            this.selectField1 = new FolderExplorer.GUI.Usrc.SelectField();
             this.size_evh_usrc = new FolderExplorer.ElementViewerHeader();
             this.type_evh_usrc = new FolderExplorer.ElementViewerHeader();
             this.lastWriteTime_evh_usrc = new FolderExplorer.ElementViewerHeader();
             this.name_evh_usrc = new FolderExplorer.ElementViewerHeader();
-            this.containerRow_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // moveHeader_timer
@@ -48,21 +46,11 @@
             // 
             this.containerRow_panel.AutoScroll = true;
             this.containerRow_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.containerRow_panel.Controls.Add(this.selectField1);
             this.containerRow_panel.Location = new System.Drawing.Point(8, 30);
             this.containerRow_panel.Name = "containerRow_panel";
             this.containerRow_panel.Size = new System.Drawing.Size(961, 421);
             this.containerRow_panel.TabIndex = 4;
             this.containerRow_panel.Click += new System.EventHandler(this.Evr_Click);
-            // 
-            // selectField1
-            // 
-            this.selectField1.BackColor = System.Drawing.Color.White;
-            this.selectField1.fieldColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.selectField1.Location = new System.Drawing.Point(719, 148);
-            this.selectField1.Name = "selectField1";
-            this.selectField1.Size = new System.Drawing.Size(150, 150);
-            this.selectField1.TabIndex = 5;
             // 
             // size_evh_usrc
             // 
@@ -124,7 +112,6 @@
             this.Controls.Add(this.name_evh_usrc);
             this.Name = "ElementViewer";
             this.Size = new System.Drawing.Size(1026, 530);
-            this.containerRow_panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -137,6 +124,5 @@
         private ElementViewerHeader size_evh_usrc;
         private ElementViewerHeader type_evh_usrc;
         private System.Windows.Forms.Panel containerRow_panel;
-        private GUI.Usrc.SelectField selectField1;
     }
 }

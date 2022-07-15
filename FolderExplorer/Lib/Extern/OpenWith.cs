@@ -70,7 +70,12 @@ namespace FolderExplorer
                     
                     
                     Console.WriteLine(xretour);
-                    xretour = conversion.Property(xretour).Value.ToString();
+                    //xretour = conversion.Property(xretour).Value.ToString();
+                    JProperty prop = conversion.Property(xretour);
+                    if (prop != null)
+                    {
+                        xretour = prop.Value.ToString();
+                    }
                 }
             }
             else

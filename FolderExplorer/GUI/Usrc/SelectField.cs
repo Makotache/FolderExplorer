@@ -28,9 +28,9 @@ namespace FolderExplorer.GUI.Usrc
             Console.WriteLine(borderColor);
             Pen pen = new Pen(borderColor, 5);
             e.Graphics.DrawRectangle(pen, border);
-            /*Bitmap bitmap = new Bitmap(Properties.Resources.WhiteSprite);
+            Bitmap bitmap = new Bitmap(Properties.Resources.WhiteSprite);
             bitmap.MakeTransparent(fieldColor);
-            this.BackgroundImage = bitmap;*/
+            this.BackgroundImage = bitmap;
         }
 
         private void SelectField_Resize(object sender, EventArgs e)
