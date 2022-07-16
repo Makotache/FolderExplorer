@@ -33,7 +33,7 @@ namespace FolderExplorer
             btn_appliquer.Enabled = false;
             //infos in element region proprietes normal
             //name
-            Tb_name.Text = element.name;
+            Tb_name.Text = element.fullName;
             //type
             itemType_label.Text = element.itemType + " (" + element.extension + ")";
             openWith_label.Text = element.openWith;
