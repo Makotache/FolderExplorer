@@ -36,9 +36,9 @@ namespace FolderExplorer
             //element.GetValue(MetaDataElement.name)
             path_label.Text = element.path.Replace("/","\\");
             //size
-            size_label.Text = Size_Manager.convertsize(element.size, SizeType.o) + " (" + element.size.ToString() + " octets)";
+            size_label.Text = Size_Manager.convertsize(element.size, SizeType.o) + " (" + element.size.ToString("### ### ### ### ###") + " octets)";
             //size on disk
-            sizeOnDisk_label.Text = Size_Manager.convertsize(element.sizeOnDisk, SizeType.o) + " (" + element.sizeOnDisk.ToString() + " octets)";
+            sizeOnDisk_label.Text = Size_Manager.convertsize(element.sizeOnDisk, SizeType.o) + " (" + element.sizeOnDisk.ToString("### ### ### ### ###") + " octets)";
             //creation date
             creationTime_label.Text = Maj_Min.PremiereLettreMaj(element.creationTime.ToString("F", CultureInfo.GetCultureInfo("fr-FR")));
             //last write time
@@ -60,6 +60,8 @@ namespace FolderExplorer
             {
                 cb_cache.Checked = true;
             }
+            //test icone
+            test.ImageLocation = "@{Microsoft.WindowsNotepad_11.2205.11.0_x64__8wekyb3d8bbwe?ms-resource://Microsoft.WindowsNotepad/Files/Assets/NotepadAppList.png}";
         }
 
         private void btn_annuler_Click(object sender, EventArgs e)
