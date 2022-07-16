@@ -44,11 +44,14 @@
             // 
             // containerRow_panel
             // 
+            this.containerRow_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.containerRow_panel.AutoScroll = true;
             this.containerRow_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.containerRow_panel.Location = new System.Drawing.Point(8, 30);
+            this.containerRow_panel.Location = new System.Drawing.Point(0, 30);
             this.containerRow_panel.Name = "containerRow_panel";
-            this.containerRow_panel.Size = new System.Drawing.Size(961, 421);
+            this.containerRow_panel.Size = new System.Drawing.Size(1237, 500);
             this.containerRow_panel.TabIndex = 4;
             this.containerRow_panel.Click += new System.EventHandler(this.Evr_Click);
             // 
@@ -111,7 +114,7 @@
             this.Controls.Add(this.lastWriteTime_evh_usrc);
             this.Controls.Add(this.name_evh_usrc);
             this.Name = "ElementViewer";
-            this.Size = new System.Drawing.Size(1026, 530);
+            this.Size = new System.Drawing.Size(1237, 530);
             this.ResumeLayout(false);
 
         }

@@ -55,12 +55,24 @@ namespace FolderExplorer
         }
 
         //2
+        private string _itemType;
         /// <summary>
         /// Type de l'élément
         /// </summary>
-        public string itemType 
+        public string itemType
         {
-            get => OpenWith.DocNameToFriendly(extension);
+            get
+            {
+                if(isFile)
+                {
+                    string result = OpenWith.DocNameToFriendly(extension);
+                    return result == "ᜈ䟊翻" ? _itemType : result;
+                }
+                else
+                {
+                    return _itemType;
+                }
+            }
         }
 
         //3
@@ -299,12 +311,21 @@ namespace FolderExplorer
         public bool isFile { get; private set; }
 
         /// <summary>
-        /// Icon de l'élément
+        /// Image de l'élément
         /// </summary>
-        public Image icon 
+        public Image image
+        {
+            get => OpenWith.ElementToImage(extension);
+        }
+
+        /// <summary>
+        /// icon de l'élément
+        /// </summary>
+        public Icon icon
         {
             get => OpenWith.ElementToIco(extension);
         }
+
 
         #endregion
 
@@ -354,6 +375,9 @@ namespace FolderExplorer
 
             //récupéartion des données lié aux en-têtes
             int val_int;
+
+            //2
+            _itemType = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.ItemType);
 
             //7
             offlineStatus = Enums.ToBoolTripleValue(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.OfflineStatus));

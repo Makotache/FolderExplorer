@@ -345,7 +345,7 @@ namespace FolderExplorer
                         selectField.Location = mouse_pos;
                         containerRow_panel.Controls.Add(selectField);
                     }
-                    selectField.Size = new Size(mouse_pos.X - selectField.Location.X, mouse_pos.Y - selectField.Location.Y);
+                    selectField.ResizeField(mouse_pos);
                 }
                 else if(selectMode)
                 {

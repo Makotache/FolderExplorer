@@ -18,6 +18,8 @@ namespace FolderExplorer
 
         private Rectangle border = new Rectangle(0, 0, 1, 1);
 
+        //public Point 
+
         public SelectField()
         {
             InitializeComponent();
@@ -25,7 +27,6 @@ namespace FolderExplorer
 
         private void SelectField_Paint(object sender, PaintEventArgs e)
         {
-            Console.WriteLine(borderColor);
             Pen pen = new Pen(borderColor, 5);
             e.Graphics.DrawRectangle(pen, border);
 
@@ -38,6 +39,40 @@ namespace FolderExplorer
         private void SelectField_Resize(object sender, EventArgs e)
         {
             border = new Rectangle(0, 0, this.Size.Width, this.Size.Height);
+        }
+
+        public void ResizeField(Point endCoord)
+        {
+            int x_size;
+            int y_size;
+
+            int x_location;
+            int y_location;
+
+            if (endCoord.X > this.Location.X)
+            {
+                x_size = endCoord.X - this.Location.X;
+                x_location = this.Location.X;
+            }
+            else
+            {
+                x_size = this.Location.X - endCoord.X;
+                x_location = endCoord.X;
+            }
+
+            if (endCoord.Y > this.Location.Y)
+            {
+                y_size = endCoord.Y - this.Location.Y;
+                y_location = this.Location.Y;
+            }
+            else
+            {
+                y_size = this.Location.Y - endCoord.Y;
+                y_location = endCoord.Y;
+            }
+
+            this.Size = new Size(x_size, y_size);
+            this.Location = new Point(x_location, y_location);
         }
 
         protected override CreateParams CreateParams
