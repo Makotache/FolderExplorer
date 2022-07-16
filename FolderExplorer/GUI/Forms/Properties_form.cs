@@ -32,13 +32,13 @@ namespace FolderExplorer
             Tb_name.Text = element.name;
             //type
             itemType_label.Text = element.itemType + " (" + Path.GetExtension(element.fullPath) + ")";
-            openWith_label.Text = OpenWith.ExtensionToPrg(Path.GetExtension(element.fullPath));
+            //openWith_label.Text = OpenWith.ExtensionToPrg(Path.GetExtension(element.fullPath));
             //element.GetValue(MetaDataElement.name)
             path_label.Text = element.path.Replace("/","\\");
             //size
             size_label.Text = Size_Manager.convertsize(element.size, SizeType.o) + " (" + element.size.ToString() + " octets)";
             //size on disk
-            //sizeOnDisk_label.Text = element.
+            sizeOnDisk_label.Text = Size_Manager.convertsize(element.sizeOnDisk, SizeType.o) + " (" + element.sizeOnDisk.ToString() + " octets)";
             //creation date
             creationTime_label.Text = Maj_Min.PremiereLettreMaj(element.creationTime.ToString("F", CultureInfo.GetCultureInfo("fr-FR")));
             //last write time

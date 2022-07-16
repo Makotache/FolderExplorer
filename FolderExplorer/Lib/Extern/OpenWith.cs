@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//AppX4ztfk9wxr86nxmzzq47px0nh0e58b8fw
 
 namespace FolderExplorer
 {
@@ -23,23 +22,30 @@ namespace FolderExplorer
             RegistryKey CurrentUser = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + extension + "\\UserChoice", false);
             JObject conversion = JObject.Parse(File.ReadAllText(FolderExplorer_form.ProgId));
             if (CurrentUser != null)
+            //cas avec user choice
             {
-                //cas avec user choice
-                if (!CurrentUser.ToString().Contains("Applications"))
+                try
                 {
-                    //Applications Windows Store
-                    try
+                    progid = CurrentUser.GetValue("ProgId", false).ToString();
+                }
+                catch
+                {
+                    progid = "";
+                }
+                CurrentUser.Close();
+                if (progid != "")
+                //cas avec progid
+                {
+                    //plusieurs possibilites pour progid
+                    //1 - un code commence par AppX
+                    //2 - Applications\nomdu logiciel : Ex Applications\WDMap.exe
+                    //3 - le nom du logiciel directement avec Extension : Ex ChromeHTML
+                    //3 - Nom du logiciel directement : Ex WinRAR
+                    //3 - Nom du logiciel.extension : Ex VLC.mp3
+                    switch(progid.Substring(0,4))
                     {
-                        progid = CurrentUser.GetValue("ProgId", false).ToString();
-                    }
-                    catch
-                    {
-                        progid = "";
-                    }
-                    if (progid != "")
-                    {
-                        if (!progid.Contains("."))
-                        {
+                        case "AppX":
+                            //1
                             CurrentUser = Registry.ClassesRoot.OpenSubKey(progid + "\\Application");
                             try
                             {
@@ -47,51 +53,50 @@ namespace FolderExplorer
                             }
                             catch
                             {
-                                xretour = progid;
+                                xretour = "";
                             }
-
                             CurrentUser.Close();
-                            indexdebut = xretour.IndexOf("Microsoft");
-                            indexfin = xretour.IndexOf("_");
-                            if (indexdebut != -1)
+                            if (xretour != "")
                             {
-                                if (indexfin != -1)
+                                //plusieurs possibilites
+                                //ms-ressource://Windows.nomlogiciel/ressources
+                                //ms-ressource://Microsoft.Windows.nomlogiciel/ressources
+                                //nom directement
+                                //ms-ressource://Microsoft.Windowsnomlogiciel/ressources
+                                //ms-ressource://Microsoft.nomlogiciel/ressources
+                                //ms-ressource://MicrosoftWindows.nomlogiciel/ressources
+                                indexdebut = xretour.IndexOf("://");
+                                indexfin = xretour.IndexOf("/Res");
+                                if (indexdebut !=-1)
                                 {
                                     xretour = xretour.Substring(indexdebut, indexfin - indexdebut);
-                                }
-                                else
-                                {
-                                    xretour = xretour.Substring(indexdebut);
+                                    xretour = xretour.Substring(3, xretour.Length - 3); //on enleve les :// devant
+                                    //xretour = xretour.Remove(xretour.Length - 1, 1); //on enleve le / de fin
                                 }
                             }
-                        }
-                        else
-                        //cas pas application microsoft
-
-                        {
-                            xretour = progid.Substring(progid.IndexOf("\\") + 1);
-                        }
-
-
-                        Console.WriteLine(xretour);
-                        //xretour = conversion.Property(xretour).Value.ToString();
-                        JProperty prop = conversion.Property(xretour);
-                        if (prop != null)
-                        {
-                            xretour = prop.Value.ToString();
-                        }
+                            break;
+                        case "Appl":
+                            //2
+                            xretour = progid.Substring(12, progid.Length - 11);
+                            break;
+                        default:
+                            //3
+                            xretour = progid;
+                            break;
                     }
                 }
                 else
+                //cas sans progid
                 {
-                    xretour = CurrentUser.ToString().Substring(13, CurrentUser.ToString().Length - 13);
+                    //normalement pas possible mais on laisse au cas ou
+                    xretour = "";
                 }
-
             }
             else
+            //cas sans user choice
             {
-                //cas sans user choice
                 CurrentUser = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + extension + "\\OpenWithList", false);
+                //en general dans a on a le logiciel directement
                 try
                 {
                     xretour = CurrentUser.GetValue("a", false).ToString();
@@ -101,13 +106,19 @@ namespace FolderExplorer
                     xretour = "";
                 }
                 CurrentUser.Close();
-                //xretour = conversion.Property(xretour).Value.ToString();
-                JProperty prop = conversion.Property(xretour);
-                if (prop != null)
-                {
-                    xretour = prop.Value.ToString();
-                }
             }
+            //a decommenter une fois progid.json rempli
+            //xretour = conversion.Property(xretour).Value.ToString();
+            //JProperty prop = conversion.Property(xretour);
+            //if (prop != null)
+            //{
+            //    xretour = prop.Value.ToString();
+            //}
+            //fin truc a decommenter
+
+
+
+           
             Console.WriteLine(xretour);
             return xretour;
         }

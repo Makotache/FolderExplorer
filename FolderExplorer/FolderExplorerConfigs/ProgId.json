@@ -1,11 +1,14 @@
 {
-  "Microsoft.WindowsNotepad": "Bloc Notes",
-  "Microsoft.Windows.Photos": "Photos",
-  "Microsoft.ZuneVideo": "Films et TV",
-  "Microsoft.ZuneMusic": "Lecteur multimédia",
-  "Microsoft Edge": "Microsoft Edge",
-  "devenv.exe": "Microsoft Visual Studio 2022",
-  "Google Chrome": "Google Chrome",
-  "sublime_text.exe": "Sublime Text",
-  "notepad++.exe": "Notepad++"
+  "Microsoft.WindowsNotepad" : "Bloc Notes",
+  "Microsoft.Windows.Photos" : "Photos",
+  "Microsoft.ZuneVideo" : "Films et TV",
+  "Microsoft.ZuneMusic" : "Lecteur multimédia",
+  "Microsoft Edge" : "Microsoft Edge",
+  "devenv.exe" : "Microsoft Visual Studio 2022",
+  "Google Chrome" : "Google Chrome",
+  "sublime_text.exe" : "Sublime Text",
+  "notepad++.exe" : "Notepad++",
+  "WinRar.exe": "WinRAR archiver",
+  "swriter.exe": "LibreOffice Writer",
+  "vlc.exe": "VLC media player"
 }
