@@ -32,7 +32,7 @@ namespace FolderExplorer
             Tb_name.Text = element.name;
             //type
             itemType_label.Text = element.itemType + " (" + Path.GetExtension(element.fullPath) + ")";
-            //openWith_label.Text = OpenWith.ExtensionToPrg(Path.GetExtension(element.fullPath));
+            openWith_label.Text = OpenWith.ExtensionToPrg(Path.GetExtension(element.fullPath));
             //element.GetValue(MetaDataElement.name)
             path_label.Text = element.path.Replace("/","\\");
             //size

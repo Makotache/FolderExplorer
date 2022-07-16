@@ -66,7 +66,7 @@ namespace FolderExplorer
                                 //ms-ressource://Microsoft.nomlogiciel/ressources
                                 //ms-ressource://MicrosoftWindows.nomlogiciel/ressources
                                 indexdebut = xretour.IndexOf("://");
-                                indexfin = xretour.IndexOf("/Res");
+                                indexfin = xretour.IndexOf("/res",StringComparison.OrdinalIgnoreCase);
                                 if (indexdebut !=-1)
                                 {
                                     xretour = xretour.Substring(indexdebut, indexfin - indexdebut);
