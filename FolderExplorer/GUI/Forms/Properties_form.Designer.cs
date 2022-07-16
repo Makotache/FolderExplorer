@@ -58,10 +58,10 @@
             this.btn_ok = new System.Windows.Forms.Button();
             this.btn_annuler = new System.Windows.Forms.Button();
             this.btn_appliquer = new System.Windows.Forms.Button();
-            this.test = new System.Windows.Forms.PictureBox();
+            this.openwith_Icon = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.general.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.test)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.openwith_Icon)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -78,6 +78,7 @@
             // 
             // general
             // 
+            this.general.Controls.Add(this.openwith_Icon);
             this.general.Controls.Add(this.btn_modifier);
             this.general.Controls.Add(this.btn_avance);
             this.general.Controls.Add(this.cb_cache);
@@ -267,7 +268,7 @@
             // openWith_label
             // 
             this.openWith_label.AutoSize = true;
-            this.openWith_label.Location = new System.Drawing.Point(131, 101);
+            this.openWith_label.Location = new System.Drawing.Point(161, 101);
             this.openWith_label.Name = "openWith_label";
             this.openWith_label.Size = new System.Drawing.Size(13, 13);
             this.openWith_label.TabIndex = 4;
@@ -365,20 +366,20 @@
             this.btn_appliquer.Text = "Appliquer";
             this.btn_appliquer.UseVisualStyleBackColor = true;
             // 
-            // test
+            // openwith_Icon
             // 
-            this.test.Location = new System.Drawing.Point(94, 436);
-            this.test.Name = "test";
-            this.test.Size = new System.Drawing.Size(119, 86);
-            this.test.TabIndex = 4;
-            this.test.TabStop = false;
+            this.openwith_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.openwith_Icon.Location = new System.Drawing.Point(120, 101);
+            this.openwith_Icon.Name = "openwith_Icon";
+            this.openwith_Icon.Size = new System.Drawing.Size(24, 23);
+            this.openwith_Icon.TabIndex = 4;
+            this.openwith_Icon.TabStop = false;
             // 
             // Properties_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 514);
-            this.Controls.Add(this.test);
             this.Controls.Add(this.btn_appliquer);
             this.Controls.Add(this.btn_annuler);
             this.Controls.Add(this.btn_ok);
@@ -389,7 +390,7 @@
             this.tabControl1.ResumeLayout(false);
             this.general.ResumeLayout(false);
             this.general.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.test)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.openwith_Icon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -426,6 +427,6 @@
         private System.Windows.Forms.Button btn_annuler;
         private System.Windows.Forms.Button btn_appliquer;
         private System.Windows.Forms.Button btn_modifier;
-        private System.Windows.Forms.PictureBox test;
+        private System.Windows.Forms.PictureBox openwith_Icon;
     }
 }

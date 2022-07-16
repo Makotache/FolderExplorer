@@ -24,7 +24,7 @@ namespace FolderExplorer
             sr.Close();
 
             InitializeComponent();
-            this.Text = "Propriétés de : " + element.name + Path.GetExtension(element.fullPath);
+            this.Text = "Propriétés de : " + element.fullName;
 
             btn_appliquer.Enabled = false;
             //infos in element region proprietes normal
@@ -33,6 +33,8 @@ namespace FolderExplorer
             //type
             itemType_label.Text = OpenWith.DocNameToFriendly(Path.GetExtension(element.fullPath)) + " (" + Path.GetExtension(element.fullPath) + ")";
             openWith_label.Text = OpenWith.ExtensionToPrg(Path.GetExtension(element.fullPath));
+            //icone
+            openwith_Icon.Image = OpenWith.ElementToIco(Path.GetExtension(element.fullPath));
             //element.GetValue(MetaDataElement.name)
             path_label.Text = element.path.Replace("/","\\");
             //size
@@ -60,8 +62,6 @@ namespace FolderExplorer
             {
                 cb_cache.Checked = true;
             }
-            //test icone
-            test.ImageLocation = "@{Microsoft.WindowsNotepad_11.2205.11.0_x64__8wekyb3d8bbwe?ms-resource://Microsoft.WindowsNotepad/Files/Assets/NotepadAppList.png}";
         }
 
         private void btn_annuler_Click(object sender, EventArgs e)

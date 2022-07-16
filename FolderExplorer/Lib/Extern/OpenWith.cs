@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace FolderExplorer
 {
@@ -20,10 +21,19 @@ namespace FolderExplorer
             return FileExtentionInfo(AssocStr.FriendlyAppName, extension);
         }
 
-        public static string ExtensionToIco(string extension)
+        public static Image ElementToIco(string extension)
         {
-            string xtailleko ="";
-            return xtailleko;
+            string appli_exe = FileExtentionInfo(AssocStr.Executable, extension);
+            if (appli_exe != "ˀ财翹" && appli_exe != "ˀ贡翹" && appli_exe != "ˀ责翹")
+            {
+                return Icon.ExtractAssociatedIcon(appli_exe).ToBitmap();
+            }
+            else
+            {
+                return null;
+            }
+            
+            
         }
 
         public static string DocNameToFriendly(string extension)

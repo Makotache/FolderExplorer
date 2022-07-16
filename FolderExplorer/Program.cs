@@ -27,6 +27,7 @@ namespace FolderExplorer
             {
                 //Application.Run(new Properties_form());
                 Application.Run(new FolderExplorer_form());
+                //Application.Run(new test());
             }
         }
     }
