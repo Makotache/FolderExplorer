@@ -18,7 +18,7 @@ namespace FolderExplorer
 
         private Rectangle border = new Rectangle(0, 0, 1, 1);
 
-        //public Point 
+        public Point startPos { get; set; }
 
         public SelectField()
         {
@@ -49,25 +49,25 @@ namespace FolderExplorer
             int x_location;
             int y_location;
 
-            if (endCoord.X > this.Location.X)
+            if (endCoord.X > startPos.X)
             {
-                x_size = endCoord.X - this.Location.X;
-                x_location = this.Location.X;
+                x_size = endCoord.X - startPos.X;
+                x_location = startPos.X;
             }
             else
             {
-                x_size = this.Location.X - endCoord.X;
+                x_size = startPos.X - endCoord.X;
                 x_location = endCoord.X;
             }
 
-            if (endCoord.Y > this.Location.Y)
+            if (endCoord.Y > startPos.Y)
             {
-                y_size = endCoord.Y - this.Location.Y;
-                y_location = this.Location.Y;
+                y_size = endCoord.Y - startPos.Y;
+                y_location = startPos.Y;
             }
             else
             {
-                y_size = this.Location.Y - endCoord.Y;
+                y_size = startPos.Y - endCoord.Y;
                 y_location = endCoord.Y;
             }
 

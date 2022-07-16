@@ -342,7 +342,7 @@ namespace FolderExplorer
                     if (!selectMode)
                     {
                         selectMode = true;
-                        selectField.Location = mouse_pos;
+                        selectField.startPos = mouse_pos;
                         containerRow_panel.Controls.Add(selectField);
                     }
                     selectField.ResizeField(mouse_pos);

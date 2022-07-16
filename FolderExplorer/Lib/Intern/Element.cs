@@ -66,7 +66,7 @@ namespace FolderExplorer
                 if(isFile)
                 {
                     string result = OpenWith.DocNameToFriendly(extension);
-                    return result == "ᜈ䟊翻" ? _itemType : result;
+                    return CPCS.StringContainLatinLetter(result, " .()[]" ) ? result : _itemType;
                 }
                 else
                 {
@@ -315,7 +315,7 @@ namespace FolderExplorer
         /// </summary>
         public Image image
         {
-            get => OpenWith.ElementToImage(extension);
+            get => OpenWith.ElementToImage(extension != ".exe" ? extension : fullPath);
         }
 
         /// <summary>
