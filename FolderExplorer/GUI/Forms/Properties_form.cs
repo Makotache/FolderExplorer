@@ -20,7 +20,8 @@ namespace FolderExplorer
             Element element = new Element(fullPath);
 
             InitializeComponent();
-            this.Text = "Propriétés de : " + element.fullName;
+            this.Text = "Propriétés de : " + element.fullName; 
+            this.Icon = new Icon(@"c:\Icon\temp.ico");
 
             btn_appliquer.Enabled = false;
             //infos in element region proprietes normal
@@ -30,7 +31,8 @@ namespace FolderExplorer
             itemType_label.Text = element.itemType + " (" + element.extension + ")";
             openWith_label.Text = element.openWith;
             //icone
-            openwith_Icon.Image = element.icon;
+            openwith_Icon.Image = element.image;
+            openwith_Image_Nom.Image = element.image;
             //element.GetValue(MetaDataElement.name)
             path_label.Text = element.path.Replace("/","\\");
             //size

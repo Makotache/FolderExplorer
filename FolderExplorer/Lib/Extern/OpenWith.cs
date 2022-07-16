@@ -21,7 +21,7 @@ namespace FolderExplorer
             return FileExtentionInfo(AssocStr.FriendlyAppName, extension);
         }
 
-        public static Image ElementToIco(string extension)
+        public static Image ElementToImage(string extension)
         {
             string appli_exe = FileExtentionInfo(AssocStr.Executable, extension);
             if (appli_exe != "ˀ财翹" && appli_exe != "ˀ贡翹" && appli_exe != "ˀ责翹")
@@ -31,9 +31,20 @@ namespace FolderExplorer
             else
             {
                 return null;
+            }          
+        }
+
+        public static Icon ElementToIco(string extension)
+        {
+            string appli_exe = FileExtentionInfo(AssocStr.Executable, extension);
+            if (appli_exe != "ˀ财翹" && appli_exe != "ˀ贡翹" && appli_exe != "ˀ责翹")
+            {
+                return Icon.ExtractAssociatedIcon(appli_exe);
             }
-            
-            
+            else
+            {
+                return null;
+            }
         }
 
         public static string DocNameToFriendly(string extension)

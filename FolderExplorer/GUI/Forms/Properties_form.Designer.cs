@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.general = new System.Windows.Forms.TabPage();
+            this.openwith_Icon = new System.Windows.Forms.PictureBox();
             this.btn_modifier = new System.Windows.Forms.Button();
             this.btn_avance = new System.Windows.Forms.Button();
             this.cb_cache = new System.Windows.Forms.CheckBox();
@@ -58,10 +59,11 @@
             this.btn_ok = new System.Windows.Forms.Button();
             this.btn_annuler = new System.Windows.Forms.Button();
             this.btn_appliquer = new System.Windows.Forms.Button();
-            this.openwith_Icon = new System.Windows.Forms.PictureBox();
+            this.openwith_Image_Nom = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.general.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openwith_Icon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.openwith_Image_Nom)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -78,6 +80,7 @@
             // 
             // general
             // 
+            this.general.Controls.Add(this.openwith_Image_Nom);
             this.general.Controls.Add(this.openwith_Icon);
             this.general.Controls.Add(this.btn_modifier);
             this.general.Controls.Add(this.btn_avance);
@@ -108,6 +111,16 @@
             this.general.TabIndex = 0;
             this.general.Text = "Général";
             this.general.UseVisualStyleBackColor = true;
+            // 
+            // openwith_Icon
+            // 
+            this.openwith_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.openwith_Icon.Location = new System.Drawing.Point(120, 101);
+            this.openwith_Icon.Name = "openwith_Icon";
+            this.openwith_Icon.Size = new System.Drawing.Size(24, 23);
+            this.openwith_Icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.openwith_Icon.TabIndex = 4;
+            this.openwith_Icon.TabStop = false;
             // 
             // btn_modifier
             // 
@@ -268,7 +281,7 @@
             // openWith_label
             // 
             this.openWith_label.AutoSize = true;
-            this.openWith_label.Location = new System.Drawing.Point(161, 101);
+            this.openWith_label.Location = new System.Drawing.Point(161, 106);
             this.openWith_label.Name = "openWith_label";
             this.openWith_label.Size = new System.Drawing.Size(13, 13);
             this.openWith_label.TabIndex = 4;
@@ -366,14 +379,14 @@
             this.btn_appliquer.Text = "Appliquer";
             this.btn_appliquer.UseVisualStyleBackColor = true;
             // 
-            // openwith_Icon
+            // openwith_Image_Nom
             // 
-            this.openwith_Icon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.openwith_Icon.Location = new System.Drawing.Point(120, 101);
-            this.openwith_Icon.Name = "openwith_Icon";
-            this.openwith_Icon.Size = new System.Drawing.Size(24, 23);
-            this.openwith_Icon.TabIndex = 4;
-            this.openwith_Icon.TabStop = false;
+            this.openwith_Image_Nom.Location = new System.Drawing.Point(9, 6);
+            this.openwith_Image_Nom.Name = "openwith_Image_Nom";
+            this.openwith_Image_Nom.Size = new System.Drawing.Size(71, 43);
+            this.openwith_Image_Nom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.openwith_Image_Nom.TabIndex = 22;
+            this.openwith_Image_Nom.TabStop = false;
             // 
             // Properties_form
             // 
@@ -384,13 +397,16 @@
             this.Controls.Add(this.btn_annuler);
             this.Controls.Add(this.btn_ok);
             this.Controls.Add(this.tabControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Properties_form";
             this.Text = "Properties";
             this.tabControl1.ResumeLayout(false);
             this.general.ResumeLayout(false);
             this.general.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openwith_Icon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.openwith_Image_Nom)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -428,5 +444,6 @@
         private System.Windows.Forms.Button btn_appliquer;
         private System.Windows.Forms.Button btn_modifier;
         private System.Windows.Forms.PictureBox openwith_Icon;
+        private System.Windows.Forms.PictureBox openwith_Image_Nom;
     }
 }
