@@ -28,14 +28,28 @@ namespace FolderExplorer.GUI.Usrc
             Console.WriteLine(borderColor);
             Pen pen = new Pen(borderColor, 5);
             e.Graphics.DrawRectangle(pen, border);
-            Bitmap bitmap = new Bitmap(Properties.Resources.WhiteSprite);
-            bitmap.MakeTransparent(fieldColor);
-            this.BackgroundImage = bitmap;
+
+            //Bitmap bitmap = new Bitmap(this.BackgroundImage);
+            //bitmap.MakeTransparent(fieldColor);
         }
 
         private void SelectField_Resize(object sender, EventArgs e)
         {
             border = new Rectangle(0, 0, this.Size.Width, this.Size.Height);
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x00000020; // WS_EX_TRANSPARENT
+                return cp;
+            }
+        }
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            //base.OnPaintBackground(e);
         }
     }
 }

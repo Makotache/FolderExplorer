@@ -180,12 +180,31 @@ namespace FolderExplorer
         //34
         public string fileDescription { get; private set; }
 
+        public string diskLocation { get; private set; }
+
         #endregion
 
 
         #region mes propriétés
 
-        public int sizeOnDisk { get; private set; }
+        private long _sizeOnDisk;
+        public long sizeOnDisk
+        {
+            get
+            {
+                if (isFile)
+                { return _sizeOnDisk; }
+                else
+                {
+                    //utiliser un thread pour la taille du dossier
+                    return -1;
+                }
+            }
+            private set
+            {
+                _sizeOnDisk = value;
+            }
+        }
 
         public string path { get; private set; }
 
@@ -232,6 +251,7 @@ namespace FolderExplorer
             this.fullPath = fullPath.Replace("\\", "/");
             isFile = File.Exists(this.fullPath);
 
+            //dossier ou fichier
             if (isFile)
             {
                 _elementInfo = new FileInfo(this.fullPath);
@@ -239,6 +259,17 @@ namespace FolderExplorer
             }
             else
             { _elementInfo = new DirectoryInfo(this.fullPath); }
+
+
+
+            diskLocation = this.fullPath.Substring(0, 3);
+            DriveInfo[] allDisks = DriveInfo.GetDrives();
+            DriveInfo disk = allDisks.Where(d => d.Name.Replace("\\", "/") == diskLocation).First();
+            string format = disk.DriveFormat;
+            long fullSize = disk.TotalSize;
+
+            sizeOnDisk = CalcSizeOnDisk(size, fullSize, format);
+
 
             //récupération des en-têtes des données
             List<string> arrHeaders = new List<string>();
@@ -562,6 +593,154 @@ namespace FolderExplorer
             }
         }
 
+        private static long CalcSizeOnDisk(long size, long volumeSize, string format)
+        {
+            double mo = Size_Manager.otomo_double(volumeSize);
+            double go = Size_Manager.otogo_double(volumeSize);
+            double to = Size_Manager.ototo_double(volumeSize);
+
+            if (size > 1 && size < 1024)
+            {
+                return 4096;
+            }
+
+
+            float cluster_size_ko = 0;
+
+            //reference
+            //https://support.microsoft.com/en-us/topic/default-cluster-size-for-ntfs-fat-and-exfat-9772e6f1-e31a-00d7-e18f-73169155af95
+            if (format.ToLower() == "ntfs")
+            {
+                if (7 <= mo && to < 16)
+                {
+                    cluster_size_ko = 4;
+                }
+                else if (16 <= to && to < 32)
+                {
+                    cluster_size_ko = 8;
+                }
+                else if (32 <= to && to < 64)
+                {
+                    cluster_size_ko = 16;
+                }
+                else if (64 <= to && to < 128)
+                {
+                    cluster_size_ko = 32;
+                }
+                else if (128 <= to && to < 256)
+                {
+                    cluster_size_ko = 64;
+                }
+                else// > 256 TO
+                {
+                    cluster_size_ko = -1;
+                }
+
+            }
+            else if (format.ToLower() == "fat16")
+            {
+                if (8 <= mo && mo < 32)
+                {
+                    cluster_size_ko = 0.5f;
+                }
+                else if (32 <= mo && mo < 64)
+                {
+                    cluster_size_ko = 1;
+                }
+                else if (64 <= mo && mo < 128)
+                {
+                    cluster_size_ko = 2;
+                }
+                else if (128 <= mo && mo < 256)
+                {
+                    cluster_size_ko = 4;
+                }
+                else if (256 <= mo && mo < 512)
+                {
+                    cluster_size_ko = 8;
+                }
+                else if (512 <= mo && go < 1)
+                {
+                    cluster_size_ko = 16;
+                }
+                else if (1 <= go && go < 2)
+                {
+                    cluster_size_ko = 32;
+                }
+                else if (2 <= go && go < 4)
+                {
+                    cluster_size_ko = 64;
+                }
+                else// > 4 GO
+                {
+                    cluster_size_ko = -1;
+                }
+            }
+            else if (format.ToLower() == "fat32")
+            {
+                if (32 <= mo && mo < 64)
+                {
+                    cluster_size_ko = 0.5f;
+                }
+                else if (64 <= mo && mo < 128)
+                {
+                    cluster_size_ko = 1;
+                }
+                else if (128 <= mo && mo < 256)
+                {
+                    cluster_size_ko = 2;
+                }
+                else if (256 <= mo && go < 8)
+                {
+                    cluster_size_ko = 4;
+                }
+                else if (8 <= go && go < 16)
+                {
+                    cluster_size_ko = 8;
+                }
+                else if (16 <= go && go < 32)
+                {
+                    cluster_size_ko = 16;
+                }
+                else// > 32 GO
+                {
+                    cluster_size_ko = -1;
+                }
+            }
+            else if (format.ToLower() == "exfat")
+            {
+                if (7 <= mo && mo < 256)
+                {
+                    cluster_size_ko = 4;
+                }
+                else if (256 <= mo && go < 32)
+                {
+                    cluster_size_ko = 32;
+                }
+                else if (32 <= go && to < 256)
+                {
+                    cluster_size_ko = 128;
+                }
+                else// > 256 TO
+                {
+                    cluster_size_ko = -1;
+                }
+            }
+            else
+            {
+                cluster_size_ko = -1;
+            }
+
+            if(cluster_size_ko == -1)
+            { return -1; }
+
+            double size_ko = Math.Floor(Size_Manager.otoko_double(size));
+            double d2 = size_ko / cluster_size_ko;
+            long d3 = (long)((Math.Floor(d2) + 1) * cluster_size_ko);
+
+            return d3 * 1024;
+        }
+
 
         #region static
 
@@ -611,43 +790,3 @@ namespace FolderExplorer
         #endregion 
     }
 }
-
-/*
-        0	Nom: fichier.txt
-       1	Taille: 0 octet(s)
-       2	Type d’élément: Fichier TXT
-       3	Modifié le: 02/07/2022 18:13
-       4	Date de création: 02/07/2022 18:13
-       5	Date d’accès: 02/07/2022 18:13
-       6	Attributs: A
-       7	État hors connexion: 
-       8	Disponibilité: 
-       9	Type identifié: Texte
-       10	Propriétaire: DEKSTOP-8NQ309K\victo
-       11	Sorte: Document
-       12	Prise de vue: 
-       13	Interprètes ayant participé: 
-       14	Album: 
-       15	Année: 
-       16	Genre: 
-       17	Chefs d’orchestre: 
-       18	Mots clés: 
-       19	Notation: Non classé
-       20	Auteurs: 
-       21	Titre: 
-       22	Objet: 
-       23	Catégories: 
-       24	Commentaires: 
-       25	Copyright: 
-       26	N°: 
-       27	Durée: 
-       28	Débit binaire: 
-       29	Protégé: 
-       30	Modèle d'appareil photo: 
-       31	Dimensions: 
-       32	Marque appareil photo: 
-       33	Entreprise: 
-       34	Description du fichier: 
-       35	Mots-clés des formes de base: 
-       36	Mots-clés des formes de base: 
-        */
