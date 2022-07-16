@@ -8,13 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FolderExplorer.GUI.Usrc
+namespace FolderExplorer
 {
     public partial class SelectField : UserControl
     {
         public Color borderColor { get; set; } = Color.FromArgb(0, 120, 215);
 
-        public Color fieldColor { get; set; } = Color.FromArgb(255, 0, 120, 215);
+        public Color fieldColor { get; set; } = Color.FromArgb(0, 255, 255);
 
         private Rectangle border = new Rectangle(0, 0, 1, 1);
 
@@ -29,8 +29,10 @@ namespace FolderExplorer.GUI.Usrc
             Pen pen = new Pen(borderColor, 5);
             e.Graphics.DrawRectangle(pen, border);
 
-            //Bitmap bitmap = new Bitmap(this.BackgroundImage);
-            //bitmap.MakeTransparent(fieldColor);
+            using (var brush = new SolidBrush(Color.FromArgb(50, fieldColor)))
+            {
+                e.Graphics.FillRectangle(brush, this.ClientRectangle);
+            }
         }
 
         private void SelectField_Resize(object sender, EventArgs e)

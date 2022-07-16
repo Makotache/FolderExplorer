@@ -1,4 +1,4 @@
-﻿namespace FolderExplorer.GUI.Usrc
+﻿namespace FolderExplorer
 {
     partial class SelectField
     {
@@ -34,7 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Name = "SelectField";
             this.Size = new System.Drawing.Size(235, 203);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.SelectField_Paint);

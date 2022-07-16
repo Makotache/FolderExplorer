@@ -41,6 +41,10 @@ namespace FolderExplorer
         public readonly List<ElementViewerRow> selectedRows_lst = new List<ElementViewerRow>();
         private ElementViewerRow lastSelectedRow;
 
+        //select field
+        private SelectField selectField = new SelectField();
+        private bool selectMode = false;
+
 
         //event
         //public event RowEventHandler rowAdded;
@@ -108,20 +112,16 @@ namespace FolderExplorer
             evr.Location = new Point(0, y);
             evr.Click += Evr_Click;
 
-            if (intersectionEvh_lst.Count > 0)
-            {
-                evr.Size = new Size(intersectionEvh_lst[intersectionEvh_lst.Count - 1].X, ElementViewerRow.heightRow);
-            }
-
+            //evr.Size = new Size(intersectionEvh_lst[intersectionEvh_lst.Count - 1].X, ElementViewerRow.heightRow);
 
             elementViewerHeader_lst.ForEach(h => evr.AddColumn(h));
-
             elementViewerRow_lst.Add(evr);
             containerRow_panel.Controls.Add(evr);
         }
 
         private void RemoveRow(ElementViewerRow evr)
         {
+            //repositionner les autres éléments en fonction de la suppression de celui-ci
             elementViewerRow_lst.Remove(evr);
             containerRow_panel.Controls.Remove(evr);
         }
@@ -129,7 +129,20 @@ namespace FolderExplorer
         private void Evr_Click(object sender, EventArgs e)
         {
             MouseEventArgs mouseEvent = (MouseEventArgs)e;
-            if(sender is ElementViewerRow evr && mouseEvent.Button == MouseButtons.Left)
+            /*if(sender == containerRow_panel && mouseEvent.Button == MouseButtons.Left)
+            {
+
+                mouseEvent.Location()
+
+                /*if (Control.ModifierKeys != Keys.Control)
+                {
+                    selectedRows_lst.ForEach(r => r.isSelected = false);
+                    selectedRows_lst.Clear();
+
+                    //il faut relacher pour ca
+                }
+            }
+            else */if(sender is ElementViewerRow evr && mouseEvent.Button == MouseButtons.Left)
             {
                 void Shift()
                 {
@@ -320,6 +333,24 @@ namespace FolderExplorer
                         leavedFolder_lst.Remove(path);
                         LoadPath(path, backButton: true);
                     }
+                }
+
+                //selection avec un "drag" de la souris
+                else if (Control.MouseButtons == MouseButtons.Left && (selectMode || this.GetChildAtPoint(this.PointToClient(Cursor.Position)) == containerRow_panel))
+                {
+                    Point mouse_pos = containerRow_panel.PointToClient(Cursor.Position);
+                    if (!selectMode)
+                    {
+                        selectMode = true;
+                        selectField.Location = mouse_pos;
+                        containerRow_panel.Controls.Add(selectField);
+                    }
+                    selectField.Size = new Size(mouse_pos.X - selectField.Location.X, mouse_pos.Y - selectField.Location.Y);
+                }
+                else if(selectMode)
+                {
+                    selectMode = false;
+                    containerRow_panel.Controls.Remove(selectField);
                 }
             }
         }
