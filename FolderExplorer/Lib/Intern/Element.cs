@@ -12,11 +12,17 @@ using System.Diagnostics;
 
 namespace FolderExplorer
 {
+    /// <summary>
+    /// Un élément peut être un fichier ou un dossier
+    /// </summary>
     public class Element
     {
         #region propriété normal
 
         //0
+        /// <summary>
+        /// Nom de l'élément
+        /// </summary>
         public string name
         {
             get
@@ -27,10 +33,13 @@ namespace FolderExplorer
                 return _elementInfo.Name;
             }
 
-            set => fullName = value + "." + extension;
+            set => fullName = value + extension;
         }
 
         //1
+        /// <summary>
+        /// Taille de l'élément
+        /// </summary>
         public long size
         {
             get
@@ -46,9 +55,18 @@ namespace FolderExplorer
         }
 
         //2
-        public string itemType { get; private set; }
+        /// <summary>
+        /// Type de l'élément
+        /// </summary>
+        public string itemType 
+        {
+            get => OpenWith.DocNameToFriendly(extension);
+        }
 
         //3
+        /// <summary>
+        /// Date et heure de l'écriture la plus récente de l'élément
+        /// </summary>
         public DateTime lastWriteTime
         {
             get => _elementInfo.LastWriteTime;
@@ -57,6 +75,9 @@ namespace FolderExplorer
         }
 
         //4
+        /// <summary>
+        /// Date et heure de la création de l'élément
+        /// </summary>
         public DateTime creationTime
         {
             get => _elementInfo.CreationTime;
@@ -65,6 +86,9 @@ namespace FolderExplorer
         }
 
         //5
+        /// <summary>
+        /// Date et heure du dernier accès a l'élément
+        /// </summary>
         public DateTime lastAccessTime
         {
             get => _elementInfo.LastAccessTime; 
@@ -73,6 +97,9 @@ namespace FolderExplorer
         }
 
         //6
+        /// <summary>
+        /// Attribut de l'élément
+        /// </summary>
         public FileAttributes attribute
         {
             get => _elementInfo.Attributes;
@@ -85,7 +112,6 @@ namespace FolderExplorer
 
         //8
         public BoolTripleValue availability { get; private set; }
-
 
         //9
         public string identifiedType { get; private set; }
@@ -178,16 +204,25 @@ namespace FolderExplorer
         public string company { get; private set; }
 
         //34
+        /// <summary>
+        /// Description de l'élément
+        /// </summary>
         public string fileDescription { get; private set; }
-
-        public string diskLocation { get; private set; }
 
         #endregion
 
 
         #region mes propriétés
 
+        /// <summary>
+        /// Racine du disque contenant l'élément
+        /// </summary>
+        public string diskLocation { get; private set; }
+
         private long _sizeOnDisk;
+        /// <summary>
+        /// Taille sur le disque
+        /// </summary>
         public long sizeOnDisk
         {
             get
@@ -206,10 +241,19 @@ namespace FolderExplorer
             }
         }
 
+        /// <summary>
+        /// Chemin d'accès de l'élement
+        /// </summary>
         public string path { get; private set; }
 
+        /// <summary>
+        /// Chemin d'accès de l'élement avec son nom
+        /// </summary>
         public string fullPath { get; private set; }
 
+        /// <summary>
+        /// Nom du fichier avec son extension
+        /// </summary>
         public string fullName
         {
             get => _elementInfo.Name; 
@@ -223,29 +267,51 @@ namespace FolderExplorer
             }
         }
 
+        /// <summary>
+        /// Extension du fichier
+        /// </summary>
         public string extension
         {
-            get => isFile ? _elementInfo.Extension.Replace(".", "") : "";
+            get => isFile ? _elementInfo.Extension : "";
 
             set
             {
                 if (isFile)
-                { File.Move(_elementInfo.Name, _elementInfo.Name.Replace(extension, value)); }
+                { File.Move(_elementInfo.Name, name + value); }
             }
         }
 
+        /// <summary>
+        /// Retourne le nom du programme avec lequel le fichier s'ouvre
+        /// </summary>
+        public string openWith
+        {
+            get => OpenWith.ExtensionToPrg(extension);
+        }
+        
         public TypeElement typeElement { get; private set; }
 
         private readonly FileSystemInfo _elementInfo;
 
+        /// <summary>
+        /// Permet de savoir si l'élément est un fichier ou un dossier
+        /// </summary>
         public bool isFile { get; private set; }
 
-        public Bitmap icon { get; private set; }
-
+        /// <summary>
+        /// Icon de l'élément
+        /// </summary>
+        public Image icon 
+        {
+            get => OpenWith.ElementToIco(extension);
+        }
 
         #endregion
 
-
+        /// <summary>
+        /// Génere un objet de type élément
+        /// </summary>
+        /// <param name="fullPath">Chemin d'accès au fichier</param>
         public Element(string fullPath)
         {
             this.fullPath = fullPath.Replace("\\", "/");
@@ -255,7 +321,7 @@ namespace FolderExplorer
             if (isFile)
             {
                 _elementInfo = new FileInfo(this.fullPath);
-                typeElement = GetType();
+                typeElement = GetTypeElement();
             }
             else
             { _elementInfo = new DirectoryInfo(this.fullPath); }
@@ -288,9 +354,6 @@ namespace FolderExplorer
 
             //récupéartion des données lié aux en-têtes
             int val_int;
-
-            //2
-            itemType = objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.ItemType);
 
             //7
             offlineStatus = Enums.ToBoolTripleValue(objFolder.GetDetailsOf(folderItem, (int)MetaDataElement.OfflineStatus));
@@ -540,19 +603,7 @@ namespace FolderExplorer
             return $"Path = '{path}', Name = '{name}', Extension '{extension}', IsFile = '{isFile}'";
         }
 
-        public bool IsImage()
-        { return GetType() == TypeElement.Image; }
-
-
-        public bool IsMusic()
-        { return GetType() == TypeElement.Music; }
-
-
-        public bool IsVideo()
-        { return GetType() == TypeElement.Video; }
-
-
-        public new TypeElement GetType()
+        private TypeElement GetTypeElement()
         {
             if(!isFile)
             { return TypeElement.Folder; }
@@ -580,10 +631,19 @@ namespace FolderExplorer
             return TypeElement.OtherFile;
         }
 
-        public void Open(ElementViewer ev)
+        /// <summary>
+        /// Si c'est un fichier alors on l'éxécute sinon on ouvre le dossier
+        /// </summary>
+        /// <param name="ev"></param>
+        /// <returns>True si l'opération c'est faite sinon false</returns>
+        public bool Open(ElementViewer ev)
         {
             if(!isFile)
             {
+                if(ev == null)
+                {
+                    return false;
+                }
                 ev.LoadPath(fullPath);
             }
             else
@@ -591,6 +651,7 @@ namespace FolderExplorer
                 //exectuer fichier avec le programme associé
                 Process.Start(fullPath);
             }
+            return true;
         }
 
         private static long CalcSizeOnDisk(long size, long volumeSize, string format)
@@ -605,7 +666,7 @@ namespace FolderExplorer
             }
 
 
-            float cluster_size_ko = 0;
+            float cluster_size_ko;
 
             //reference
             //https://support.microsoft.com/en-us/topic/default-cluster-size-for-ntfs-fat-and-exfat-9772e6f1-e31a-00d7-e18f-73169155af95
@@ -743,7 +804,11 @@ namespace FolderExplorer
 
 
         #region static
-
+        /// <summary>
+        /// Retourne tout les éléments présents dans le dossier cible
+        /// </summary>
+        /// <param name="path">Dossier dans lequel on recherche les éléments</param>
+        /// <returns>Tous les élements récupérés</returns>
         public static Element[] GetElements(string path)
         {
             path = path.Replace('\\', '/');
@@ -754,6 +819,11 @@ namespace FolderExplorer
             return result.ToArray();
         }
 
+        /// <summary>
+        /// Retourne tout les dossiers présents dans le dossier cible
+        /// </summary>
+        /// <param name="path">Dossier dans lequel on recherche les dossiers</param>
+        /// <returns>Tous les dossiers récupérés</returns>
         public static Element[] GetFolders(string path)
         {
             path = path.Replace('\\', '/');
@@ -771,6 +841,11 @@ namespace FolderExplorer
             return result;
         }
 
+        /// <summary>
+        /// Retourne tout les fichiers présents dans le dossier cible
+        /// </summary>
+        /// <param name="path">Dossier dans lequel on recherche les fichiers</param>
+        /// <returns>Tous les fichiers récupérés</returns>
         public static Element[] GetFiles(string path)
         {
             path = path.Replace('\\', '/');

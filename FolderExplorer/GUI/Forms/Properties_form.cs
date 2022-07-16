@@ -18,10 +18,6 @@ namespace FolderExplorer
         public Properties_form(string fullPath)
         {
             Element element = new Element(fullPath);
-            StreamWriter sr = new StreamWriter("C:/testFolderExplorer/logs.log", true);
-            sr.WriteLine(fullPath);
-            sr.WriteLine(element.ToString());
-            sr.Close();
 
             InitializeComponent();
             this.Text = "Propriétés de : " + element.fullName;
@@ -31,10 +27,10 @@ namespace FolderExplorer
             //name
             Tb_name.Text = element.name;
             //type
-            itemType_label.Text = OpenWith.DocNameToFriendly(Path.GetExtension(element.fullPath)) + " (" + Path.GetExtension(element.fullPath) + ")";
-            openWith_label.Text = OpenWith.ExtensionToPrg(Path.GetExtension(element.fullPath));
+            itemType_label.Text = element.itemType + " (" + element.extension + ")";
+            openWith_label.Text = element.openWith;
             //icone
-            openwith_Icon.Image = OpenWith.ElementToIco(Path.GetExtension(element.fullPath));
+            openwith_Icon.Image = element.icon;
             //element.GetValue(MetaDataElement.name)
             path_label.Text = element.path.Replace("/","\\");
             //size

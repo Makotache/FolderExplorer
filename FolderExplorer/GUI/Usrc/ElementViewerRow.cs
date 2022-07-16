@@ -105,7 +105,7 @@ namespace FolderExplorer
             }
             control.Name = evh.metaDataElement.ToString();
             string value = element.GetValue(evh.metaDataElement).ToString();
-            control.Text = value != "-1" ? element.GetValue(evh.metaDataElement).ToString() : "";
+            control.Text = value != "-1" ? value : "";
             control.AutoSize = false;
 
 
