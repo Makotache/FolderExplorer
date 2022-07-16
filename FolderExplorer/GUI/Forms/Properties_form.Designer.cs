@@ -381,9 +381,9 @@
             // 
             // openwith_Image_Nom
             // 
-            this.openwith_Image_Nom.Location = new System.Drawing.Point(9, 6);
+            this.openwith_Image_Nom.Location = new System.Drawing.Point(18, 6);
             this.openwith_Image_Nom.Name = "openwith_Image_Nom";
-            this.openwith_Image_Nom.Size = new System.Drawing.Size(71, 43);
+            this.openwith_Image_Nom.Size = new System.Drawing.Size(46, 43);
             this.openwith_Image_Nom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.openwith_Image_Nom.TabIndex = 22;
             this.openwith_Image_Nom.TabStop = false;

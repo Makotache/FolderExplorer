@@ -23,21 +23,30 @@ namespace FolderExplorer
 
         public static Image ElementToImage(string extension)
         {
-            string appli_exe = FileExtentionInfo(AssocStr.Executable, extension);
-            if (appli_exe != "ˀ财翹" && appli_exe != "ˀ贡翹" && appli_exe != "ˀ责翹")
+            string appli_exe;
+            if (extension.Contains("\\"))
+            {//on a un chemin complet d'une appli
+                appli_exe = extension;
+            }
+            else
+            {//on a une extension
+                appli_exe = FileExtentionInfo(AssocStr.Executable, extension);
+            }
+            //recuperation de l'icone
+            if (appli_exe.Contains("exe"))
             {
                 return Icon.ExtractAssociatedIcon(appli_exe).ToBitmap();
             }
             else
             {
                 return null;
-            }          
+            }
         }
 
         public static Icon ElementToIco(string extension)
         {
             string appli_exe = FileExtentionInfo(AssocStr.Executable, extension);
-            if (appli_exe != "ˀ财翹" && appli_exe != "ˀ贡翹" && appli_exe != "ˀ责翹")
+            if (appli_exe.Contains("exe"))
             {
                 return Icon.ExtractAssociatedIcon(appli_exe);
             }

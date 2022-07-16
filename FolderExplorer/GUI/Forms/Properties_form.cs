@@ -21,7 +21,14 @@ namespace FolderExplorer
 
             InitializeComponent();
             this.Text = "Propriétés de : " + element.fullName; 
-            this.Icon = new Icon(@"c:\Icon\temp.ico");
+            this.Icon = element.icon;
+            if (element.extension == ".exe")
+            {
+                label3.Visible = false;
+                openwith_Icon.Visible = false;
+                openWith_label.Visible = false;
+                btn_modifier.Visible = false;
+            }
 
             btn_appliquer.Enabled = false;
             //infos in element region proprietes normal
