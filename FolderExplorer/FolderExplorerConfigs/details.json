@@ -1,0 +1,18 @@
+﻿{
+  ".wav": {
+    "Fichier": {
+      "Nom": "name",
+      "Taille": "size"
+    },
+    "Audio": {
+      "Bitrate": "bitrate"
+    }
+  },
+
+  ".png": {
+    "Fichier": {
+      "Nom": "name",
+      "Taille": "size"
+    }
+  }
+}

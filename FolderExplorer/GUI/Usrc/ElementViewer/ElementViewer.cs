@@ -271,72 +271,76 @@ namespace FolderExplorer
         //sert a bouger les en-têtes
         private void MoveHeader_Tick(object sender, EventArgs e)
         {
-            //la souris doit ce trouver dans le formulaire
-            if(folderExplorer.ContainsFocus && folderExplorer.ClientRectangle.Contains(folderExplorer.PointToClient(Cursor.Position)))
+            //la fenetre active doit etre celle ci
+            if(folderExplorer.ContainsFocus)
             {
-                //redimensionnement des en-têtes
-                if (Control.MouseButtons == MouseButtons.Left && Cursor.Current == vsplit_Cursor)
+                //la souris doit ce trouver dans le formulaire
+                if (folderExplorer.ClientRectangle.Contains(folderExplorer.PointToClient(Cursor.Position)))
                 {
-                    int tmp_mouse_pos_x = this.PointToClient(Cursor.Position).X;
-                    //Console.WriteLine($"mouse_pos_x => '{mouse_pos_x}'");
-
-                    int index = indexMoveHeader == -1 ? CPCS.GetIndexMostCloseWidth(intersectionEvh_lst, tmp_mouse_pos_x) : indexMoveHeader;
-
-                    int previous_header_end_pos = 0;
-                    for (int i = 0; i < index; i++)
+                    //redimensionnement des en-têtes
+                    if (Control.MouseButtons == MouseButtons.Left && Cursor.Current == vsplit_Cursor)
                     {
-                        ElementViewerHeader evh_previous = elementViewerHeader_lst[i];
+                        int tmp_mouse_pos_x = this.PointToClient(Cursor.Position).X;
+                        //Console.WriteLine($"mouse_pos_x => '{mouse_pos_x}'");
 
-                        previous_header_end_pos = evh_previous.Location.X + evh_previous.Size.Width;
-                    }
+                        int index = indexMoveHeader == -1 ? CPCS.GetIndexMostCloseWidth(intersectionEvh_lst, tmp_mouse_pos_x) : indexMoveHeader;
 
-                    //evh_actual
-                    ElementViewerHeader evh_actual = elementViewerHeader_lst[index];
-                    if (evh_actual.MinimumSize.Width + evh_actual.Location.X < tmp_mouse_pos_x)
-                    {
-                        indexMoveHeader = index;
-                        mouse_pos_x = tmp_mouse_pos_x;
-
-                        evh_actual.Size = new Size(mouse_pos_x - previous_header_end_pos, ElementViewerHeader.SizeHeight);
-
-                        if (index < elementViewerHeader_lst.Count - 1)
+                        int previous_header_end_pos = 0;
+                        for (int i = 0; i < index; i++)
                         {
-                            previous_header_end_pos = mouse_pos_x;
-                            for (int i = index + 1; i < elementViewerHeader_lst.Count; i++)
+                            ElementViewerHeader evh_previous = elementViewerHeader_lst[i];
+
+                            previous_header_end_pos = evh_previous.Location.X + evh_previous.Size.Width;
+                        }
+
+                        //evh_actual
+                        ElementViewerHeader evh_actual = elementViewerHeader_lst[index];
+                        if (evh_actual.MinimumSize.Width + evh_actual.Location.X < tmp_mouse_pos_x)
+                        {
+                            indexMoveHeader = index;
+                            mouse_pos_x = tmp_mouse_pos_x;
+
+                            evh_actual.Size = new Size(mouse_pos_x - previous_header_end_pos, ElementViewerHeader.SizeHeight);
+
+                            if (index < elementViewerHeader_lst.Count - 1)
                             {
-                                //next_evh 
-                                ElementViewerHeader next_evh = elementViewerHeader_lst[i];
-                                next_evh.leftCursor = vsplit_Cursor;
-                                next_evh.Location = new Point(previous_header_end_pos, 0);
-                                previous_header_end_pos = next_evh.Location.X + next_evh.Size.Width;
+                                previous_header_end_pos = mouse_pos_x;
+                                for (int i = index + 1; i < elementViewerHeader_lst.Count; i++)
+                                {
+                                    //next_evh 
+                                    ElementViewerHeader next_evh = elementViewerHeader_lst[i];
+                                    next_evh.leftCursor = vsplit_Cursor;
+                                    next_evh.Location = new Point(previous_header_end_pos, 0);
+                                    previous_header_end_pos = next_evh.Location.X + next_evh.Size.Width;
+                                }
                             }
                         }
                     }
-                }
-                else if (indexMoveHeader != -1)
-                {
-                    ActualizeIntersectionEvh_lsts(indexMoveHeader, mouse_pos_x);
-                    indexMoveHeader = -1;
-                    OnHeaderResize(null);
-                }
-
-                //touche souris "dossier parent" / "dossier quitter"
-                else if (Control.MouseButtons == MouseButtons.XButton1)
-                {
-                    LoadPath(parentFolder);
-                }
-                else if (Control.MouseButtons == MouseButtons.XButton2)
-                {
-                    if(leavedFolder_lst.Count > 0)
+                    else if (indexMoveHeader != -1)
                     {
-                        string path = leavedFolder_lst[leavedFolder_lst.Count - 1];
-                        leavedFolder_lst.Remove(path);
-                        LoadPath(path, backButton: true);
+                        ActualizeIntersectionEvh_lsts(indexMoveHeader, mouse_pos_x);
+                        indexMoveHeader = -1;
+                        OnHeaderResize(null);
                     }
-                }
 
+                    //touche souris "dossier parent" / "dossier quitter"
+                    else if (Control.MouseButtons == MouseButtons.XButton1)
+                    {
+                        LoadPath(parentFolder);
+                    }
+                    else if (Control.MouseButtons == MouseButtons.XButton2)
+                    {
+                        if (leavedFolder_lst.Count > 0)
+                        {
+                            string path = leavedFolder_lst[leavedFolder_lst.Count - 1];
+                            leavedFolder_lst.Remove(path);
+                            LoadPath(path, backButton: true);
+                        }
+                    }
+                }                    
+                
                 //selection avec un "drag" de la souris
-                else if (Control.MouseButtons == MouseButtons.Left && (selectMode || this.GetChildAtPoint(this.PointToClient(Cursor.Position)) == containerRow_panel))
+                if (indexMoveHeader == -1 && Control.MouseButtons == MouseButtons.Left && (selectMode || (!selectMode && this.GetChildAtPoint(this.PointToClient(Cursor.Position)) == containerRow_panel)))
                 {
                     Point mouse_pos = containerRow_panel.PointToClient(Cursor.Position);
                     if (!selectMode)
@@ -345,13 +349,18 @@ namespace FolderExplorer
                         selectField.startPos = mouse_pos;
                         containerRow_panel.Controls.Add(selectField);
                     }
+                    //containerRow_panel.Controls.SetChildIndex(selectField, 0);
+                    selectField.BringToFront();
                     selectField.ResizeField(mouse_pos);
+
+                    //voir pour desactiver le changement de la taille automatique du containerRow_panel
                 }
-                else if(selectMode)
+                else if (selectMode)
                 {
                     selectMode = false;
                     containerRow_panel.Controls.Remove(selectField);
                 }
+                Console.WriteLine(Control.MouseButtons == MouseButtons.Left);
             }
         }
 
