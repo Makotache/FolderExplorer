@@ -18,6 +18,7 @@ namespace FolderExplorer
     public partial class Properties_form : Form
     {
         private Element element;
+        private bool details_loaded = false;
         public Properties_form(string fullPath)
         {
             element = new Element(fullPath);
@@ -92,21 +93,15 @@ namespace FolderExplorer
             this.Close();
         }
 
-        private void btn_avance_Click(object sender, EventArgs e)
-        {
-            AdvancedAttributes_form advancedAttributes_Form = new AdvancedAttributes_form();
-            advancedAttributes_Form.Show();
-        }
-
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == tabControl1.Controls.GetChildIndex(details_tab))
+            if (!details_loaded && tabControl1.SelectedIndex == tabControl1.Controls.GetChildIndex(details_tab))
             {
                 JObject o1 = JObject.Parse(File.ReadAllText(FolderExplorer_form.DetailsJson));
 
                 foreach (JProperty jProperty in o1.Properties())
                 {
-                    if(jProperty.Name.ToString() == element.extension)
+                    if (jProperty.Name.ToString() == element.extension)
                     {
                         int previous_y = 0;
                         foreach (JToken jToken in jProperty.Value.ToArray())
@@ -120,6 +115,7 @@ namespace FolderExplorer
                         }
                     }
                 }
+                details_loaded = true;
             }
         }
     }

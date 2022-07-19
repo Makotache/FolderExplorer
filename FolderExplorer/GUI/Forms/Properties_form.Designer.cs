@@ -33,7 +33,6 @@
             this.openwith_Image_Nom = new System.Windows.Forms.PictureBox();
             this.openwith_Icon = new System.Windows.Forms.PictureBox();
             this.btn_modifier = new System.Windows.Forms.Button();
-            this.btn_avance = new System.Windows.Forms.Button();
             this.cb_cache = new System.Windows.Forms.CheckBox();
             this.cb_lecture_seule = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -88,7 +87,6 @@
             this.general.Controls.Add(this.openwith_Image_Nom);
             this.general.Controls.Add(this.openwith_Icon);
             this.general.Controls.Add(this.btn_modifier);
-            this.general.Controls.Add(this.btn_avance);
             this.general.Controls.Add(this.cb_cache);
             this.general.Controls.Add(this.cb_lecture_seule);
             this.general.Controls.Add(this.label2);
@@ -144,16 +142,6 @@
             this.btn_modifier.TabIndex = 21;
             this.btn_modifier.Text = "Modifier";
             this.btn_modifier.UseVisualStyleBackColor = true;
-            // 
-            // btn_avance
-            // 
-            this.btn_avance.Location = new System.Drawing.Point(309, 370);
-            this.btn_avance.Name = "btn_avance";
-            this.btn_avance.Size = new System.Drawing.Size(75, 23);
-            this.btn_avance.TabIndex = 20;
-            this.btn_avance.Text = "Avancé...";
-            this.btn_avance.UseVisualStyleBackColor = true;
-            this.btn_avance.Click += new System.EventHandler(this.btn_avance_Click);
             // 
             // cb_cache
             // 
@@ -461,7 +449,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox Tb_name;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btn_avance;
         private System.Windows.Forms.CheckBox cb_cache;
         private System.Windows.Forms.CheckBox cb_lecture_seule;
         private System.Windows.Forms.Button btn_ok;
