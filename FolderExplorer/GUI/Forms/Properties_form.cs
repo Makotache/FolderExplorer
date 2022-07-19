@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -24,10 +25,17 @@ namespace FolderExplorer
             this.Icon = element.icon;
             if (element.extension == ".exe")
             {
-                label3.Visible = false;
+                label3.Text = "Description : ";
                 openwith_Icon.Visible = false;
-                openWith_label.Visible = false;
                 btn_modifier.Visible = false;
+            }
+            else
+            {
+                label3.Text = "S'ouvre avec : ";
+                openwith_Icon.Visible = true;
+                btn_modifier.Visible = true;
+                tabControl1.TabPages.RemoveAt(1); //suppression onglet compatibilité
+                tabControl1.TabPages.RemoveAt(1); //suppression onglet signatures numeriques, attention, on remet 1 parce que l'onglet a été décalé vers la gauche à cause de la suppression du premier
             }
 
             btn_appliquer.Enabled = false;
@@ -36,7 +44,15 @@ namespace FolderExplorer
             Tb_name.Text = element.fullName;
             //type
             itemType_label.Text = element.itemType + " (" + element.extension + ")";
-            openWith_label.Text = element.openWith;
+            if (element.extension == ".exe")
+            {
+                FileVersionInfo infosfichier = FileVersionInfo.GetVersionInfo(element.path.Replace("/", "\\") + "\\" + element.fullName);
+                openWith_label.Text = infosfichier.FileDescription;
+            }
+            else
+            {
+                openWith_label.Text = element.openWith;
+            }
             //icone
             openwith_Icon.Image = element.image;
             openwith_Image_Nom.Image = element.image;

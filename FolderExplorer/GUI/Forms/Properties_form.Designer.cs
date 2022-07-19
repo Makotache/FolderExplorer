@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.general = new System.Windows.Forms.TabPage();
+            this.openwith_Image_Nom = new System.Windows.Forms.PictureBox();
             this.openwith_Icon = new System.Windows.Forms.PictureBox();
             this.btn_modifier = new System.Windows.Forms.Button();
             this.btn_avance = new System.Windows.Forms.Button();
@@ -53,25 +54,28 @@
             this.itemType_label = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Tb_name = new System.Windows.Forms.TextBox();
+            this.compatibilite = new System.Windows.Forms.TabPage();
+            this.signature = new System.Windows.Forms.TabPage();
             this.securite = new System.Windows.Forms.TabPage();
-            this.details = new System.Windows.Forms.TabPage();
-            this.versions_precedentes = new System.Windows.Forms.TabPage();
             this.btn_ok = new System.Windows.Forms.Button();
             this.btn_annuler = new System.Windows.Forms.Button();
             this.btn_appliquer = new System.Windows.Forms.Button();
-            this.openwith_Image_Nom = new System.Windows.Forms.PictureBox();
+            this.details = new System.Windows.Forms.TabPage();
+            this.versions = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.general.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.openwith_Icon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.openwith_Image_Nom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.openwith_Icon)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.general);
+            this.tabControl1.Controls.Add(this.compatibilite);
+            this.tabControl1.Controls.Add(this.signature);
             this.tabControl1.Controls.Add(this.securite);
             this.tabControl1.Controls.Add(this.details);
-            this.tabControl1.Controls.Add(this.versions_precedentes);
+            this.tabControl1.Controls.Add(this.versions);
             this.tabControl1.Location = new System.Drawing.Point(6, 7);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -111,6 +115,15 @@
             this.general.TabIndex = 0;
             this.general.Text = "Général";
             this.general.UseVisualStyleBackColor = true;
+            // 
+            // openwith_Image_Nom
+            // 
+            this.openwith_Image_Nom.Location = new System.Drawing.Point(18, 6);
+            this.openwith_Image_Nom.Name = "openwith_Image_Nom";
+            this.openwith_Image_Nom.Size = new System.Drawing.Size(46, 43);
+            this.openwith_Image_Nom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.openwith_Image_Nom.TabIndex = 22;
+            this.openwith_Image_Nom.TabStop = false;
             // 
             // openwith_Icon
             // 
@@ -321,35 +334,35 @@
             this.Tb_name.Size = new System.Drawing.Size(285, 20);
             this.Tb_name.TabIndex = 0;
             // 
+            // compatibilite
+            // 
+            this.compatibilite.Location = new System.Drawing.Point(4, 22);
+            this.compatibilite.Name = "compatibilite";
+            this.compatibilite.Padding = new System.Windows.Forms.Padding(3);
+            this.compatibilite.Size = new System.Drawing.Size(438, 436);
+            this.compatibilite.TabIndex = 1;
+            this.compatibilite.Text = "Compatibilité";
+            this.compatibilite.UseVisualStyleBackColor = true;
+            // 
+            // signature
+            // 
+            this.signature.Location = new System.Drawing.Point(4, 22);
+            this.signature.Name = "signature";
+            this.signature.Padding = new System.Windows.Forms.Padding(3);
+            this.signature.Size = new System.Drawing.Size(438, 436);
+            this.signature.TabIndex = 2;
+            this.signature.Text = "Signature numériques";
+            this.signature.UseVisualStyleBackColor = true;
+            // 
             // securite
             // 
             this.securite.Location = new System.Drawing.Point(4, 22);
             this.securite.Name = "securite";
             this.securite.Padding = new System.Windows.Forms.Padding(3);
             this.securite.Size = new System.Drawing.Size(438, 436);
-            this.securite.TabIndex = 1;
+            this.securite.TabIndex = 3;
             this.securite.Text = "Sécurité";
             this.securite.UseVisualStyleBackColor = true;
-            // 
-            // details
-            // 
-            this.details.Location = new System.Drawing.Point(4, 22);
-            this.details.Name = "details";
-            this.details.Padding = new System.Windows.Forms.Padding(3);
-            this.details.Size = new System.Drawing.Size(438, 436);
-            this.details.TabIndex = 2;
-            this.details.Text = "Détails";
-            this.details.UseVisualStyleBackColor = true;
-            // 
-            // versions_precedentes
-            // 
-            this.versions_precedentes.Location = new System.Drawing.Point(4, 22);
-            this.versions_precedentes.Name = "versions_precedentes";
-            this.versions_precedentes.Padding = new System.Windows.Forms.Padding(3);
-            this.versions_precedentes.Size = new System.Drawing.Size(438, 436);
-            this.versions_precedentes.TabIndex = 3;
-            this.versions_precedentes.Text = "Versions précédentes";
-            this.versions_precedentes.UseVisualStyleBackColor = true;
             // 
             // btn_ok
             // 
@@ -379,14 +392,25 @@
             this.btn_appliquer.Text = "Appliquer";
             this.btn_appliquer.UseVisualStyleBackColor = true;
             // 
-            // openwith_Image_Nom
+            // details
             // 
-            this.openwith_Image_Nom.Location = new System.Drawing.Point(18, 6);
-            this.openwith_Image_Nom.Name = "openwith_Image_Nom";
-            this.openwith_Image_Nom.Size = new System.Drawing.Size(46, 43);
-            this.openwith_Image_Nom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.openwith_Image_Nom.TabIndex = 22;
-            this.openwith_Image_Nom.TabStop = false;
+            this.details.Location = new System.Drawing.Point(4, 22);
+            this.details.Name = "details";
+            this.details.Padding = new System.Windows.Forms.Padding(3);
+            this.details.Size = new System.Drawing.Size(438, 436);
+            this.details.TabIndex = 4;
+            this.details.Text = "Détails";
+            this.details.UseVisualStyleBackColor = true;
+            // 
+            // versions
+            // 
+            this.versions.Location = new System.Drawing.Point(4, 22);
+            this.versions.Name = "versions";
+            this.versions.Padding = new System.Windows.Forms.Padding(3);
+            this.versions.Size = new System.Drawing.Size(438, 436);
+            this.versions.TabIndex = 5;
+            this.versions.Text = "Versions précédentes";
+            this.versions.UseVisualStyleBackColor = true;
             // 
             // Properties_form
             // 
@@ -405,8 +429,8 @@
             this.tabControl1.ResumeLayout(false);
             this.general.ResumeLayout(false);
             this.general.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.openwith_Icon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.openwith_Image_Nom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.openwith_Icon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -415,9 +439,9 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage general;
+        private System.Windows.Forms.TabPage compatibilite;
+        private System.Windows.Forms.TabPage signature;
         private System.Windows.Forms.TabPage securite;
-        private System.Windows.Forms.TabPage details;
-        private System.Windows.Forms.TabPage versions_precedentes;
         private System.Windows.Forms.Label lastAccesTime_label;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lastWriteTime_label;
@@ -445,5 +469,7 @@
         private System.Windows.Forms.Button btn_modifier;
         private System.Windows.Forms.PictureBox openwith_Icon;
         private System.Windows.Forms.PictureBox openwith_Image_Nom;
+        private System.Windows.Forms.TabPage details;
+        private System.Windows.Forms.TabPage versions;
     }
 }
