@@ -18,7 +18,8 @@ namespace FolderExplorer
         private ElementViewer elementViewer;
         internal static readonly string FolderMainPath = Path.Combine(Directory.GetCurrentDirectory(), "FolderExplorerConfigs");
         internal static readonly string ExtensionJson = Path.Combine(FolderMainPath, "extension.json");
-        internal static readonly string ProgId = Path.Combine(FolderMainPath, "ProgId.json");
+        internal static readonly string DetailsJson = Path.Combine(FolderMainPath, "details.json");
+        internal static readonly string ProgIdJson = Path.Combine(FolderMainPath, "ProgId.json");
 
         public FolderExplorer_form()
         {

@@ -222,7 +222,7 @@ namespace FolderExplorer
         
         private void OpenElement(object sender, EventArgs e)
         {
-            Console.WriteLine("OpenElement");
+            //Console.WriteLine("OpenElement");
             switch (selectedRows_lst.Count)
             {
                 case 1:
@@ -236,8 +236,7 @@ namespace FolderExplorer
 
         private void OpenProperties(object sender, EventArgs e)
         {
-            Console.WriteLine("OpenProperties");
-            Console.WriteLine("selectedRows_lst.Count => " + selectedRows_lst.Count);
+            //Console.WriteLine("OpenProperties");
             switch (selectedRows_lst.Count)
             {
                 case 1:
@@ -360,7 +359,6 @@ namespace FolderExplorer
                     selectMode = false;
                     containerRow_panel.Controls.Remove(selectField);
                 }
-                Console.WriteLine(Control.MouseButtons == MouseButtons.Left);
             }
         }
 

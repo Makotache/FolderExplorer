@@ -93,6 +93,12 @@
     <Compile Include="GUI\Forms\Properties_form.Designer.cs">
       <DependentUpon>Properties_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Usrc\Details.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Usrc\Details.Designer.cs">
+      <DependentUpon>Details.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Usrc\ElementViewer\ElementViewerRow.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -149,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Forms\Properties_form.resx">
       <DependentUpon>Properties_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Usrc\Details.resx">
+      <DependentUpon>Details.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Usrc\ElementViewer\ElementViewerRow.resx">
       <DependentUpon>ElementViewerRow.cs</DependentUpon>
@@ -222,6 +231,7 @@
   <ItemGroup>
     <None Include="FolderExplorerConfigs\details.json">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -61,51 +61,57 @@ namespace FolderExplorer.Properties {
         }
         
         /// <summary>
+        ///   Recherche une ressource localisée de type System.Byte[].
+        /// </summary>
+        internal static byte[] details {
+            get {
+                object obj = ResourceManager.GetObject("details", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à {
         ///  &quot;video&quot;: [
-        ///    &quot;mp4&quot;,
-        ///    &quot;m4v&quot;,
-        ///    &quot;avi&quot;,
-        ///    &quot;mov&quot;,
-        ///    &quot;mkv&quot;,
-        ///    &quot;mts&quot;,
-        ///    &quot;ts&quot;,
-        ///    &quot;flv&quot;,
-        ///    &quot;wmv&quot;,
-        ///    &quot;asf&quot;,
-        ///    &quot;mpeg&quot;,
-        ///    &quot;mpg&quot;,
-        ///    &quot;vob&quot;,
-        ///    &quot;asf&quot;,
-        ///    &quot;wmv&quot;,
-        ///    &quot;rm&quot;,
-        ///    &quot;rmvb&quot;,
-        ///    &quot;vob&quot;,
-        ///    &quot;webm&quot;
+        ///    &quot;.mp4&quot;,
+        ///    &quot;.m4v&quot;,
+        ///    &quot;.avi&quot;,
+        ///    &quot;.mov&quot;,
+        ///    &quot;.mkv&quot;,
+        ///    &quot;.mts&quot;,
+        ///    &quot;.ts&quot;,
+        ///    &quot;.flv&quot;,
+        ///    &quot;.wmv&quot;,
+        ///    &quot;.asf&quot;,
+        ///    &quot;.mpeg&quot;,
+        ///    &quot;.mpg&quot;,
+        ///    &quot;.vob&quot;,
+        ///    &quot;.asf&quot;,
+        ///    &quot;.wmv&quot;,
+        ///    &quot;.rm&quot;,
+        ///    &quot;.rmvb&quot;,
+        ///    &quot;.vob&quot;,
+        ///    &quot;.webm&quot;
         ///  ],
         ///  &quot;music&quot;: [
-        ///  	&quot;mp3&quot;,
-        ///  	&quot;ogg&quot;,
-        ///    &quot;oga&quot;,
-        ///    &quot;mogg&quot;,
-        ///  	&quot;wav&quot;,
-        ///    &quot;wave&quot;,
-        ///    &quot;aiff&quot;,
-        ///    &quot;aif&quot;,
-        ///    &quot;aifc&quot;,
-        ///    &quot;pcm&quot;,
-        ///    &quot;au&quot;,
-        ///    &quot;flac&quot;,
-        ///    &quot;alac&quot;,
-        ///    &quot;m4a&quot;,
-        ///    &quot;caf&quot;,
-        ///    &quot;wma&quot;,
-        ///    &quot;wmv&quot;,
-        ///    &quot;aac&quot;,
-        ///    &quot;3gp&quot;,
-        ///    &quot;m4r&quot;
-        ///  ],
-        /// [le reste de la chaîne a été tronqué]&quot;;.
+        ///  	&quot;.mp3&quot;,
+        ///  	&quot;.ogg&quot;,
+        ///    &quot;.oga&quot;,
+        ///    &quot;.mogg&quot;,
+        ///  	&quot;.wav&quot;,
+        ///    &quot;.wave&quot;,
+        ///    &quot;.aiff&quot;,
+        ///    &quot;.aif&quot;,
+        ///    &quot;.aifc&quot;,
+        ///    &quot;.pcm&quot;,
+        ///    &quot;.au&quot;,
+        ///    &quot;.flac&quot;,
+        ///    &quot;.alac&quot;,
+        ///    &quot;.m4a&quot;,
+        ///    &quot;.caf&quot;,
+        ///    &quot;.wma&quot;,
+        ///    &quot;.wmv&quot;,
+        ///    &quot; [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
         internal static string extension {
             get {

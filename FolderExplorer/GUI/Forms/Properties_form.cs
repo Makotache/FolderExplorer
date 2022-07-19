@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,9 +17,10 @@ namespace FolderExplorer
 {
     public partial class Properties_form : Form
     {
+        private Element element;
         public Properties_form(string fullPath)
         {
-            Element element = new Element(fullPath);
+            element = new Element(fullPath);
 
             InitializeComponent();
             this.Text = "Propriétés de : " + element.fullName; 
@@ -94,6 +96,31 @@ namespace FolderExplorer
         {
             AdvancedAttributes_form advancedAttributes_Form = new AdvancedAttributes_form();
             advancedAttributes_Form.Show();
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == tabControl1.Controls.GetChildIndex(details_tab))
+            {
+                JObject o1 = JObject.Parse(File.ReadAllText(FolderExplorer_form.DetailsJson));
+
+                foreach (JProperty jProperty in o1.Properties())
+                {
+                    if(jProperty.Name.ToString() == element.extension)
+                    {
+                        int previous_y = 0;
+                        foreach (JToken jToken in jProperty.Value.ToArray())
+                        {
+                            string header = ((JProperty)jToken).Name;
+                            Details details = new Details(element, header, jToken);
+                            details.Name = header;
+                            details.Location = new Point(1, 1 + previous_y);
+                            details.Size = new Size(details_tab.Size.Width, details.Size.Height);
+                            details_tab.Controls.Add(details);
+                        }
+                    }
+                }
+            }
         }
     }
 }
