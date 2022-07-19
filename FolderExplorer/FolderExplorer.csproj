@@ -93,34 +93,34 @@
     <Compile Include="GUI\Forms\Properties_form.Designer.cs">
       <DependentUpon>Properties_form.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Usrc\ElementViewerRow.cs">
+    <Compile Include="GUI\Usrc\ElementViewer\ElementViewerRow.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\Usrc\ElementViewerRow.Designer.cs">
+    <Compile Include="GUI\Usrc\ElementViewer\ElementViewerRow.Designer.cs">
       <DependentUpon>ElementViewerRow.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Usrc\ElementViewer.cs">
+    <Compile Include="GUI\Usrc\ElementViewer\ElementViewer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\Usrc\ElementViewer.Designer.cs">
+    <Compile Include="GUI\Usrc\ElementViewer\ElementViewer.Designer.cs">
       <DependentUpon>ElementViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Usrc\ElementViewerHeader.cs">
+    <Compile Include="GUI\Usrc\ElementViewer\ElementViewerHeader.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\Usrc\ElementViewerHeader.Designer.cs">
+    <Compile Include="GUI\Usrc\ElementViewer\ElementViewerHeader.Designer.cs">
       <DependentUpon>ElementViewerHeader.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Usrc\LabelEditable.cs">
+    <Compile Include="GUI\Usrc\ElementViewer\LabelEditable.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\Usrc\LabelEditable.Designer.cs">
+    <Compile Include="GUI\Usrc\ElementViewer\LabelEditable.Designer.cs">
       <DependentUpon>LabelEditable.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Usrc\SelectField.cs">
+    <Compile Include="GUI\Usrc\ElementViewer\SelectField.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\Usrc\SelectField.Designer.cs">
+    <Compile Include="GUI\Usrc\ElementViewer\SelectField.Designer.cs">
       <DependentUpon>SelectField.cs</DependentUpon>
     </Compile>
     <Compile Include="Lib\Extern\CPCS.cs" />
@@ -150,19 +150,19 @@
     <EmbeddedResource Include="GUI\Forms\Properties_form.resx">
       <DependentUpon>Properties_form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Usrc\ElementViewerRow.resx">
+    <EmbeddedResource Include="GUI\Usrc\ElementViewer\ElementViewerRow.resx">
       <DependentUpon>ElementViewerRow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Usrc\ElementViewer.resx">
+    <EmbeddedResource Include="GUI\Usrc\ElementViewer\ElementViewer.resx">
       <DependentUpon>ElementViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Usrc\ElementViewerHeader.resx">
+    <EmbeddedResource Include="GUI\Usrc\ElementViewer\ElementViewerHeader.resx">
       <DependentUpon>ElementViewerHeader.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Usrc\LabelEditable.resx">
+    <EmbeddedResource Include="GUI\Usrc\ElementViewer\LabelEditable.resx">
       <DependentUpon>LabelEditable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Usrc\SelectField.resx">
+    <EmbeddedResource Include="GUI\Usrc\ElementViewer\SelectField.resx">
       <DependentUpon>SelectField.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -217,6 +217,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="FolderExplorerConfigs\details.json">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
