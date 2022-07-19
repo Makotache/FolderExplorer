@@ -75,6 +75,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GUI\Forms\Personnalisation_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Forms\Personnalisation_form.Designer.cs">
+      <DependentUpon>Personnalisation_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Forms\test.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +144,9 @@
     <Compile Include="Lib\Intern\Enums.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\Forms\Personnalisation_form.resx">
+      <DependentUpon>Personnalisation_form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Forms\test.resx">
       <DependentUpon>test.cs</DependentUpon>
     </EmbeddedResource>

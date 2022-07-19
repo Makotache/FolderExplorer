@@ -57,15 +57,18 @@
             this.compatibilite = new System.Windows.Forms.TabPage();
             this.signature = new System.Windows.Forms.TabPage();
             this.securite = new System.Windows.Forms.TabPage();
+            this.details = new System.Windows.Forms.TabPage();
+            this.versions = new System.Windows.Forms.TabPage();
             this.btn_ok = new System.Windows.Forms.Button();
             this.btn_annuler = new System.Windows.Forms.Button();
             this.btn_appliquer = new System.Windows.Forms.Button();
-            this.details = new System.Windows.Forms.TabPage();
-            this.versions = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_perso = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.general.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openwith_Image_Nom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.openwith_Icon)).BeginInit();
+            this.details.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -364,6 +367,28 @@
             this.securite.Text = "Sécurité";
             this.securite.UseVisualStyleBackColor = true;
             // 
+            // details
+            // 
+            this.details.Controls.Add(this.btn_perso);
+            this.details.Controls.Add(this.groupBox1);
+            this.details.Location = new System.Drawing.Point(4, 22);
+            this.details.Name = "details";
+            this.details.Padding = new System.Windows.Forms.Padding(3);
+            this.details.Size = new System.Drawing.Size(438, 436);
+            this.details.TabIndex = 4;
+            this.details.Text = "Détails";
+            this.details.UseVisualStyleBackColor = true;
+            // 
+            // versions
+            // 
+            this.versions.Location = new System.Drawing.Point(4, 22);
+            this.versions.Name = "versions";
+            this.versions.Padding = new System.Windows.Forms.Padding(3);
+            this.versions.Size = new System.Drawing.Size(438, 436);
+            this.versions.TabIndex = 5;
+            this.versions.Text = "Versions précédentes";
+            this.versions.UseVisualStyleBackColor = true;
+            // 
             // btn_ok
             // 
             this.btn_ok.Location = new System.Drawing.Point(215, 479);
@@ -392,25 +417,24 @@
             this.btn_appliquer.Text = "Appliquer";
             this.btn_appliquer.UseVisualStyleBackColor = true;
             // 
-            // details
+            // groupBox1
             // 
-            this.details.Location = new System.Drawing.Point(4, 22);
-            this.details.Name = "details";
-            this.details.Padding = new System.Windows.Forms.Padding(3);
-            this.details.Size = new System.Drawing.Size(438, 436);
-            this.details.TabIndex = 4;
-            this.details.Text = "Détails";
-            this.details.UseVisualStyleBackColor = true;
+            this.groupBox1.Location = new System.Drawing.Point(7, 7);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(425, 357);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
             // 
-            // versions
+            // btn_perso
             // 
-            this.versions.Location = new System.Drawing.Point(4, 22);
-            this.versions.Name = "versions";
-            this.versions.Padding = new System.Windows.Forms.Padding(3);
-            this.versions.Size = new System.Drawing.Size(438, 436);
-            this.versions.TabIndex = 5;
-            this.versions.Text = "Versions précédentes";
-            this.versions.UseVisualStyleBackColor = true;
+            this.btn_perso.Location = new System.Drawing.Point(324, 381);
+            this.btn_perso.Name = "btn_perso";
+            this.btn_perso.Size = new System.Drawing.Size(97, 23);
+            this.btn_perso.TabIndex = 1;
+            this.btn_perso.Text = "Personnalisation";
+            this.btn_perso.UseVisualStyleBackColor = true;
+            this.btn_perso.Click += new System.EventHandler(this.btn_perso_Click);
             // 
             // Properties_form
             // 
@@ -431,6 +455,7 @@
             this.general.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openwith_Image_Nom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.openwith_Icon)).EndInit();
+            this.details.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -471,5 +496,7 @@
         private System.Windows.Forms.PictureBox openwith_Image_Nom;
         private System.Windows.Forms.TabPage details;
         private System.Windows.Forms.TabPage versions;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btn_perso;
     }
 }

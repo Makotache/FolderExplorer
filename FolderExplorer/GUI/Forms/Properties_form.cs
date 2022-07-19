@@ -95,5 +95,11 @@ namespace FolderExplorer
             AdvancedAttributes_form advancedAttributes_Form = new AdvancedAttributes_form();
             advancedAttributes_Form.Show();
         }
+
+        private void btn_perso_Click(object sender, EventArgs e)
+        {
+            Personnalisation_form personnalisation_Form = new Personnalisation_form;
+            personnalisation_Form.Show();
+        }
     }
 }
