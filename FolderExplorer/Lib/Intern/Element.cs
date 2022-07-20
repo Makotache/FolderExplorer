@@ -315,7 +315,7 @@ namespace FolderExplorer
         /// </summary>
         public Image image
         {
-            get => OpenWith.ElementToImage(extension != ".exe" ? extension : fullPath);
+            get => OpenWith.ElementToImage(typeElement != TypeElement.Executable ? extension : fullPath);
         }
 
         /// <summary>
@@ -474,151 +474,80 @@ namespace FolderExplorer
 
         public object GetValue(MetaDataElement metaDataElement)
         {
-            switch (metaDataElement)
+            return metaDataElement switch
             {
                 //0
-                case MetaDataElement.Name:
-                    return name;
-
+                MetaDataElement.Name => name,
                 //1
-                case MetaDataElement.Size:
-                    return size;
-
+                MetaDataElement.Size => size,
                 //2
-                case MetaDataElement.ItemType:
-                    return itemType;
-
+                MetaDataElement.ItemType => itemType,
                 //3
-                case MetaDataElement.LastWriteTime:
-                    return lastWriteTime;
-
+                MetaDataElement.LastWriteTime => lastWriteTime,
                 //4
-                case MetaDataElement.CreationTime:
-                    return creationTime;
-
+                MetaDataElement.CreationTime => creationTime,
                 //5
-                case MetaDataElement.LastAccessTime:
-                    return lastAccessTime;
-
+                MetaDataElement.LastAccessTime => lastAccessTime,
                 //6
-                case MetaDataElement.Attribute:
-                    return attribute;
-
+                MetaDataElement.Attribute => attribute,
                 //7
-                case MetaDataElement.OfflineStatus:
-                    return offlineStatus;
-
+                MetaDataElement.OfflineStatus => offlineStatus,
                 //8
-                case MetaDataElement.Availability:
-                    return availability;
-
+                MetaDataElement.Availability => availability,
                 //9
-                case MetaDataElement.IdentifiedType:
-                    return identifiedType;
-
+                MetaDataElement.IdentifiedType => identifiedType,
                 //10
-                case MetaDataElement.Owner:
-                    return owner;
-
+                MetaDataElement.Owner => owner,
                 //11
-                case MetaDataElement.Kind:
-                    return kind;
-
+                MetaDataElement.Kind => kind,
                 //12
-                case MetaDataElement.DateTaken:
-                    return dateTaken;
-
+                MetaDataElement.DateTaken => dateTaken,
                 //13
-                case MetaDataElement.ContributingArtists:
-                    return contributingArtists;
-
+                MetaDataElement.ContributingArtists => contributingArtists,
                 //14
-                case MetaDataElement.Album:
-                    return album;
-
+                MetaDataElement.Album => album,
                 //15
-                case MetaDataElement.Year:
-                    return year;
-
+                MetaDataElement.Year => year,
                 //16
-                case MetaDataElement.Genre:
-                    return genre;
-
+                MetaDataElement.Genre => genre,
                 //17
-                case MetaDataElement.Conductors:
-                    return conductors;
-
+                MetaDataElement.Conductors => conductors,
                 //18
-                case MetaDataElement.Tags:
-                    return tags;
-
+                MetaDataElement.Tags => tags,
                 //19
-                case MetaDataElement.Rating:
-                    return rating;
-
+                MetaDataElement.Rating => rating,
                 //20
-                case MetaDataElement.Authors:
-                    return authors;
-
+                MetaDataElement.Authors => authors,
                 //21
-                case MetaDataElement.Title:
-                    return title;
-
+                MetaDataElement.Title => title,
                 //22
-                case MetaDataElement.Subject:
-                    return subject;
-
+                MetaDataElement.Subject => subject,
                 //23
-                case MetaDataElement.Categories:
-                    return categories;
-
+                MetaDataElement.Categories => categories,
                 //24
-                case MetaDataElement.Comments:
-                    return comments;
-
+                MetaDataElement.Comments => comments,
                 //25
-                case MetaDataElement.Copyright:
-                    return copyright;
-
+                MetaDataElement.Copyright => copyright,
                 //26
-                case MetaDataElement.TrackNumber:
-                    return trackNumber;
-
+                MetaDataElement.TrackNumber => trackNumber,
                 //27
-                case MetaDataElement.Duration:
-                    return duration;
-
+                MetaDataElement.Duration => duration,
                 //28
-                case MetaDataElement.BitRate:
-                    return bitRate;
-
+                MetaDataElement.BitRate => bitRate,
                 //29
-                case MetaDataElement.Protected:
-                    return @protected;
-
+                MetaDataElement.Protected => @protected,
                 //30
-                case MetaDataElement.CameraModel:
-                    return cameraModel;
-
+                MetaDataElement.CameraModel => cameraModel,
                 //31
-                case MetaDataElement.Dimensions:
-                    return dimensions;
-
+                MetaDataElement.Dimensions => dimensions,
                 //32
-                case MetaDataElement.CameraMaker:
-                    return cameraMarker;
-
+                MetaDataElement.CameraMaker => cameraMarker,
                 //33
-                case MetaDataElement.Company:
-                    return company;
-
+                MetaDataElement.Company => company,
                 //34
-                case MetaDataElement.FileDescription:
-                    return fileDescription;
-
-                default:
-                    return null;
-            }
+                MetaDataElement.FileDescription => fileDescription,
+                _ => null,
+            };
         }
 
 
@@ -636,6 +565,17 @@ namespace FolderExplorer
             {
                 MessageBox.Show($"Impossible de trouver le fichier à cette position = '{FolderExplorer_form.ExtensionJson}'");
                 return TypeElement.OtherFile;
+            }
+
+            switch(extension.ToLower())
+            {
+                case ".exe":
+                    return TypeElement.Executable;
+                case ".lnk":
+                    return TypeElement.ShortcutIntern;
+                case ".url":
+                    return TypeElement.ShortcutWeb;
+
             }
 
             JObject o1 = JObject.Parse(File.ReadAllText(FolderExplorer_form.ExtensionJson));
