@@ -5,7 +5,7 @@
       "Taille": "size"
     },
     "Audio": {
-      "Bitrate": "bitrate"
+      "Bitrate": "bitRate"
     }
   },
 

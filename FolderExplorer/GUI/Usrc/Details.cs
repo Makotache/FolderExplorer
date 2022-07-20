@@ -15,30 +15,24 @@ namespace FolderExplorer
 {
     public partial class Details : UserControl
     {
-        private Element element;
-        private string header;
-        private JToken jToken;
 
-        public Details(Element element, string name, JToken jToken)
+        public Details(Element element, string header, JToken jToken)
         {
-            this.element = element;
-            this.header = name;
-            this.jToken = jToken;
             InitializeComponent();
-        }
-
-        private void Details_Load(object sender, EventArgs e)
-        {
+       
             header_label.Text = header;
 
             JObject o1 = JObject.Parse(File.ReadAllText(FolderExplorer_form.DetailsJson));
             
             int baseHeight = this.Size.Height;
             int cpt = 0;
-            foreach (JToken jToken in jToken.Values().ToArray())
+            JToken[] arr_jToken = jToken.Values().ToArray();
+            for(int i = 0; i < arr_jToken.Length; i++)
             {
-                string visual_name = ((JProperty)jToken).Name.ToString();
-                string script_name = ((JProperty)jToken).Value.ToString();
+                JToken jToken_ = arr_jToken[i];
+
+                string visual_name = ((JProperty)jToken_).Name.ToString();
+                string script_name = ((JProperty)jToken_).Value.ToString();
                 string val = typeof(Element).GetProperty(script_name).GetValue(element).ToString();
 
                 if (cpt > 0)
@@ -61,10 +55,13 @@ namespace FolderExplorer
                     value_label.Text = val;
                 }
 
-                this.Size = new Size(this.Size.Width, baseHeight + 22 * cpt);
-
-                cpt++;
+                if(!(cpt == 0 && arr_jToken.Length == 1))
+                {
+                    cpt++;
+                }
             }
+
+            this.Size = new Size(this.Size.Width, baseHeight + 13 * cpt); //13 = hauteur label
         }
     }
 }

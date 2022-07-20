@@ -76,13 +76,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.value_label);
             this.Controls.Add(this.property_label);
             this.Controls.Add(this.header_label);
             this.Controls.Add(this.label1);
             this.Name = "Details";
             this.Size = new System.Drawing.Size(380, 41);
-            this.Load += new System.EventHandler(this.Details_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
