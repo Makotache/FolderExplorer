@@ -12,7 +12,7 @@ namespace FolderExplorer
 {
     public partial class Personnalisation_form : Form
     {
-        public Personnalisation_form()
+        public Personnalisation_form(string extension)
         {
             InitializeComponent();
 

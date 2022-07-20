@@ -63,6 +63,7 @@
             this.btn_ok = new System.Windows.Forms.Button();
             this.btn_annuler = new System.Windows.Forms.Button();
             this.btn_appliquer = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.tabControl1.SuspendLayout();
             this.general_tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openwith_Image_Nom)).BeginInit();
@@ -358,6 +359,7 @@
             // 
             // details_tab
             // 
+            this.details_tab.Controls.Add(this.linkLabel1);
             this.details_tab.Controls.Add(this.btn_config_details);
             this.details_tab.Controls.Add(this.details_groupBox);
             this.details_tab.Location = new System.Drawing.Point(4, 22);
@@ -425,6 +427,16 @@
             this.btn_appliquer.Text = "Appliquer";
             this.btn_appliquer.UseVisualStyleBackColor = true;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(7, 404);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(266, 13);
+            this.linkLabel1.TabIndex = 2;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Supprimer les proprétés et les informations personnelles";
+            // 
             // Properties_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -445,6 +457,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.openwith_Image_Nom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.openwith_Icon)).EndInit();
             this.details_tab.ResumeLayout(false);
+            this.details_tab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -486,5 +499,6 @@
         private System.Windows.Forms.TabPage versions_tab;
         private System.Windows.Forms.Button btn_config_details;
         private System.Windows.Forms.GroupBox details_groupBox;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
