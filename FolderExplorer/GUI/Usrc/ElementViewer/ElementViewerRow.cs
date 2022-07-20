@@ -155,16 +155,16 @@ namespace FolderExplorer
                 control.Location = new Point(35, 0);
                 control.Size = new Size(evh.Size.Width - 35, heightLabel);
             }
-            
         }
 
         private void ElementViewerRow_KeyDown(object sender, KeyEventArgs e)
         {
             //F2
             //fleche directionnel
+            //alt + fleche directionnel
             //touche "click droit"
             //suppr
-            //alt entrer
+            //alt + entrer
             //entrer
             //shift / control
         }

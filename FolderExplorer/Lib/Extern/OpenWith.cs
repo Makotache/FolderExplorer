@@ -33,39 +33,20 @@ namespace FolderExplorer
             }
 
             string extension = element.extension;
-            if (element.typeElement == TypeElement.Executable)
-            {
-                extension = element.fullPath;
-            }
-
             string appli_exe;
-            if (extension.Contains("\\"))
+            if (element.typeElement == TypeElement.Executable)
             {//on a un chemin complet d'une appli
-                appli_exe = extension;
+                appli_exe = element.fullPath;
             }
             else
             {//on a une extension
                 appli_exe = FileExtentionInfo(AssocStr.Executable, extension);
             }
+
             //recuperation de l'icone
             if (appli_exe.Contains("exe"))
             {
                 return Icon.ExtractAssociatedIcon(appli_exe).ToBitmap();
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public static Icon ElementToIco(Element element)
-        {
-            string extension = element.extension;
-            string appli_exe = FileExtentionInfo(AssocStr.Executable, extension);
-
-            if (appli_exe.Contains("exe"))
-            {
-                return Icon.ExtractAssociatedIcon(appli_exe);
             }
             else
             {
