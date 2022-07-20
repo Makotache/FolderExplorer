@@ -236,7 +236,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Res\sampleFolder.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="FolderExplorerConfigs\details.json">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

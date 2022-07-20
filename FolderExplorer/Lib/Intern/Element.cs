@@ -315,7 +315,7 @@ namespace FolderExplorer
         /// </summary>
         public Image image
         {
-            get => OpenWith.ElementToImage(typeElement != TypeElement.Executable ? extension : fullPath);
+            get => OpenWith.ElementToImage(this);
         }
 
         /// <summary>
@@ -323,7 +323,14 @@ namespace FolderExplorer
         /// </summary>
         public Icon icon
         {
-            get => OpenWith.ElementToIco(extension);
+            get
+            {
+                if(this.image != null)
+                {
+                    return Icon.FromHandle(new Bitmap(this.image).GetHicon());
+                }
+                return null;
+            }  //OpenWith.ElementToIco(this);
         }
 
 

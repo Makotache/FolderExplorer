@@ -67,11 +67,15 @@ namespace FolderExplorer
         public ElementViewerRow(Element element, bool nameOnly, ElementViewer elementViewer)
         {
             InitializeComponent();
+
             this.element = element;
             this.elementViewer = elementViewer;
             this.Size = new Size(0, 0);
+            
             elementViewer.HeaderResize += new EventHandler(HeaderResize);
             ChangeNameVisibility(nameOnly);
+
+            icon_pictureBox.Image = element.image;
         }
 
         public void ChangeNameVisibility(bool nameOnly)
@@ -101,7 +105,7 @@ namespace FolderExplorer
                 name_labelEdit.Click += ElementViewerRow_Click;
                 name_labelEdit.DoubleClick += ElementViewerRow_DoubleClick;
                 control = name_labelEdit;
-                //control.ForeColor = Color.White;
+                control.ForeColor = Color.White;
             }
             control.Name = evh.metaDataElement.ToString();
             string value = element.GetValue(evh.metaDataElement).ToString();
@@ -110,7 +114,7 @@ namespace FolderExplorer
 
 
             ChangeLabelLocationSize(control, evh);
-            this.Size = new Size(this.Size.Width + control.Width, heightRow);
+
             this.Controls.Add(control);
             label_dict.Add(evh.metaDataElement, control);
         }
@@ -141,15 +145,17 @@ namespace FolderExplorer
         {
             //attention scroll
             int x = evh.Location.X;
-            if(control != name_labelEdit)
+            if (elementViewer.elementViewerHeader_lst.IndexOf(evh) > 0)
             {
-                control.Location = new Point(x, 4);
+                control.Location = new Point(x + 15, 4);
+                control.Size = new Size(evh.Size.Width - 15, heightLabel);
             }
             else
             {
-                control.Location = new Point(x, 0);
+                control.Location = new Point(35, 0);
+                control.Size = new Size(evh.Size.Width - 35, heightLabel);
             }
-            control.Size = new Size(evh.Size.Width, heightLabel);
+            
         }
 
         private void ElementViewerRow_KeyDown(object sender, KeyEventArgs e)

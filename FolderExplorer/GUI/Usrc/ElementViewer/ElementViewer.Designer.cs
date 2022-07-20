@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.moveHeader_timer = new System.Windows.Forms.Timer(this.components);
+            this.refresh_timer = new System.Windows.Forms.Timer(this.components);
             this.containerRow_panel = new System.Windows.Forms.Panel();
             this.size_evh_usrc = new FolderExplorer.ElementViewerHeader();
             this.type_evh_usrc = new FolderExplorer.ElementViewerHeader();
@@ -39,8 +39,8 @@
             // 
             // moveHeader_timer
             // 
-            this.moveHeader_timer.Interval = 15;
-            this.moveHeader_timer.Tick += new System.EventHandler(this.MoveHeader_Tick);
+            this.refresh_timer.Interval = 15;
+            this.refresh_timer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
             // containerRow_panel
             // 
@@ -123,7 +123,7 @@
 
         private ElementViewerHeader name_evh_usrc;
         private ElementViewerHeader lastWriteTime_evh_usrc;
-        private System.Windows.Forms.Timer moveHeader_timer;
+        private System.Windows.Forms.Timer refresh_timer;
         private ElementViewerHeader size_evh_usrc;
         private ElementViewerHeader type_evh_usrc;
         private System.Windows.Forms.Panel containerRow_panel;

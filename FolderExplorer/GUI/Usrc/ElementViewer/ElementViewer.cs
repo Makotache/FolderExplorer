@@ -45,11 +45,10 @@ namespace FolderExplorer
         private SelectField selectField = new SelectField();
         private bool selectMode = false;
 
+        //timer
+        private MouseButtons lastButtons = MouseButtons.None;
 
         //event
-        //public event RowEventHandler rowAdded;
-        //public event RowEventHandler rowRemoved;
-
         private EventHandler _onHeaderResize;
         public event EventHandler HeaderResize
         {
@@ -73,21 +72,17 @@ namespace FolderExplorer
             AddHeader(lastWriteTime_evh_usrc, new object[] { });
             AddHeader(type_evh_usrc, new object[] { });
             AddHeader(size_evh_usrc, new object[] { });
-            moveHeader_timer.Enabled = true;
+            refresh_timer.Enabled = true;
 
             LoadPath(path);
         }
 
         public void LoadPath(string path, bool forceLoad = false, bool backButton = false)
-        {
-            //Console.WriteLine($"this.path => '{this.path}'");
-            //Console.WriteLine($"path => '{path}'");
-            //Console.WriteLine($"forceLoad => '{forceLoad}'");
-            
+        {            
             if (!forceLoad && (String.IsNullOrEmpty(path) || path == this.path)) 
             { return; }
-            else if (this.path != "" && !backButton)
-            { leavedFolder_lst.Add(this.path); }
+            /*else if (this.path != "" && !backButton)
+            { leavedFolder_lst.Add(this.path); }*/
             this.path = path;
 
             elementViewerRow_lst.ForEach(r => containerRow_panel.Controls.Remove(r));
@@ -95,11 +90,8 @@ namespace FolderExplorer
             selectedRows_lst.Clear();
             lastSelectedRow = null;
 
-            Element[] elements = Element.GetElements(path);
-            for (int i = 0; i < elements.Length; i++)
-            {
-                AddRow(elements[i]);
-            }
+            List<Element> elements = Element.GetElements(path).ToList();
+            elements.ForEach(e => AddRow(e));
         }
 
         #region Row
@@ -107,14 +99,15 @@ namespace FolderExplorer
         private void AddRow(Element element)
         {
             ElementViewerRow evr = new ElementViewerRow(element, false, this);
-            
-            int y = elementViewerRow_lst.Count * (ElementViewerRow.heightRow + 1) + 1;
+
+            int y = elementViewerRow_lst.Count * (ElementViewerRow.heightRow + 1) + 1 - this.containerRow_panel.VerticalScroll.Value;
             evr.Location = new Point(0, y);
             evr.Click += Evr_Click;
 
-            //evr.Size = new Size(intersectionEvh_lst[intersectionEvh_lst.Count - 1].X, ElementViewerRow.heightRow);
-
             elementViewerHeader_lst.ForEach(h => evr.AddColumn(h));
+
+            evr.Size = new Size(intersectionEvh_lst.Last().X, ElementViewerRow.heightRow);
+
             elementViewerRow_lst.Add(evr);
             containerRow_panel.Controls.Add(evr);
         }
@@ -142,7 +135,8 @@ namespace FolderExplorer
                     //il faut relacher pour ca
                 }
             }
-            else */if(sender is ElementViewerRow evr && mouseEvent.Button == MouseButtons.Left)
+            else */
+            if(sender is ElementViewerRow evr && mouseEvent.Button == MouseButtons.Left)
             {
                 void Shift()
                 {
@@ -268,7 +262,7 @@ namespace FolderExplorer
         #region Timer
 
         //sert a bouger les en-têtes
-        private void MoveHeader_Tick(object sender, EventArgs e)
+        private void refreshTimer_Tick(object sender, EventArgs e)
         {
             //la fenetre active doit etre celle ci
             if(folderExplorer.ContainsFocus)
@@ -323,21 +317,25 @@ namespace FolderExplorer
                     }
 
                     //touche souris "dossier parent" / "dossier quitter"
-                    else if (Control.MouseButtons == MouseButtons.XButton1)
+                    if(Control.MouseButtons == MouseButtons.None)
                     {
-                        LoadPath(parentFolder);
-                    }
-                    else if (Control.MouseButtons == MouseButtons.XButton2)
-                    {
-                        if (leavedFolder_lst.Count > 0)
+                        if (lastButtons == MouseButtons.XButton1)
                         {
-                            string path = leavedFolder_lst[leavedFolder_lst.Count - 1];
-                            leavedFolder_lst.Remove(path);
-                            LoadPath(path, backButton: true);
+                            leavedFolder_lst.Add(this.path);
+                            LoadPath(parentFolder);
+                        }
+                        else if (lastButtons == MouseButtons.XButton2)
+                        {
+                            if (leavedFolder_lst.Count > 0)
+                            {
+                                string path = leavedFolder_lst[leavedFolder_lst.Count - 1];
+                                leavedFolder_lst.Remove(path);
+                                LoadPath(path, backButton: true);
+                            }
                         }
                     }
-                }                    
-                
+                }//la souris doit ce trouver dans le formulaire          
+
                 //selection avec un "drag" de la souris
                 if (indexMoveHeader == -1 && Control.MouseButtons == MouseButtons.Left && (selectMode || (!selectMode && this.GetChildAtPoint(this.PointToClient(Cursor.Position)) == containerRow_panel)))
                 {
@@ -359,7 +357,9 @@ namespace FolderExplorer
                     selectMode = false;
                     containerRow_panel.Controls.Remove(selectField);
                 }
-            }
+
+                lastButtons = Control.MouseButtons;
+            }//la fenetre active doit etre celle ci
         }
 
         //maj de la liste des intersections
@@ -385,7 +385,7 @@ namespace FolderExplorer
 
         public void EndTimerMoveHeader()
         {
-            moveHeader_timer.Enabled = false;
+            refresh_timer.Enabled = false;
         }
 
         #endregion
