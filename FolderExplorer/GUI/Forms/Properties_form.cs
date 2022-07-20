@@ -49,8 +49,7 @@ namespace FolderExplorer
             itemType_label.Text = element.itemType + " (" + element.extension + ")";
             if (element.extension == ".exe")
             {
-                FileVersionInfo infosfichier = FileVersionInfo.GetVersionInfo(element.path.Replace("/", "\\") + "\\" + element.fullName);
-                openWith_label.Text = infosfichier.FileDescription;
+                openWith_label.Text = element.fileDescription;
             }
             else
             {

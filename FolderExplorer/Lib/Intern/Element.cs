@@ -63,10 +63,10 @@ namespace FolderExplorer
         {
             get
             {
-                if(isFile)
+                if (isFile)
                 {
                     string result = OpenWith.DocNameToFriendly(extension);
-                    return CPCS.StringContainLatinLetter(result, " .()[]" ) ? result : _itemType;
+                    return CPCS.StringContainLatinLetter(result, " .()[]") ? result : _itemType;
                 }
                 else
                 {
@@ -83,7 +83,7 @@ namespace FolderExplorer
         {
             get => _elementInfo.LastWriteTime;
 
-            set => _elementInfo.LastWriteTime = value; 
+            set => _elementInfo.LastWriteTime = value;
         }
 
         //4
@@ -103,7 +103,7 @@ namespace FolderExplorer
         /// </summary>
         public DateTime lastAccessTime
         {
-            get => _elementInfo.LastAccessTime; 
+            get => _elementInfo.LastAccessTime;
 
             set => _elementInfo.LastAccessTime = value;
         }
@@ -268,7 +268,7 @@ namespace FolderExplorer
         /// </summary>
         public string fullName
         {
-            get => _elementInfo.Name; 
+            get => _elementInfo.Name;
 
             set
             {
@@ -300,9 +300,11 @@ namespace FolderExplorer
         {
             get => OpenWith.ExtensionToPrg(extension);
         }
-        
+
         public TypeElement typeElement { get; private set; }
 
+        public readonly FileVersionInfo exeVersionInfo;
+        
         private readonly FileSystemInfo _elementInfo;
 
         /// <summary>
@@ -350,10 +352,15 @@ namespace FolderExplorer
             {
                 _elementInfo = new FileInfo(this.fullPath);
                 typeElement = GetTypeElement();
+
+                if(typeElement == TypeElement.Executable)
+                {
+                    exeVersionInfo = FileVersionInfo.GetVersionInfo(this.fullPath);
+                }
             }
             else
             { _elementInfo = new DirectoryInfo(this.fullPath); }
-
+            
 
 
             diskLocation = this.fullPath.Substring(0, 3);
@@ -784,8 +791,15 @@ namespace FolderExplorer
         {
             path = path.Replace('\\', '/');
             List<Element> result = new List<Element>();
-            result.AddRange(GetFolders(path));
-            result.AddRange(GetFiles(path));
+            try
+            {
+                result.AddRange(GetFolders(path));
+                result.AddRange(GetFiles(path));
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                throw new UnauthorizedAccessException(ex.Message);
+            }
 
             return result.ToArray();
         }
@@ -798,7 +812,16 @@ namespace FolderExplorer
         public static Element[] GetFolders(string path)
         {
             path = path.Replace('\\', '/');
-            string[] folders = Directory.GetDirectories(path);
+            string[] folders;
+
+            try
+            {
+                folders = Directory.GetDirectories(path);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                throw new UnauthorizedAccessException(ex.Message);
+            }
             
             Element[] result = new Element[folders.Length];
 
@@ -820,7 +843,16 @@ namespace FolderExplorer
         public static Element[] GetFiles(string path)
         {
             path = path.Replace('\\', '/');
-            string[] files = Directory.GetFiles(path);
+            string[] files;
+
+            try
+            {
+                files = Directory.GetFiles(path);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                throw new UnauthorizedAccessException(ex.Message);
+            }
 
             Element[] result = new Element[files.Length];
 

@@ -90,8 +90,17 @@ namespace FolderExplorer
             selectedRows_lst.Clear();
             lastSelectedRow = null;
 
-            List<Element> elements = Element.GetElements(path).ToList();
-            elements.ForEach(e => AddRow(e));
+            try
+            {
+                List<Element> elements = Element.GetElements(path).ToList();
+                elements.ForEach(e => AddRow(e));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message +"\n\n(Message temporaire)", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                LoadPath(parentFolder);
+            }
+            
         }
 
         #region Row
