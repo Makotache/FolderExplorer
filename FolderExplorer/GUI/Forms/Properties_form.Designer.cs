@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.general = new System.Windows.Forms.TabPage();
+            this.general_tab = new System.Windows.Forms.TabPage();
             this.openwith_Image_Nom = new System.Windows.Forms.PictureBox();
             this.openwith_Icon = new System.Windows.Forms.PictureBox();
             this.btn_modifier = new System.Windows.Forms.Button();
@@ -53,28 +53,31 @@
             this.itemType_label = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Tb_name = new System.Windows.Forms.TextBox();
-            this.compatibilite = new System.Windows.Forms.TabPage();
-            this.signature = new System.Windows.Forms.TabPage();
-            this.securite = new System.Windows.Forms.TabPage();
+            this.compatibilite_tab = new System.Windows.Forms.TabPage();
+            this.signature_tab = new System.Windows.Forms.TabPage();
+            this.securite_tab = new System.Windows.Forms.TabPage();
             this.details_tab = new System.Windows.Forms.TabPage();
-            this.versions = new System.Windows.Forms.TabPage();
+            this.versions_tab = new System.Windows.Forms.TabPage();
             this.btn_ok = new System.Windows.Forms.Button();
             this.btn_annuler = new System.Windows.Forms.Button();
             this.btn_appliquer = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_config_details = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
-            this.general.SuspendLayout();
+            this.general_tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openwith_Image_Nom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.openwith_Icon)).BeginInit();
+            this.details_tab.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.general);
-            this.tabControl1.Controls.Add(this.compatibilite);
-            this.tabControl1.Controls.Add(this.signature);
-            this.tabControl1.Controls.Add(this.securite);
+            this.tabControl1.Controls.Add(this.general_tab);
+            this.tabControl1.Controls.Add(this.compatibilite_tab);
+            this.tabControl1.Controls.Add(this.signature_tab);
+            this.tabControl1.Controls.Add(this.securite_tab);
             this.tabControl1.Controls.Add(this.details_tab);
-            this.tabControl1.Controls.Add(this.versions);
+            this.tabControl1.Controls.Add(this.versions_tab);
             this.tabControl1.Location = new System.Drawing.Point(6, 7);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -82,38 +85,38 @@
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // general
+            // general_tab
             // 
-            this.general.Controls.Add(this.openwith_Image_Nom);
-            this.general.Controls.Add(this.openwith_Icon);
-            this.general.Controls.Add(this.btn_modifier);
-            this.general.Controls.Add(this.cb_cache);
-            this.general.Controls.Add(this.cb_lecture_seule);
-            this.general.Controls.Add(this.label2);
-            this.general.Controls.Add(this.lastAccesTime_label);
-            this.general.Controls.Add(this.label15);
-            this.general.Controls.Add(this.lastWriteTime_label);
-            this.general.Controls.Add(this.label13);
-            this.general.Controls.Add(this.creationTime_label);
-            this.general.Controls.Add(this.label11);
-            this.general.Controls.Add(this.sizeOnDisk_label);
-            this.general.Controls.Add(this.label9);
-            this.general.Controls.Add(this.size_label);
-            this.general.Controls.Add(this.label7);
-            this.general.Controls.Add(this.path_label);
-            this.general.Controls.Add(this.label5);
-            this.general.Controls.Add(this.openWith_label);
-            this.general.Controls.Add(this.label3);
-            this.general.Controls.Add(this.itemType_label);
-            this.general.Controls.Add(this.label1);
-            this.general.Controls.Add(this.Tb_name);
-            this.general.Location = new System.Drawing.Point(4, 22);
-            this.general.Name = "general";
-            this.general.Padding = new System.Windows.Forms.Padding(3);
-            this.general.Size = new System.Drawing.Size(438, 436);
-            this.general.TabIndex = 0;
-            this.general.Text = "Général";
-            this.general.UseVisualStyleBackColor = true;
+            this.general_tab.Controls.Add(this.openwith_Image_Nom);
+            this.general_tab.Controls.Add(this.openwith_Icon);
+            this.general_tab.Controls.Add(this.btn_modifier);
+            this.general_tab.Controls.Add(this.cb_cache);
+            this.general_tab.Controls.Add(this.cb_lecture_seule);
+            this.general_tab.Controls.Add(this.label2);
+            this.general_tab.Controls.Add(this.lastAccesTime_label);
+            this.general_tab.Controls.Add(this.label15);
+            this.general_tab.Controls.Add(this.lastWriteTime_label);
+            this.general_tab.Controls.Add(this.label13);
+            this.general_tab.Controls.Add(this.creationTime_label);
+            this.general_tab.Controls.Add(this.label11);
+            this.general_tab.Controls.Add(this.sizeOnDisk_label);
+            this.general_tab.Controls.Add(this.label9);
+            this.general_tab.Controls.Add(this.size_label);
+            this.general_tab.Controls.Add(this.label7);
+            this.general_tab.Controls.Add(this.path_label);
+            this.general_tab.Controls.Add(this.label5);
+            this.general_tab.Controls.Add(this.openWith_label);
+            this.general_tab.Controls.Add(this.label3);
+            this.general_tab.Controls.Add(this.itemType_label);
+            this.general_tab.Controls.Add(this.label1);
+            this.general_tab.Controls.Add(this.Tb_name);
+            this.general_tab.Location = new System.Drawing.Point(4, 22);
+            this.general_tab.Name = "general_tab";
+            this.general_tab.Padding = new System.Windows.Forms.Padding(3);
+            this.general_tab.Size = new System.Drawing.Size(438, 436);
+            this.general_tab.TabIndex = 0;
+            this.general_tab.Text = "Général";
+            this.general_tab.UseVisualStyleBackColor = true;
             // 
             // openwith_Image_Nom
             // 
@@ -323,55 +326,57 @@
             this.Tb_name.Size = new System.Drawing.Size(285, 20);
             this.Tb_name.TabIndex = 0;
             // 
-            // compatibilite
+            // compatibilite_tab
             // 
-            this.compatibilite.Location = new System.Drawing.Point(4, 22);
-            this.compatibilite.Name = "compatibilite";
-            this.compatibilite.Padding = new System.Windows.Forms.Padding(3);
-            this.compatibilite.Size = new System.Drawing.Size(438, 436);
-            this.compatibilite.TabIndex = 1;
-            this.compatibilite.Text = "Compatibilité";
-            this.compatibilite.UseVisualStyleBackColor = true;
+            this.compatibilite_tab.Location = new System.Drawing.Point(4, 22);
+            this.compatibilite_tab.Name = "compatibilite_tab";
+            this.compatibilite_tab.Padding = new System.Windows.Forms.Padding(3);
+            this.compatibilite_tab.Size = new System.Drawing.Size(438, 436);
+            this.compatibilite_tab.TabIndex = 1;
+            this.compatibilite_tab.Text = "Compatibilité";
+            this.compatibilite_tab.UseVisualStyleBackColor = true;
             // 
-            // signature
+            // signature_tab
             // 
-            this.signature.Location = new System.Drawing.Point(4, 22);
-            this.signature.Name = "signature";
-            this.signature.Padding = new System.Windows.Forms.Padding(3);
-            this.signature.Size = new System.Drawing.Size(438, 436);
-            this.signature.TabIndex = 2;
-            this.signature.Text = "Signature numériques";
-            this.signature.UseVisualStyleBackColor = true;
+            this.signature_tab.Location = new System.Drawing.Point(4, 22);
+            this.signature_tab.Name = "signature_tab";
+            this.signature_tab.Padding = new System.Windows.Forms.Padding(3);
+            this.signature_tab.Size = new System.Drawing.Size(438, 436);
+            this.signature_tab.TabIndex = 2;
+            this.signature_tab.Text = "Signature numériques";
+            this.signature_tab.UseVisualStyleBackColor = true;
             // 
-            // securite
+            // securite_tab
             // 
-            this.securite.Location = new System.Drawing.Point(4, 22);
-            this.securite.Name = "securite";
-            this.securite.Padding = new System.Windows.Forms.Padding(3);
-            this.securite.Size = new System.Drawing.Size(438, 436);
-            this.securite.TabIndex = 3;
-            this.securite.Text = "Sécurité";
-            this.securite.UseVisualStyleBackColor = true;
+            this.securite_tab.Location = new System.Drawing.Point(4, 22);
+            this.securite_tab.Name = "securite_tab";
+            this.securite_tab.Padding = new System.Windows.Forms.Padding(3);
+            this.securite_tab.Size = new System.Drawing.Size(438, 436);
+            this.securite_tab.TabIndex = 3;
+            this.securite_tab.Text = "Sécurité";
+            this.securite_tab.UseVisualStyleBackColor = true;
             // 
-            // details
+            // details_tab
             // 
+            this.details_tab.Controls.Add(this.btn_config_details);
+            this.details_tab.Controls.Add(this.groupBox1);
             this.details_tab.Location = new System.Drawing.Point(4, 22);
-            this.details_tab.Name = "details";
+            this.details_tab.Name = "details_tab";
             this.details_tab.Padding = new System.Windows.Forms.Padding(3);
             this.details_tab.Size = new System.Drawing.Size(438, 436);
             this.details_tab.TabIndex = 4;
             this.details_tab.Text = "Détails";
             this.details_tab.UseVisualStyleBackColor = true;
             // 
-            // versions
+            // versions_tab
             // 
-            this.versions.Location = new System.Drawing.Point(4, 22);
-            this.versions.Name = "versions";
-            this.versions.Padding = new System.Windows.Forms.Padding(3);
-            this.versions.Size = new System.Drawing.Size(438, 436);
-            this.versions.TabIndex = 5;
-            this.versions.Text = "Versions précédentes";
-            this.versions.UseVisualStyleBackColor = true;
+            this.versions_tab.Location = new System.Drawing.Point(4, 22);
+            this.versions_tab.Name = "versions_tab";
+            this.versions_tab.Padding = new System.Windows.Forms.Padding(3);
+            this.versions_tab.Size = new System.Drawing.Size(438, 436);
+            this.versions_tab.TabIndex = 5;
+            this.versions_tab.Text = "Versions précédentes";
+            this.versions_tab.UseVisualStyleBackColor = true;
             // 
             // btn_ok
             // 
@@ -401,6 +406,25 @@
             this.btn_appliquer.Text = "Appliquer";
             this.btn_appliquer.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(7, 7);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(425, 390);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // btn_config_details
+            // 
+            this.btn_config_details.Location = new System.Drawing.Point(312, 403);
+            this.btn_config_details.Name = "btn_config_details";
+            this.btn_config_details.Size = new System.Drawing.Size(120, 23);
+            this.btn_config_details.TabIndex = 1;
+            this.btn_config_details.Text = "Configuration Détails";
+            this.btn_config_details.UseVisualStyleBackColor = true;
+            this.btn_config_details.Click += new System.EventHandler(this.btn_config_details_Click);
+            // 
             // Properties_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -416,10 +440,11 @@
             this.Name = "Properties_form";
             this.Text = "Properties";
             this.tabControl1.ResumeLayout(false);
-            this.general.ResumeLayout(false);
-            this.general.PerformLayout();
+            this.general_tab.ResumeLayout(false);
+            this.general_tab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openwith_Image_Nom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.openwith_Icon)).EndInit();
+            this.details_tab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -427,10 +452,10 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage general;
-        private System.Windows.Forms.TabPage compatibilite;
-        private System.Windows.Forms.TabPage signature;
-        private System.Windows.Forms.TabPage securite;
+        private System.Windows.Forms.TabPage general_tab;
+        private System.Windows.Forms.TabPage compatibilite_tab;
+        private System.Windows.Forms.TabPage signature_tab;
+        private System.Windows.Forms.TabPage securite_tab;
         private System.Windows.Forms.Label lastAccesTime_label;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lastWriteTime_label;
@@ -458,6 +483,8 @@
         private System.Windows.Forms.PictureBox openwith_Icon;
         private System.Windows.Forms.PictureBox openwith_Image_Nom;
         private System.Windows.Forms.TabPage details_tab;
-        private System.Windows.Forms.TabPage versions;
+        private System.Windows.Forms.TabPage versions_tab;
+        private System.Windows.Forms.Button btn_config_details;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

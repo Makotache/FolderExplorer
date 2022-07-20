@@ -37,8 +37,8 @@ namespace FolderExplorer
                 label3.Text = "S'ouvre avec : ";
                 openwith_Icon.Visible = true;
                 btn_modifier.Visible = true;
-                tabControl1.TabPages.RemoveAt(1); //suppression onglet compatibilité
-                tabControl1.TabPages.RemoveAt(1); //suppression onglet signatures numeriques, attention, on remet 1 parce que l'onglet a été décalé vers la gauche à cause de la suppression du premier
+                tabControl1.TabPages.Remove(compatibilite_tab); //suppression onglet compatibilité
+                tabControl1.TabPages.Remove(signature_tab); //suppression onglet signatures numeriques, attention, on remet 1 parce que l'onglet a été décalé vers la gauche à cause de la suppression du premier
             }
 
             btn_appliquer.Enabled = false;
@@ -117,6 +117,12 @@ namespace FolderExplorer
                 }
                 details_loaded = true;
             }
+        }
+
+        private void btn_config_details_Click(object sender, EventArgs e)
+        {
+            Personnalisation_form personnalisation_Form = new Personnalisation_form();
+            personnalisation_Form.Show();
         }
     }
 }
