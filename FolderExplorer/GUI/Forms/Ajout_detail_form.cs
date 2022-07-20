@@ -14,7 +14,7 @@ namespace FolderExplorer
     public partial class Ajout_detail_form : Form
     {
         bool fininit;
-        public Ajout_detail_form()
+        public Ajout_detail_form(string extension)
         {
             InitializeComponent();
             refreshcb(false);

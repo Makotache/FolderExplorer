@@ -127,8 +127,8 @@ namespace FolderExplorer
 
         private void btn_config_details_Click(object sender, EventArgs e)
         {
-            Personnalisation_form personnalisation_Form = new Personnalisation_form();
-            personnalisation_Form.Show(element.extension);
+            Personnalisation_form personnalisation_Form = new Personnalisation_form(element.extension);
+            personnalisation_Form.Show();
         }
     }
 }

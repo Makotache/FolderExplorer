@@ -23,7 +23,7 @@ namespace FolderExplorer
         private void btn_ajout_details_Click(object sender, EventArgs e)
         {
             Ajout_detail_form ajout_Detail_Form = new Ajout_detail_form();
-            ajout_Detail_Form.Show();
+            ajout_Detail_Form.Show(extension);
         }
     }
 }
