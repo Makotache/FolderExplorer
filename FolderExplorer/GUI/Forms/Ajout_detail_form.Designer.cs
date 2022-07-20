@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cb_type = new System.Windows.Forms.ComboBox();
             this.cb_categories = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_creer = new System.Windows.Forms.Button();
-            this.detail_nom = new System.Windows.Forms.TextBox();
+            this.tb_detail_nom = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // cb_type
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cb_type.FormattingEnabled = true;
+            this.cb_type.Items.AddRange(new object[] {
             "Nom (Name)",
             "Type (Type)",
             "Chemin du dossier (FolderPath)",
@@ -49,10 +49,10 @@
             "Attributs",
             "Propriétaire",
             "Ordinateur"});
-            this.comboBox1.Location = new System.Drawing.Point(22, 84);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(299, 21);
-            this.comboBox1.TabIndex = 0;
+            this.cb_type.Location = new System.Drawing.Point(22, 84);
+            this.cb_type.Name = "cb_type";
+            this.cb_type.Size = new System.Drawing.Size(299, 21);
+            this.cb_type.TabIndex = 0;
             // 
             // cb_categories
             // 
@@ -91,25 +91,25 @@
             this.btn_creer.UseVisualStyleBackColor = true;
             this.btn_creer.Click += new System.EventHandler(this.btn_creer_Click);
             // 
-            // detail_nom
+            // tb_detail_nom
             // 
-            this.detail_nom.Location = new System.Drawing.Point(22, 30);
-            this.detail_nom.Name = "detail_nom";
-            this.detail_nom.Size = new System.Drawing.Size(299, 20);
-            this.detail_nom.TabIndex = 5;
-            this.detail_nom.Text = "Nom Détail";
+            this.tb_detail_nom.Location = new System.Drawing.Point(22, 30);
+            this.tb_detail_nom.Name = "tb_detail_nom";
+            this.tb_detail_nom.Size = new System.Drawing.Size(299, 20);
+            this.tb_detail_nom.TabIndex = 5;
+            this.tb_detail_nom.Text = "Nom Détail";
             // 
             // Ajout_detail_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(340, 225);
-            this.Controls.Add(this.detail_nom);
+            this.Controls.Add(this.tb_detail_nom);
             this.Controls.Add(this.btn_creer);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cb_categories);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cb_type);
             this.Name = "Ajout_detail_form";
             this.Text = "Ajout Detail";
             this.ResumeLayout(false);
@@ -119,11 +119,11 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cb_type;
         private System.Windows.Forms.ComboBox cb_categories;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_creer;
-        private System.Windows.Forms.TextBox detail_nom;
+        private System.Windows.Forms.TextBox tb_detail_nom;
     }
 }

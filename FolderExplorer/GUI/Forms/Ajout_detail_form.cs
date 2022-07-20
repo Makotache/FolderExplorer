@@ -14,9 +14,11 @@ namespace FolderExplorer
     public partial class Ajout_detail_form : Form
     {
         bool fininit;
+        string _extension;
         public Ajout_detail_form(string extension)
         {
             InitializeComponent();
+            _extension = extension;
             refreshcb(false);
         }
 
@@ -63,7 +65,17 @@ namespace FolderExplorer
 
         private void btn_creer_Click(object sender, EventArgs e)
         {
-
+            /*
+            ".wav": {
+            "Fichier": {
+            "Nom": "name"
+            }
+            }
+             */
+            string fichier = "temp"+_extension;
+            string[] lignes = { "." + _extension + " : {", cb_categories.SelectedValue.ToString() + " : {", tb_detail_nom.Text + " : " + cb_type.SelectedValue.ToString(), "}", "}" };
+            File.AppendAllLines(fichier, lignes);
+            Close();
         }
     }
 }
