@@ -63,7 +63,10 @@ namespace FolderExplorer
         OtherFile,
         Image,
         Music,
-        Video
+        Video,
+        Executable,
+        ShortcutIntern,
+        ShortcutWeb
     }
 
     public enum MetaDataElement

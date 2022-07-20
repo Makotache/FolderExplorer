@@ -99,20 +99,27 @@ namespace FolderExplorer
             {
                 JObject o1 = JObject.Parse(File.ReadAllText(FolderExplorer_form.DetailsJson));
 
+                //extension
                 foreach (JProperty jProperty in o1.Properties())
                 {
                     if (jProperty.Name.ToString() == element.extension)
                     {
-                        int previous_y = 0;
+                        int previous_y = 16;
+                        const int border_x = 6;
+                        //catégories
                         foreach (JToken jToken in jProperty.Value.ToArray())
                         {
                             string header = ((JProperty)jToken).Name;
+                            
                             Details details = new Details(element, header, jToken);
                             details.Name = header;
-                            details.Location = new Point(1, 1 + previous_y);
-                            details.Size = new Size(details_tab.Size.Width, details.Size.Height);
-                            details_tab.Controls.Add(details);
+                            details.Location = new Point(border_x, previous_y);
+                            details.Size = new Size(details_groupBox.Size.Width - border_x * 2, details.Size.Height);
+
+                            previous_y += details.Size.Height + 1;
+                            details_groupBox.Controls.Add(details);
                         }
+                        break;
                     }
                 }
                 details_loaded = true;

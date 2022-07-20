@@ -57,12 +57,12 @@
             this.signature_tab = new System.Windows.Forms.TabPage();
             this.securite_tab = new System.Windows.Forms.TabPage();
             this.details_tab = new System.Windows.Forms.TabPage();
+            this.btn_config_details = new System.Windows.Forms.Button();
+            this.details_groupBox = new System.Windows.Forms.GroupBox();
             this.versions_tab = new System.Windows.Forms.TabPage();
             this.btn_ok = new System.Windows.Forms.Button();
             this.btn_annuler = new System.Windows.Forms.Button();
             this.btn_appliquer = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btn_config_details = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.general_tab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openwith_Image_Nom)).BeginInit();
@@ -359,7 +359,7 @@
             // details_tab
             // 
             this.details_tab.Controls.Add(this.btn_config_details);
-            this.details_tab.Controls.Add(this.groupBox1);
+            this.details_tab.Controls.Add(this.details_groupBox);
             this.details_tab.Location = new System.Drawing.Point(4, 22);
             this.details_tab.Name = "details_tab";
             this.details_tab.Padding = new System.Windows.Forms.Padding(3);
@@ -367,6 +367,25 @@
             this.details_tab.TabIndex = 4;
             this.details_tab.Text = "Détails";
             this.details_tab.UseVisualStyleBackColor = true;
+            // 
+            // btn_config_details
+            // 
+            this.btn_config_details.Location = new System.Drawing.Point(312, 403);
+            this.btn_config_details.Name = "btn_config_details";
+            this.btn_config_details.Size = new System.Drawing.Size(120, 23);
+            this.btn_config_details.TabIndex = 1;
+            this.btn_config_details.Text = "Configuration Détails";
+            this.btn_config_details.UseVisualStyleBackColor = true;
+            this.btn_config_details.Click += new System.EventHandler(this.btn_config_details_Click);
+            // 
+            // details_groupBox
+            // 
+            this.details_groupBox.Location = new System.Drawing.Point(7, 7);
+            this.details_groupBox.Name = "details_groupBox";
+            this.details_groupBox.Size = new System.Drawing.Size(425, 390);
+            this.details_groupBox.TabIndex = 0;
+            this.details_groupBox.TabStop = false;
+            this.details_groupBox.Text = "details_groupBox";
             // 
             // versions_tab
             // 
@@ -405,25 +424,6 @@
             this.btn_appliquer.TabIndex = 3;
             this.btn_appliquer.Text = "Appliquer";
             this.btn_appliquer.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Location = new System.Drawing.Point(7, 7);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(425, 390);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
-            // 
-            // btn_config_details
-            // 
-            this.btn_config_details.Location = new System.Drawing.Point(312, 403);
-            this.btn_config_details.Name = "btn_config_details";
-            this.btn_config_details.Size = new System.Drawing.Size(120, 23);
-            this.btn_config_details.TabIndex = 1;
-            this.btn_config_details.Text = "Configuration Détails";
-            this.btn_config_details.UseVisualStyleBackColor = true;
-            this.btn_config_details.Click += new System.EventHandler(this.btn_config_details_Click);
             // 
             // Properties_form
             // 
@@ -485,6 +485,6 @@
         private System.Windows.Forms.TabPage details_tab;
         private System.Windows.Forms.TabPage versions_tab;
         private System.Windows.Forms.Button btn_config_details;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox details_groupBox;
     }
 }
