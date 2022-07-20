@@ -211,8 +211,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="FolderExplorerConfigs\details_categories.json">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    <None Include="FolderExplorerConfigs\details_categories.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="FolderExplorerConfigs\ProgId.json">

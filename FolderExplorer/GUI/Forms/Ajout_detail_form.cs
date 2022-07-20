@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,18 +17,7 @@ namespace FolderExplorer
         public Ajout_detail_form()
         {
             InitializeComponent();
-            //listing de toutes les catégories dispo dans le json
-            if (File.Exists("FolderExplorerConfigs\\details_categories.json"))
-            {
-                JObject Categories = JObject.Parse(File.ReadAllText("FolderExplorerConfigs\\details_categories.json"));
-                for (int i = 1; i < Categories.Count; i++)
-                {
-                    cb_categories.Items.Add(Categories.Property(i.ToString()).Value.ToString());
-                }
-            }
-            //positionnement sur la premiere categorie trouvée
-            cb_categories.SelectedIndex = 0;
-            fininit = true;
+            refreshcb(false);
         }
 
         private void cb_categories_SelectedValueChanged(object sender, EventArgs e)
@@ -40,9 +28,42 @@ namespace FolderExplorer
                 {
                     //on ouvre la page de création de catégorie
                     Ajout_Categorie_form ajout_Categorie_Form = new Ajout_Categorie_form();
-                    ajout_Categorie_Form.Show();
+                    ajout_Categorie_Form.ShowDialog();
+                    refreshcb(true);
                 }
             }
+        }
+
+        private void refreshcb(bool dernieritem = false)
+        {
+            cb_categories.Items.Clear();
+            //listing de toutes les catégories dispo dans le ini
+            if (File.Exists("FolderExplorerConfigs\\details_categories.ini"))
+            {
+                string fichier = "FolderExplorerConfigs\\details_categories.ini";
+                IEnumerable<string> lignes = File.ReadLines(fichier);
+                foreach (string ligne in lignes)
+                {
+                    cb_categories.Items.Add(ligne);
+                }
+            }
+            //Creation "nouvelle categorie"
+            cb_categories.Items.Add("Nouvelle Categorie");
+            //positionnement sur la premiere categorie trouvée
+            if (dernieritem)
+            {
+                cb_categories.SelectedIndex = cb_categories.Items.Count-2;
+            }
+            else
+            {
+                cb_categories.SelectedIndex = cb_categories.Items.Count-1;
+            }
+            fininit = true;
+        }
+
+        private void btn_creer_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

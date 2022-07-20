@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,13 +20,11 @@ namespace FolderExplorer
 
         private void btn_ok_Click(object sender, EventArgs e)
         {
-            JObject Categories = JObject.Parse(File.ReadAllText("FolderExplorerConfigs\\details_categories.json"));
-            int i = Categories.Count;
-            Categories = new JObject(
-                new JProperty(i.ToString(), tb_nom_categorie.Text)
-            );
-
-            File.WriteAllText("details_categories.json", Categories.ToString());
+            if (File.Exists("FolderExplorerConfigs\\details_categories.ini"))
+            {
+                string fichier = "FolderExplorerConfigs\\details_categories.ini";
+                File.AppendAllText(fichier, tb_nom_categorie.Text+"\n");
+            }
             Close();
         }
     }
