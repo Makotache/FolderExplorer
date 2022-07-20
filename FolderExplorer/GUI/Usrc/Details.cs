@@ -34,6 +34,9 @@ namespace FolderExplorer
                 string visual_name = ((JProperty)jToken_).Name.ToString();
                 string script_name = ((JProperty)jToken_).Value.ToString();
                 string val = typeof(Element).GetProperty(script_name).GetValue(element).ToString();
+                
+                //on remplace le '-1' par du vide
+                val = val != "-1" ? val : "";
 
                 if (cpt > 0)
                 {
