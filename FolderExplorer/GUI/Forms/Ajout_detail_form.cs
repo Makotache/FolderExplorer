@@ -19,6 +19,7 @@ namespace FolderExplorer
         {
             InitializeComponent();
             _extension = extension;
+            cb_type.SelectedIndex = 0;
             refreshcb(false);
         }
 
@@ -58,7 +59,7 @@ namespace FolderExplorer
             }
             else
             {
-                cb_categories.SelectedIndex = cb_categories.Items.Count-1;
+                cb_categories.SelectedIndex = 0;
             }
             fininit = true;
         }
@@ -72,8 +73,9 @@ namespace FolderExplorer
             }
             }
              */
-            string fichier = "temp"+_extension;
-            string[] lignes = { "." + _extension + " : {", cb_categories.SelectedValue.ToString() + " : {", tb_detail_nom.Text + " : " + cb_type.SelectedValue.ToString(), "}", "}" };
+            string fichier = "temp_"+_extension;
+            string quote = "\"";
+            string[] lignes = new string[] {quote+cb_categories.SelectedItem.ToString() + quote+": {", quote+tb_detail_nom.Text + quote + ": " + quote+cb_type.SelectedItem.ToString()+quote, "}"};
             File.AppendAllLines(fichier, lignes);
             Close();
         }

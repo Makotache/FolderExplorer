@@ -1,18 +1,23 @@
 ﻿{
-  ".wav": {
-    "Fichier": {
-      "Nom": "name",
-      "Taille": "size"
+    //debut .wav
+    ".wav": {
+        "Fichier": {
+            "Nom": "name"
+        },
+        "Audio": {
+            "Bitrate": "bitRate"
+        },
+        "Fichier": {
+            "Taille": "size"
+        }
     },
-    "Audio": {
-      "Bitrate": "bitRate"
+    //fin .wav
+    //debut .png
+    ".png": {
+        "Fichier": {
+            "Nom": "name",
+            "Taille": "size"
+        }
     }
-  },
-
-  ".png": {
-    "Fichier": {
-      "Nom": "name",
-      "Taille": "size"
-    }
-  }
+    //fin .png
 }
