@@ -75,7 +75,7 @@ namespace FolderExplorer
              */
             string fichier = "temp_"+_extension;
             string quote = "\"";
-            string[] lignes = new string[] {quote+cb_categories.SelectedItem.ToString() + quote+": {", quote+tb_detail_nom.Text + quote + ": " + quote+cb_type.SelectedItem.ToString()+quote, "}"};
+            string[] lignes = new string[] {quote+cb_categories.SelectedItem.ToString() + quote+": {", quote+tb_detail_nom.Text + quote + ": " + quote+cb_type.SelectedItem.ToString().Substring(cb_type.SelectedItem.ToString().IndexOf(" - ")+3) +quote, "}"};
             File.AppendAllLines(fichier, lignes);
             Close();
         }

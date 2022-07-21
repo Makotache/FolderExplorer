@@ -40,15 +40,15 @@
             // 
             this.cb_type.FormattingEnabled = true;
             this.cb_type.Items.AddRange(new object[] {
-            "Nom (Name)",
-            "Type (Type)",
-            "Chemin du dossier (FolderPath)",
-            "Taille",
-            "Date de création",
-            "Modifié le",
-            "Attributs",
-            "Propriétaire",
-            "Ordinateur"});
+            "Nom - Name",
+            "Type - Type",
+            "Chemin du dossier - FolderPath",
+            "Taille - Taille",
+            "Date de création - DateC",
+            "Modifié le - Modif",
+            "Attributs - Attributs",
+            "Propriétaire - Owner",
+            "Ordinateur - Computer"});
             this.cb_type.Location = new System.Drawing.Point(22, 84);
             this.cb_type.Name = "cb_type";
             this.cb_type.Size = new System.Drawing.Size(299, 21);

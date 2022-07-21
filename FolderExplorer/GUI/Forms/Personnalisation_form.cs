@@ -89,5 +89,10 @@ namespace FolderExplorer
                 }
             }
         }
+
+        private void btn_annuler_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
