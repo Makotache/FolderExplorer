@@ -614,7 +614,7 @@ namespace FolderExplorer
         /// </summary>
         /// <param name="ev"></param>
         /// <returns>True si l'opération c'est faite sinon false</returns>
-        public bool Open(ElementViewer ev)
+        public bool Open(ElementViewer ev = null)
         {
             if(!isFile)
             {

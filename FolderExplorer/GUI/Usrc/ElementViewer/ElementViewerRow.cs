@@ -167,6 +167,37 @@ namespace FolderExplorer
             //alt + entrer
             //entrer
             //shift / control
+            
+            switch(e.KeyCode)
+            {
+                case Keys.Enter:
+                    if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.LeftAlt))//| System.Windows.Input.Key.RightAlt
+                    {
+                        elementViewer.OpenProperties(null, null);
+                    }
+                    else
+                    {
+                        element.Open(elementViewer);
+                    }
+                    break;
+
+                case Keys.Up:
+                case Keys.Down:
+                    //change selection
+                    break;
+
+                case Keys.Right:
+                case Keys.Left:
+                    if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.LeftAlt))
+                    {
+                        //page précédante / suivante
+                    }
+                    break;
+
+                case Keys.F2:
+                    //renommer
+                    break;
+            }
         }
 
         private void ElementViewerRow_MouseMove(object sender, MouseEventArgs e)

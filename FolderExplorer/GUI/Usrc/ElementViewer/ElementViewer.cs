@@ -237,7 +237,7 @@ namespace FolderExplorer
             }
         }
 
-        private void OpenProperties(object sender, EventArgs e)
+        public void OpenProperties(object sender, EventArgs e)
         {
             //Console.WriteLine("OpenProperties");
             switch (selectedRows_lst.Count)

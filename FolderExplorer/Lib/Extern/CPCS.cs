@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FolderExplorer
+namespace CPCS
 {
     internal static class CPCS
     {
@@ -28,41 +28,6 @@ namespace FolderExplorer
                 }
             }
             return result;
-        }
-
-        public static bool MouseOverControl(Control control)
-        {
-            return control.ClientRectangle.Contains(control.PointToClient(Cursor.Position));
-        }
-
-
-        public static bool StringContainString(string strToVerify, string withIt, bool ignoreCase)
-        {
-            if (ignoreCase)
-            {
-                return strToVerify.IndexOf(withIt, StringComparison.OrdinalIgnoreCase) > -1;
-            }
-            else
-            {
-                return strToVerify.IndexOf(withIt) > -1;
-            }
-        }
-
-        public static bool StringContainLatinLetter(string str, string customCharacter, bool ignoreCase = true, bool withAccent = true)
-        {
-            const string specialLetter = "àãä" + "éêèë" + "ç" + "îïì" + "õòöô" + "ùûü" + "ÿ";
-            string letter = "abcdefghijklmnopqrstuvwxyz" + specialLetter;
-
-            letter += customCharacter;
-
-            for (int i = str.Length - 1; i > -1; i--)
-            {
-                if (!StringContainString(letter, str[i].ToString(), ignoreCase))
-                {
-                    return false;
-                }
-            }
-            return true;
         }
     }
 }
